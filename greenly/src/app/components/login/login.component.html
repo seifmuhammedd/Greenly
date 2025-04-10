@@ -16,30 +16,45 @@
                 <div class="inputs mt-3 w-100">
                     <form [formGroup]="loginForm">
                         <div class="mb-3">
-                            <label for="email" class="form-label special-font fs-3">Email<img src="./assets/user-svgrepo-com.svg" width="25px" height="25px"
-                                alt="User Icon"></label>
-                                
-                                <input [ngClass]="{
+                            <label for="email" class="form-label special-font fs-3">Email<img
+                                    src="./assets/user-svgrepo-com.svg" width="25px" height="25px" alt="User Icon"
+                                    class="pb-1"></label>
+
+                            <input [ngClass]="{
                                     'is-valid' : !loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty ),
                                     'is-invalid' : loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty )
-                                }" type="email" class="form-control w-100" id="email"
-                                    placeholder="Enter your email" formControlName="email">
+                                }" type="email" class="form-control w-100" id="email" placeholder="Enter your email"
+                                formControlName="email">
+                            @if (loginForm.get("email")?.errors && loginForm.get("email")?.touched) {
+                            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                                @if (loginForm.get("email")?.getError("required")) {<p class="m-0">Email Is Required</p>
+                                }
+                                @else if (loginForm.get("email")?.getError("email")) {<p class="m-0">Email format is not
+                                    correct</p>}
+                            </div>
+                            }
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label special-font fs-3 pt-">Password<img
                                     src="./assets/lock-alt-svgrepo-com.svg" width="20px" height="20px"
-                                    alt="User Icon" class="pb-1"></label>
+                                    alt="User Icon"></label>
                             <input [ngClass]="{
                                     'is-valid' : !loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty ),
                                     'is-invalid' : loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty )
                                 }" type="password" class="form-control w-100" id="password"
                                 placeholder="Enter your password" formControlName="password">
+                                @if (loginForm.get("password")?.errors && loginForm.get("password")?.touched) {
+                                    <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                                        @if (loginForm.get("password")?.getError("required")) {<p class="m-0">Password is required</p>}
+                                        @else if (loginForm.get("password")?.getError("pattern")) {<p class="m-0">Password must be at least 8 charachters</p>}
+                                    </div>
+                                }
                         </div>
                         <button class="btn-main w-75 d-block mx-auto rounded-5">LogIn</button>
                     </form>
                 </div>
-            <h3 class="fs-6 mt-3 mx-auto fw-bold">Don't have an account? <span class="text-success cursor-pointer">Sign Up Now!</span></h3>
-
+                <h3 class="fs-6 mt-3 mx-auto fw-bold">Don't have an account? <span class="text-success cursor-pointer"
+                        routerLink="/register">Sign Up Now!</span></h3>
             </div>
         </div>
     </div>
