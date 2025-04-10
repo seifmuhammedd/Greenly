@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="inputs mt-3 w-100">
-                    <form [formGroup]="loginForm">
+                    <form [formGroup]="loginForm" (ngSubmit)="loginData()">
                         <div class="mb-3">
                             <label for="email" class="form-label special-font fs-3">Email<img
                                     src="./assets/user-svgrepo-com.svg" width="25px" height="25px" alt="User Icon"

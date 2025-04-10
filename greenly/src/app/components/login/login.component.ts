@@ -18,4 +18,13 @@ export class LoginComponent {
     email: [null,[ Validators.required, Validators.email]],
     password: [null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)]]
   })
+
+  loginData():void{
+    if(this.loginForm.valid){
+      console.log(this.loginForm.value)
+      this._Router.navigate(["/home"])
+    }else{
+      this.loginForm.markAllAsTouched()
+    }
+  }
 }
