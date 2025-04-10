@@ -14,36 +14,19 @@
                 </div>
                 <div class="inputs mt-3 w-100">
                     <form [formGroup]="registerForm" class="row" (ngSubmit)="registerData()">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="firstName" class="form-label special-font fs-3">First Name</label>
+                                <label for="userName" class="form-label special-font fs-3">User Name</label>
                                 <input [ngClass]="{
-                                        'is-valid' : !registerForm.get('firstName')?.errors && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty ),
-                                        'is-invalid' : registerForm.get('firstName')?.errors && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty )
-                                    }" type="text" class="form-control w-100" id="firstName"
-                                    placeholder="Enter your first name" formControlName="firstName">
-                                    @if (registerForm.get("firstName")?.errors && registerForm.get("firstName")?.touched) {
+                                        'is-valid' : !registerForm.get('userName')?.errors && (registerForm.get('userName')?.touched || registerForm.get('userName')?.dirty ),
+                                        'is-invalid' : registerForm.get('userName')?.errors && (registerForm.get('userName')?.touched || registerForm.get('userName')?.dirty )
+                                    }" type="text" class="form-control w-100" id="userName"
+                                    placeholder="Enter User Name" formControlName="userName">
+                                    @if (registerForm.get("userName")?.errors && registerForm.get("userName")?.touched) {
                                         <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-                                            @if (registerForm.get("firstName")?.getError("required")) {<p class="m-0">First Name is required</p>}
-                                            @else if (registerForm.get("firstName")?.getError("minlength")) {<p class="m-0">First Name be at least 3 charachters</p>}
-                                            @else if (registerForm.get("firstName")?.getError("maxlength")) {<p class="m-0">Maximum characters allowed are 20</p>}
-                                        </div>
-                                    }
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="lastName" class="form-label special-font fs-3">Last Name</label>
-                                <input [ngClass]="{
-                                        'is-valid' : !registerForm.get('lastName')?.errors && (registerForm.get('lastName')?.touched || registerForm.get('lastName')?.dirty ),
-                                        'is-invalid' : registerForm.get('lastName')?.errors && (registerForm.get('lastName')?.touched || registerForm.get('lastName')?.dirty )
-                                    }" type="text" class="form-control w-100" id="lastName"
-                                    placeholder="Enter your last name" formControlName="lastName">
-                                    @if (registerForm.get("firstName")?.errors && registerForm.get("firstName")?.touched) {
-                                        <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-                                            @if (registerForm.get("lastName")?.getError("required")) {<p class="m-0">Last Name is required</p>}
-                                            @else if (registerForm.get("lastName")?.getError("minlength")) {<p class="m-0">Last Name be at least 3 charachters</p>}
-                                            @else if (registerForm.get("lastName")?.getError("maxlength")) {<p class="m-0">Maximum characters allowed are 20</p>}
+                                            @if (registerForm.get("userName")?.getError("required")) {<p class="m-0">User Name is required</p>}
+                                            @else if (registerForm.get("userName")?.getError("minlength")) {<p class="m-0">User Name be at least 3 charachters</p>}
+                                            @else if (registerForm.get("userName")?.getError("maxlength")) {<p class="m-0">Maximum characters allowed are 20</p>}
                                         </div>
                                     }
                             </div>

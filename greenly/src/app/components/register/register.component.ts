@@ -20,8 +20,7 @@ export class RegisterComponent implements OnDestroy {
   registerSub !: Subscription
   
   registerForm: FormGroup = this._FormBuilder.group({
-    firstName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    lastName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    userName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
     age: [null, [Validators.required, Validators.pattern(/^[1-9][0-9]?$/), Validators.min(18), Validators.max(99)]],
     phone: [null, [Validators.required, Validators.pattern(/^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/)]],
     email: [null, [Validators.required, Validators.email]],
