@@ -22,7 +22,7 @@ export class RegisterComponent {
     email: [null, [Validators.required, Validators.email]],
     password: [null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)]],
     confirmPassword: [null]
-  }, {Validators: this.comparePassword});
+  }, {validators: this.comparePassword});
 
   comparePassword (g : AbstractControl):(null|object){
     if (g.get("password")?.value === g.get("confirmPassword")?.value){

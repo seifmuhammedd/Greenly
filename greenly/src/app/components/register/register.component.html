@@ -112,10 +112,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="confirmPassword" class="form-label special-font fs-3 pt-">Confirm Password</label>
-                                <input [ngClass]="{
-                                        'is-valid' : !registerForm.get('confirmPassword')?.errors && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty ),
-                                        'is-invalid' : registerForm.get('confirmPassword')?.errors && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty )
-                                    }" type="password" class="form-control w-100" id="confirmPassword"
+                                <input type="password" class="form-control w-100" id="confirmPassword"
                                     placeholder="Please confirm your password" formControlName="confirmPassword">
                                     @if (registerForm.getError("missMatch") && registerForm.get("confirmPassword")?.touched) {
                                         <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
