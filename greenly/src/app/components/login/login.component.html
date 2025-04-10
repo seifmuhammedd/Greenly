@@ -1,1 +1,46 @@
-<p>login works!</p>
+<section>
+    <div class="container d-flex justify-content-center align-items-center p-5">
+        <div class="row g-0">
+            <div class="col-md-6 p-2">
+                <div class="left-content d-flex justify-content-end">
+                    <img src="./assets/Background Image-1.png" alt="Greenly Logo" class="w-75">
+                </div>
+            </div>
+            <div class="col-md-6  ps-0 d-flex flex-column justify-content-center align-items-start">
+                <div class="right-content-text w-75">
+                    <div class="text border-bottom border-secondary">
+                        <h1 class="special-font m-0 p-0">Login to your account</h1>
+                        <p class="ps-1 text-secondary">Welcome Back!</p>
+                    </div>
+                </div>
+                <div class="inputs mt-3 w-100">
+                    <form [formGroup]="loginForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label special-font fs-3">Email<img src="./assets/user-svgrepo-com.svg" width="25px" height="25px"
+                                alt="User Icon"></label>
+                                
+                                <input [ngClass]="{
+                                    'is-valid' : !loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty ),
+                                    'is-invalid' : loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty )
+                                }" type="email" class="form-control w-100 ps-4" id="email"
+                                    placeholder="Enter your email" formControlName="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label special-font fs-3 pt-">Password<img
+                                    src="./assets/lock-alt-svgrepo-com.svg" width="20px" height="20px"
+                                    alt="User Icon" class="pb-1"></label>
+                            <input [ngClass]="{
+                                    'is-valid' : !loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty ),
+                                    'is-invalid' : loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty )
+                                }" type="password" class="form-control w-100 ps-4" id="password"
+                                placeholder="Enter your password" formControlName="password">
+                        </div>
+                        <button class="btn-main w-75 d-block mx-auto rounded-5">LogIn</button>
+                    </form>
+                </div>
+            <h3 class="fs-6 mt-3 mx-auto fw-bold">Don't have an account? <span class="text-success cursor-pointer">Sign Up Now!</span></h3>
+
+            </div>
+        </div>
+    </div>
+</section>
