@@ -1,7 +1,9 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +12,12 @@ import { RouterLink } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy {
   
-  constructor( private _FormBuilder: FormBuilder ) {}
+  constructor( private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router ) {}
+
+  responseMessage !: string
+  registerSub !: Subscription
   
   registerForm: FormGroup = this._FormBuilder.group({
     firstName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -34,11 +39,21 @@ export class RegisterComponent {
 
   registerData():void{
     if(this.registerForm.valid){
-      console.log(this.registerForm.value)
-    }else{
+      this.registerSub = this._AuthService.registerUser(this.registerForm.value).subscribe({
+        next: (res) =>{
+          this.responseMessage = res.message
+          setTimeout(() => {
+            this._Router.navigate(["/home"])
+          },2000)
+        }
+      })
+    }else {
       console.log(this.registerForm)
       this.registerForm.setErrors({"missMatch":true})
       this.registerForm.markAllAsTouched()
     }
+  }
+  ngOnDestroy(): void {
+    this.registerSub?.unsubscribe()
   }
 }

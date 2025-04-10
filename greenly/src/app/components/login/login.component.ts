@@ -1,7 +1,9 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +12,12 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
 
-  constructor( private _FormBuilder: FormBuilder, private _Router: Router ) {}
+  constructor( private _FormBuilder: FormBuilder, private _Router: Router, private _AuthService: AuthService ) {}
+
+  responseMessage !: string
+  loginSub !: Subscription
 
   loginForm: FormGroup = this._FormBuilder.group({
     email: [null,[ Validators.required, Validators.email]],
@@ -21,10 +26,21 @@ export class LoginComponent {
 
   loginData():void{
     if(this.loginForm.valid){
-      console.log(this.loginForm.value)
-      this._Router.navigate(["/home"])
-    }else{
+      this.loginSub = this._AuthService.logInUser(this.loginForm.value).subscribe({
+        next: (res) => {
+          this.responseMessage = res.message
+          setTimeout(() => {
+            this._Router.navigate(["/home"])
+          }, 2000)
+          localStorage.setItem("userToken", res.token)
+          this._AuthService.getDecodedInfo()
+        }
+      })}else{
       this.loginForm.markAllAsTouched()
     }
+  }
+
+  ngOnDestroy(): void {
+    this.loginSub?.unsubscribe()
   }
 }
