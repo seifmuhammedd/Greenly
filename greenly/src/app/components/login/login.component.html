@@ -22,7 +22,7 @@
                                 <input [ngClass]="{
                                     'is-valid' : !loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty ),
                                     'is-invalid' : loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty )
-                                }" type="email" class="form-control w-100 ps-4" id="email"
+                                }" type="email" class="form-control w-100" id="email"
                                     placeholder="Enter your email" formControlName="email">
                         </div>
                         <div class="mb-3">
@@ -32,7 +32,7 @@
                             <input [ngClass]="{
                                     'is-valid' : !loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty ),
                                     'is-invalid' : loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty )
-                                }" type="password" class="form-control w-100 ps-4" id="password"
+                                }" type="password" class="form-control w-100" id="password"
                                 placeholder="Enter your password" formControlName="password">
                         </div>
                         <button class="btn-main w-75 d-block mx-auto rounded-5">LogIn</button>
