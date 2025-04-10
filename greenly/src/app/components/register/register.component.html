@@ -1,5 +1,9 @@
 <section>
     <div class="container d-flex justify-content-center align-items-center p-5">
+        @if(responseMessage){<p class="alert p-2 text-center rounded-2 w-50 mx-auto" [ngClass]="{
+            'alert-danger' :   responseMessage != 'success',
+            'alert-success' : responseMessage == 'success'
+        }">{{responseMessage}}</p>}
         <div class="row g-1">
             <div class="col-md-6 ps-5 d-flex flex-column justify-content-center align-items-start pb-3">
                 <div class="right-content-text w-75">
