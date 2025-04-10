@@ -15,10 +15,10 @@ export class HomeComponent {
     mouseDrag: true,
     touchDrag: true,
     autoplay: true,
-    autoplayTimeout: 2000,
+    autoplayTimeout: 3000,
     pullDrag: false,
     dots: false,
-    navSpeed: 1500,
+    navSpeed: 3000,
     navText: ['', ''],
     items: 1,
     nav: false
