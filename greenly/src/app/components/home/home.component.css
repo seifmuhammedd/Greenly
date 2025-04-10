@@ -1,0 +1,50 @@
+.slider-text{
+    font-size: 74px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.home-slider p{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+h4{
+    font-family: Open Sans, sans-serif;
+    font-weight: 300;
+    position: relative;
+    top: 30px;
+    left: 100px;
+}
+h4::before{
+    content: "";
+    font-size: 50px;
+    color: #177E39;
+    position: absolute;
+    left: -50px;
+    top: 7.5px;
+    width: 40px;
+    height: 1px;
+    background-color: #177E39;
+}
+.about-us .about-main-text{
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 72px;
+}
+.ps-10{
+    padding-left: 100px;
+}
+.our-services h3{
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 72px;
+}
+.inner{
+    border: 1px solid #81E084;
+    transition: all 0.3s ease-in-out;
+}
+.inner:hover{
+    border: 1px solid #177E39;
+    box-shadow: 0 0 10px #81E084;
+}
