@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validator
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +15,8 @@ import { Subscription } from 'rxjs';
 })
 export class RegisterComponent implements OnDestroy {
   
-  constructor( private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router ) {}
+  constructor( private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router, private _ToastrService: ToastrService ) {}
 
-  responseMessage !: string
   registerSub !: Subscription
   
   registerForm: FormGroup = this._FormBuilder.group({
@@ -40,16 +40,13 @@ export class RegisterComponent implements OnDestroy {
     if(this.registerForm.valid){
       this.registerSub = this._AuthService.registerUser(this.registerForm.value).subscribe({
         next: (res) =>{
-          this.responseMessage = res.message
+          this._ToastrService.success(res.message , "Greenly" , {timeOut : 2000})
           setTimeout(() => {
             this._Router.navigate(["/login"])
           },2000)
         },
         error: (err) =>{
-          this.responseMessage = err.error.message
-          setTimeout(() => {
-            this.registerForm.reset()
-          }, 2000)
+          this._ToastrService.error(err.error.message , "Greenly" , {timeOut : 2000})
         }
       })
     }else {

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,8 @@ import { Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnDestroy {
 
-  constructor( private _FormBuilder: FormBuilder, private _Router: Router, private _AuthService: AuthService ) {}
+  constructor( private _FormBuilder: FormBuilder, private _Router: Router, private _AuthService: AuthService, private _ToastrService: ToastrService ) {}
 
-  responseMessage !: string
   loginSub !: Subscription
 
   loginForm: FormGroup = this._FormBuilder.group({
@@ -28,12 +28,15 @@ export class LoginComponent implements OnDestroy {
     if(this.loginForm.valid){
       this.loginSub = this._AuthService.logInUser(this.loginForm.value).subscribe({
         next: (res) => {
-          this.responseMessage = res.message
+          this._ToastrService.success("Logged in successfully" , "Greenly" , {timeOut : 2000})
           setTimeout(() => {
             this._Router.navigate(["/home"])
           }, 2000)
           localStorage.setItem("userToken", res.token)
           this._AuthService.getDecodedInfo()
+        },
+        error: (err) => {
+          this._ToastrService.error(err.error.message , "Greenly" , {timeOut : 2000})
         }
       })}else{
       this.loginForm.markAllAsTouched()
