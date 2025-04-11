@@ -1,13 +1,13 @@
 <section>
     <div class="container d-flex justify-content-center align-items-center p-5">
         @if(responseMessage){<p class="alert p-2 text-center rounded-2 w-50 mx-auto" [ngClass]="{
-            'alert-danger' :   responseMessage != 'success',
-            'alert-success' : responseMessage == 'success'
+            'alert-danger' :   responseMessage != 'User created successfully',
+            'alert-success' : responseMessage == 'User created successfully'
         }">{{responseMessage}}</p>}
         <div class="row g-1">
             <div class="col-md-6 ps-5 d-flex flex-column justify-content-center align-items-start pb-3">
-                <div class="right-content-text w-75">
-                    <div class="text border-bottom border-secondary">
+                <div class="right-content-text w-75 mx-auto">
+                    <div class="text border-bottom border-secondary text-center">
                         <h1 class="special-font m-0 p-0">Create Account</h1>
                         <p class="ps-1 text-secondary">Join Greenly and be friend with nature.</p>
                     </div>
@@ -108,7 +108,7 @@
                                     }
                             </div>
                         </div>
-                        <button class="btn-main w-75 d-block mx-auto rounded-5">Sign Up</button>
+                        <button class="btn-main w-75 d-block mx-auto rounded-5" [disabled]="registerForm.invalid">Sign Up</button>
                     </form>
                     <h3 class="fs-6 mt-3 mx-auto fw-bold text-center">Already have an account? <span
                             class="text-success cursor-pointer" routerLink="/login">LogIn Here</span></h3>
@@ -116,8 +116,8 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="left-content d-flex justify-content-start ps-5 h-100">
-                    <img src="./assets/Background Image.png" alt="Greenly Logo" class="w-75">
+                <div class="left-content d-flex justify-content-center align-items-center ps-5 h-100">
+                    <img src="./assets/Background Image.png" alt="Greenly Logo" class="w-100 rounded-2 register-img">
                 </div>
             </div>
         </div>

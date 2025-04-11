@@ -44,10 +44,15 @@ export class RegisterComponent implements OnDestroy {
           setTimeout(() => {
             this._Router.navigate(["/login"])
           },2000)
+        },
+        error: (err) =>{
+          this.responseMessage = err.error.message
+          setTimeout(() => {
+            this.registerForm.reset()
+          }, 2000)
         }
       })
     }else {
-      console.log(this.registerForm)
       this.registerForm.setErrors({"missMatch":true})
       this.registerForm.markAllAsTouched()
     }
