@@ -14,11 +14,11 @@ export class AuthService {
   decodedInfo:any
   
   logInUser(userData: object):Observable<any> {
-    return this._HttpClient.post(`${environment.baseURL}/auth/signup`, userData);
+    return this._HttpClient.post(`${environment.baseURL}/auth/login`, userData);
   }
 
   registerUser(userData: object):Observable<any> {
-    return this._HttpClient.post(`${environment.baseURL}/auth/login`, userData);
+    return this._HttpClient.post(`${environment.baseURL}/auth/signup`, userData);
   }
 
   getDecodedInfo():void {
