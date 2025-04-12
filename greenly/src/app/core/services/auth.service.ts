@@ -22,8 +22,8 @@ export class AuthService {
   }
 
   getDecodedInfo():void {
-    if(localStorage.getItem('userToken') != null){
-      this.decodedInfo = jwtDecode(localStorage.getItem('userToken') !)
+    if(sessionStorage.getItem('userToken') != null){
+      this.decodedInfo = jwtDecode(sessionStorage.getItem('userToken') !)
     }
   }
 }
