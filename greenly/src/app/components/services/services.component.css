@@ -1,0 +1,9 @@
+.inner{
+    height: 500px;
+    border: 1px solid #81E084;
+    transition: all 0.3s ease-in-out;
+}
+.inner:hover{
+    border: 1px solid #177E39;
+    box-shadow: 0 0 10px #81E084;
+}
