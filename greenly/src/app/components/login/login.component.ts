@@ -32,7 +32,7 @@ export class LoginComponent implements OnDestroy {
           setTimeout(() => {
             this._Router.navigate(["/home"])
           }, 2000)
-          sessionStorage.setItem("userToken", res.token)
+          localStorage.setItem("userToken", res.token)
           this._AuthService.getDecodedInfo()
         },
         error: (err) => {
