@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environments';
 import { jwtDecode } from 'jwt-decode';
@@ -12,7 +12,8 @@ export class AuthService {
   constructor(private _HttpClient: HttpClient) { }
 
   decodedInfo:any
-  
+  isLoggedIn: WritableSignal<boolean> = signal(false)
+
   logInUser(userData: object):Observable<any> {
     return this._HttpClient.post(`${environment.baseURL}/auth/login`, userData);
   }
