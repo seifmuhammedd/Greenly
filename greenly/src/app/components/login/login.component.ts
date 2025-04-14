@@ -28,9 +28,12 @@ export class LoginComponent implements OnDestroy {
     if(this.loginForm.valid){
       this.loginSub = this._AuthService.logInUser(this.loginForm.value).subscribe({
         next: (res) => {
-          this._ToastrService.success("Logged in successfully" , "Greenly" , {timeOut : 2000})
+          this._ToastrService.success("Logged in successfully" , "Greenly" , {timeOut : 1500})
+          setTimeout(() => {
           this._AuthService.isLoggedIn.set(true)
+
           this._Router.navigate(["/home"])
+          }, 2000);
           localStorage.setItem("userToken", res.token)
           this._AuthService.getDecodedInfo()
         },

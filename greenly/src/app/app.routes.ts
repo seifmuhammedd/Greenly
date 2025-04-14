@@ -14,6 +14,7 @@ import { HomeAdminComponent } from './components/home-admin/home-admin.component
 import { ShopComponent } from './components/shop/shop.component';
 import { ServicesComponent } from './components/services/services.component';
 import { BlogComponent } from './components/blog/blog.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 export const routes: Routes = [
@@ -29,6 +30,7 @@ export const routes: Routes = [
     {path: "", component: UserComponent, children: [
         {path: "cart", component: CartComponent, title: "Cart"},
         {path: "favorites", component: FavoritesComponent, title: "Favorites"},
+        {path: "user-profile", component: UserProfileComponent, title: "Profile"},
         {path: "payment", component: PaymentComponent, title: "Payment"},
     ]},
     {path: "admin", component: AdminComponent, children: [
