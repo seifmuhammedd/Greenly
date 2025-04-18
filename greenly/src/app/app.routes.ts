@@ -15,6 +15,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { ServicesComponent } from './components/services/services.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 
 export const routes: Routes = [
@@ -24,6 +25,7 @@ export const routes: Routes = [
         {path: "login", component: LoginComponent, title: "LogIn"},
         {path: "register", component: RegisterComponent, title: "Sign Up"},
         {path: "shop", component: ShopComponent, title: "Shop"},
+        {path: "product-details", component: ProductDetailsComponent, title: "Product Details"},
         {path: "services", component: ServicesComponent, title: "Services"},
         {path: "blog", component: BlogComponent, title: "Blog"},
     ]},
