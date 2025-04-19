@@ -16,6 +16,8 @@ import { ServicesComponent } from './components/services/services.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { LoanComponent } from './components/loan/loan.component';
+import { ApiaryLicenceComponent } from './components/apiary-licence/apiary-licence.component';
 
 
 export const routes: Routes = [
@@ -28,6 +30,8 @@ export const routes: Routes = [
         {path: "product-details", component: ProductDetailsComponent, title: "Product Details"},
         {path: "services", component: ServicesComponent, title: "Services"},
         {path: "blog", component: BlogComponent, title: "Blog"},
+        {path: "loan", component: LoanComponent, title: "Loan Application"},
+        {path: "apiary-licence", component: ApiaryLicenceComponent, title: "Apiary Licence Application"},
     ]},
     {path: "", component: UserComponent, children: [
         {path: "cart", component: CartComponent, title: "Cart"},
