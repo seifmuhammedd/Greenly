@@ -1,0 +1,55 @@
+h4{
+    font-family: Open Sans, sans-serif;
+    font-weight: 500;
+}
+h4::before{
+    content: "";
+    font-size: 50px;
+    color: #177E39;
+    position: absolute;
+    left: -50px;
+    top: 7.5px;
+    width: 40px;
+    height: 1px;
+    background-color: #177E39;
+}
+
+.cart-holder{
+    border: #177E39 solid  1px;
+    padding: 3px 18px;
+    transition: all 0.3s ease-in-out;
+}
+.cart-holder:hover{
+    border: #81E084 solid  1px;
+    box-shadow: 0 0 10px #81E084;
+}
+.card{
+    border: #177E39 solid  1px;
+    transition: all 0.3s ease-in-out;
+}
+.card:hover{
+    box-shadow: 0 0 10px #81E084;
+}
+.card:hover .inner{
+transform: scale(0.95);
+}
+.inner{
+    transition: all 0.5s ease-in-out;
+}
+.favorite-circle{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #177E3966;
+    transition: all 0.3s ease-in-out;
+}
+.favorite-circle:hover{
+    transform: scale(1.1);
+}

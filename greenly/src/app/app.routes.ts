@@ -18,6 +18,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { LoanComponent } from './components/loan/loan.component';
 import { ApiaryLicenceComponent } from './components/apiary-licence/apiary-licence.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 export const routes: Routes = [
@@ -43,5 +44,6 @@ export const routes: Routes = [
         {path: "home", component: HomeAdminComponent, title: "Home"},
         {path: "produts", component: ManageProductsComponent, title: "Manage Products"},
         {path: "users", component: ManageUsersComponent, title: "Manage Users"},
-    ]}
+    ]},
+    {path: "**", component: NotFoundComponent, title: "Not Found"}
 ];

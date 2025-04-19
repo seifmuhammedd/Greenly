@@ -1,4 +1,10 @@
+.item-counter{
+    border: 1px solid #177E39;
+    width: 18%;
+    padding-block: 5px;
+    box-shadow: 0 0 10px #81E084; 
+
+}
 .item-counter button{
-    background-color: #00000080;
     border: none;
 }

@@ -1,1 +1,156 @@
-<p>loan works!</p>
+<section>
+    <div class="container my-3">
+        <h1 class="special-font text-center">Loan Application</h1>
+        <form>
+            <div class="row pt-5 pb-3 g-3">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="email" class="form-label fs-4 special-font">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="experience" class="form-label fs-4 special-font">Experience <span
+                                class="text-secondary fs-6">In years</span></label>
+                        <input type="number" class="form-control" id="experience" placeholder="1">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="income" class="form-label fs-4 special-font">Income <span
+                                class="text-secondary fs-6">In thousands</span></label>
+                        <input type="number" class="form-control" id="income" placeholder="3000">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="zip-code" class="form-label fs-4 special-font">ZIP Code</label>
+                        <input type="number" class="form-control" id="zip-code" placeholder="11765">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="family-members" class="form-label fs-4 special-font">Family members</label>
+                        <input type="number" class="form-control" id="family-members" placeholder="5">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="CCAvg" class="form-label fs-4 special-font">CCAvg <span
+                                class="text-secondary fs-6">Avg monthly spending with credit card in
+                                thousands</span></label>
+                        <input type="number" class="form-control" id="CCAvg" placeholder="3000">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="education" class="form-label fs-4 special-font">Education</label>
+                    <select class="form-select" aria-label="Default select example" id="education">
+                        <option disabled selected value="">Choose your education level</option>
+                        <option value="1">Less than High School</option>
+                        <option value="2">High School Graduate</option>
+                        <option value="3">Bachelor’s Degree</option>
+                        <option value="4">Postgraduate (Master’s / Doctorate)</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="mortgage" class="form-label fs-4 special-font">Mortgage</label>
+                        <input type="number" class="form-control" id="mortgage" placeholder="3000">
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <label for="securities-account" class="form-label fs-4 special-font">Securities account</label>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="security" id="security-yes">
+                            <label class="form-check-label fw-bold" for="security-yes">
+                              Yes
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="security" id="security-no" checked>
+                            <label class="form-check-label fw-bold" for="security-no">
+                              No
+                            </label>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <label for="cd-account" class="form-label fs-4 special-font">CD account</label>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="cd" id="cd-yes">
+                            <label class="form-check-label fw-bold" for="cd-yes">
+                              Yes
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="cd" id="cd-no" checked>
+                            <label class="form-check-label fw-bold" for="cd-no">
+                              No
+                            </label>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <label for="online" class="form-label fs-4 special-font">Online</label>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="online" id="online-yes">
+                            <label class="form-check-label fw-bold" for="online-yes">
+                              Yes
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="online" id="online-no" checked>
+                            <label class="form-check-label fw-bold" for="online-no">
+                              No
+                            </label>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <label for="credit-card" class="form-label fs-4 special-font">Credit Card</label>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="credit" id="credit-yes">
+                            <label class="form-check-label fw-bold" for="credit-yes">
+                              Yes
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="credit" id="credit-no" checked>
+                            <label class="form-check-label fw-bold" for="credit-no">
+                              No
+                            </label>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mx-auto text-center">
+                    <label for="personal-loan" class="form-label fs-4 special-font">Personal loan</label>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="personal-loan" id="personal-loan-yes">
+                            <label class="form-check-label fw-bold" for="personal-loan-yes">
+                              Yes
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input border-success" type="radio" name="personal-loan" id="personal-loan-no" checked>
+                            <label class="form-check-label fw-bold" for="personal-loan-no">
+                              No
+                            </label>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success rounded-3 px-5 py-2 d-block mx-auto w-25">Apply</button>
+            <hr class="bold-line w-75 mx-auto">
+        </form>
+        <div class="text-center">
+        <h3 class=""><span class="special-font">AI model loan eligibility: </span><span class="model-evaluation fw-bold text-success special-font">Yes</span></h3>
+        <h3 class=""><span class="special-font">The amount of money you can obtain: </span><span class="money-amount fw-bold special-font">30,000</span></h3>
+        </div>
+    </div>
+</section>
