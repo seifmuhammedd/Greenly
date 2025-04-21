@@ -99,7 +99,7 @@
                                     placeholder="Please confirm your password" formControlName="confirmPassword">
                                     @if (registerForm.getError("missMatch") && registerForm.get("confirmPassword")?.touched) {
                                         <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-                                            <p class="m-0">Passwords doesn't match</p>
+                                            <p class="m-0">Passwords don't match</p>
                                         </div>  
                                     }
                             </div>
