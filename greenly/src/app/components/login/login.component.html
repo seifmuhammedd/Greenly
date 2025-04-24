@@ -34,22 +34,24 @@
                             </div>
                             }
                         </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label special-font fs-3 pt-">Password<img
+                        <div class="mb-3 position-relative">
+                            <span (click)="togglePasswordVisibility()" class="cursor-pointer position-absolute eye-password"><i class="fa-solid"
+                                [ngClass]="isPasswordVisible ? 'fa-eye-slash text-main' : 'fa-eye text-main'"></i></span>
+                            <label for="password" class="form-label special-font fs-3">Password<img
                                     src="./assets/lock-alt-svgrepo-com.svg" width="20px" height="20px"
                                     alt="User Icon"></label>
                             <input [ngClass]="{
                                     'is-valid' : !loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty ),
                                     'is-invalid' : loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty )
-                                }" type="password" class="form-control w-100" id="password"
+                                }" [type]="isPasswordVisible ? 'text' : 'password'" class="form-control w-100 no-tick no-x" id="password"
                                 placeholder="Enter your password" formControlName="password">
-                                @if (loginForm.get("password")?.errors && loginForm.get("password")?.touched) {
-                                    <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-                                        @if (loginForm.get("password")?.getError("required")) {<p class="m-0">Password is required</p>}
-                                        @else if (loginForm.get("password")?.getError("pattern")) {<p class="m-0">Password must be at least 8 charachters</p>}
-                                    </div>
-                                }
                         </div>
+                        @if (loginForm.get("password")?.errors && loginForm.get("password")?.touched) {
+                            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                                @if (loginForm.get("password")?.getError("required")) {<p class="m-0">Password is required</p>}
+                                @else if (loginForm.get("password")?.getError("pattern")) {<p class="m-0">Password must be at least 8 charachters</p>}
+                            </div>
+                        }
                         <button class="btn-main w-75 d-block mx-auto rounded-5" [disabled]="loginForm.invalid">LogIn</button>
                     </form>
                 </div>

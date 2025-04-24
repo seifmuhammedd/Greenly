@@ -1,0 +1,12 @@
+.eye-password {
+    right: 1.5%;
+    top: 65%;
+}
+
+input.form-control.is-valid.no-tick {
+    background-image: none !important;
+}
+
+input.form-control.is-invalid.no-x {
+    background-image: none !important;
+}

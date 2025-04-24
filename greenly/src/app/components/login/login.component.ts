@@ -18,6 +18,11 @@ export class LoginComponent implements OnDestroy {
   constructor( private _FormBuilder: FormBuilder, private _Router: Router, private _AuthService: AuthService, private _ToastrService: ToastrService ) {}
 
   loginSub !: Subscription
+  isPasswordVisible = false;
+
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
 
   loginForm: FormGroup = this._FormBuilder.group({
     email: [null,[ Validators.required, Validators.email]],

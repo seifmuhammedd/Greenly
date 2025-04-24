@@ -19,31 +19,40 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { LoanComponent } from './components/loan/loan.component';
 import { ApiaryLicenceComponent } from './components/apiary-licence/apiary-licence.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AppComponent } from './app.component';
+import { LayoutAppComponent } from './core/layouts/layout-app/layout-app.component';
 
 
 export const routes: Routes = [
-    {path: "", component: GuestComponent, children: [
-        {path: "", redirectTo: "home", pathMatch: "full"},
-        {path: "home", component: HomeComponent, title: "Home"},
-        {path: "login", component: LoginComponent, title: "LogIn"},
-        {path: "register", component: RegisterComponent, title: "Sign Up"},
-        {path: "shop", component: ShopComponent, title: "Shop"},
-        {path: "product-details", component: ProductDetailsComponent, title: "Product Details"},
-        {path: "services", component: ServicesComponent, title: "Services"},
-        {path: "blog", component: BlogComponent, title: "Blog"},
-        {path: "loan", component: LoanComponent, title: "Loan Application"},
-        {path: "apiary-licence", component: ApiaryLicenceComponent, title: "Apiary Licence Application"},
+    {path: "", component: AppComponent, title: "App", children: [
+        {path: "", redirectTo: "app", pathMatch: "full"},
+        {path: "app", component: LayoutAppComponent, children: [
+            {path: "", redirectTo: "guest", pathMatch: "full"},
+            {path: "guest", component: GuestComponent, children: [
+                {path: "", redirectTo: "home", pathMatch: "full"},
+                {path: "home", component: HomeComponent, title: "Home"},
+                {path: "login", component: LoginComponent, title: "LogIn"},
+                {path: "register", component: RegisterComponent, title: "Sign Up"},
+                {path: "shop", component: ShopComponent, title: "Shop"},
+                {path: "product-details", component: ProductDetailsComponent, title: "Product Details"},
+                {path: "services", component: ServicesComponent, title: "Services"},
+                {path: "blog", component: BlogComponent, title: "Blog"},
+                {path: "loan", component: LoanComponent, title: "Loan Application"},
+                {path: "apiary-licence", component: ApiaryLicenceComponent, title: "Apiary Licence Application"},
+            ]},
+            {path: "user", component: UserComponent, children: [
+                {path: "cart", component: CartComponent, title: "Cart"},
+                {path: "favorites", component: FavoritesComponent, title: "Favorites"},
+                {path: "user-profile", component: UserProfileComponent, title: "Profile"},
+                {path: "payment", component: PaymentComponent, title: "Payment"},
+            ]},
+        ]},
+        {path: "admin", component: AdminComponent, children: [
+            {path: "home", component: HomeAdminComponent, title: "Home"},
+            {path: "produts", component: ManageProductsComponent, title: "Manage Products"},
+            {path: "users", component: ManageUsersComponent, title: "Manage Users"},
+        ]},
+        {path: "**", component: NotFoundComponent, title: "Not Found"},
     ]},
-    {path: "", component: UserComponent, children: [
-        {path: "cart", component: CartComponent, title: "Cart"},
-        {path: "favorites", component: FavoritesComponent, title: "Favorites"},
-        {path: "user-profile", component: UserProfileComponent, title: "Profile"},
-        {path: "payment", component: PaymentComponent, title: "Payment"},
-    ]},
-    {path: "admin", component: AdminComponent, children: [
-        {path: "home", component: HomeAdminComponent, title: "Home"},
-        {path: "produts", component: ManageProductsComponent, title: "Manage Products"},
-        {path: "users", component: ManageUsersComponent, title: "Manage Users"},
-    ]},
-    {path: "**", component: NotFoundComponent, title: "Not Found"}
+    
 ];

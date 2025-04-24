@@ -1,1 +1,28 @@
-<p>user-profile works!</p>
+<section>
+    <div class="container py-5">
+        <h1 class="special-font text-center">Profile</h1>
+        <h4 class="text-main position-relative fs-5">Personal Information</h4>
+        <div class="row justify-content-center g-4">
+            <div class="col-md-3">
+                <div class="mb-3">
+                    <label for="userName" class="form-label fw-bold special-font fs-4">User Name</label>
+                    <input type="text" class="form-control" id="userName" placeholder="Seif">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="mb-3 position-relative">
+                    <span (click)="togglePasswordVisibility()" class="cursor-pointer position-absolute eye-password"><i class="fa-solid"
+                        [ngClass]="isPasswordVisible ? 'fa-eye-slash text-main' : 'fa-eye text-main'"></i></span>
+                    <label for="password" class="form-label fw-bold special-font fs-4">Password</label>
+                    <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control" id="password" placeholder="xYz123@s">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label fw-bold special-font fs-4">Phone Number</label>
+                    <input type="tel" class="form-control" id="phoneNumber" placeholder="01xxxxxxxxx">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
