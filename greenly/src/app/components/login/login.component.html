@@ -35,8 +35,8 @@
                             }
                         </div>
                         <div class="mb-3 position-relative">
-                            <span (click)="togglePasswordVisibility()" class="cursor-pointer position-absolute eye-password"><i class="fa-solid"
-                                [ngClass]="isPasswordVisible ? 'fa-eye-slash text-main' : 'fa-eye text-main'"></i></span>
+                            <span (click)="togglePasswordVisibility()" class="cursor-pointer position-absolute eye-password"><i class="fa-solid text-main"
+                                [ngClass]="isPasswordVisible ? 'fa-eye-slash' : 'fa-eye'"></i></span>
                             <label for="password" class="form-label special-font fs-3">Password<img
                                     src="./assets/lock-alt-svgrepo-com.svg" width="20px" height="20px"
                                     alt="User Icon"></label>
@@ -56,7 +56,7 @@
                     </form>
                 </div>
                 <h3 class="fs-6 mt-3 mx-auto fw-bold">Don't have an account? <span class="text-success cursor-pointer"
-                        routerLink="/register">Sign Up Now!</span></h3>
+                        routerLink="/app/guest/register">Sign Up Now!</span></h3>
             </div>
         </div>
     </div>
