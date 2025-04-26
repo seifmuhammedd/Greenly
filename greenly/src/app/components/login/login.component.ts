@@ -37,7 +37,7 @@ export class LoginComponent implements OnDestroy {
           setTimeout(() => {
           this._AuthService.isLoggedIn.set(true)
 
-          this._Router.navigate(["/home"])
+          this._Router.navigate(["/app/system/home"])
           }, 2000);
           localStorage.setItem("userToken", res.token)
           this._AuthService.getDecodedInfo()

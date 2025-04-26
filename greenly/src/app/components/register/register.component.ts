@@ -42,7 +42,7 @@ export class RegisterComponent implements OnDestroy {
         next: (res) =>{
           this._ToastrService.success(res.message , "Greenly" , {timeOut : 2000})
           setTimeout(() => {
-            this._Router.navigate(["/login"])
+            this._Router.navigate(["/app/system/login"])
           },2000)
         },
         error: (err) =>{

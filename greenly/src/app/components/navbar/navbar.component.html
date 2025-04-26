@@ -7,37 +7,37 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav special-font-i mx-auto">
           <li class="nav-item px-2">
-            <a class="nav-link cursor-pointer fw-bold" routerLink="home" routerLinkActive="active-link">Home</a>
+            <a class="nav-link cursor-pointer fw-bold" routerLink="/app/system/home" routerLinkActive="active-link">Home</a>
           </li>
           <li class="nav-item px-2">
-            <a class="nav-link cursor-pointer fw-bold" routerLink="shop" routerLinkActive="active-link">Shop</a>
+            <a class="nav-link cursor-pointer fw-bold" routerLink="/app/system/shop" routerLinkActive="active-link">Shop</a>
           </li>
           <li class="nav-item px-2">
-            <a class="nav-link cursor-pointer fw-bold" routerLink="services" routerLinkActive="active-link">Services</a>
+            <a class="nav-link cursor-pointer fw-bold" routerLink="/app/system/services" routerLinkActive="active-link">Services</a>
           </li>
           <li class="nav-item px-2">
             <a class="nav-link cursor-pointer fw-bold">General Information</a>
           </li>
           <li class="nav-item px-2">
-            <a class="nav-link cursor-pointer fw-bold" routerLink="favorites" routerLinkActive="active-link">Favorites</a>
+            <a class="nav-link cursor-pointer fw-bold" routerLink="/app/system/favorites" routerLinkActive="active-link">Favorites</a>
           </li>
           <li class="nav-item px-2">
-            <a class="nav-link cursor-pointer fw-bold" routerLink="blog" routerLinkActive="active-link">Blog</a>
+            <a class="nav-link cursor-pointer fw-bold" routerLink="/app/system/blog" routerLinkActive="active-link">Blog</a>
           </li>
           <li class="nav-item px-2">
             <a class="nav-link cursor-pointer fw-bold">Contact Us</a>
           </li>
         </ul>
         @if(_AuthService.isLoggedIn()) {
-          <button class="btn-special rounded-3 px-3 py-1 rounded-5" type="button" routerLink="user-profile"><img src="./assets/user-svgrepo-green-com.svg" width="30px" height="30px"/>Profile</button>
-          <button class="btn-special rounded-3 px-3 py-1 rounded-5 mx-2 position-relative" type="button" routerLink="cart">
+          <button class="btn-special rounded-3 px-3 py-1 rounded-5" type="button" routerLink="/app/user/user-profile"><img src="./assets/user-svgrepo-green-com.svg" width="30px" height="30px"/>Profile</button>
+          <button class="btn-special rounded-3 px-3 py-1 rounded-5 mx-2 position-relative" type="button" routerLink="/app/system/cart">
             <span class="bg-main position-absolute cart-counter">0</span>
             <img src="./assets/cart-plus-svgrepo-com.svg" width="30px" height="30px"/>Cart
           </button>
           <button class="btn btn-success rounded-3 px-3" type="button" routerLink="login" (click)="logOut()">Log Out<img src="./assets/logout-svgrepo-com.svg" style="filter: invert(1);" width="25px" height="25px"></button>
         }@else{
           <div class="nav-buttons me-4">
-            <button class="btn btn-success rounded-3 px-3 py-1" type="button" routerLink="login">Log In <img src="./assets/arrow-up-right-svgrepo-com.svg" style="filter: invert(1);" width="25px" height="25px"></button>
+            <button class="btn btn-success rounded-3 px-3 py-1" type="button" routerLink="/app/system/login">Log In <img src="./assets/arrow-up-right-svgrepo-com.svg" style="filter: invert(1);" width="25px" height="25px"></button>
         </div>
         }
       </div>

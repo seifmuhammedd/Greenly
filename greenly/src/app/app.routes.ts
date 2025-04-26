@@ -27,13 +27,15 @@ export const routes: Routes = [
     {path: "", component: AppComponent, title: "App", children: [
         {path: "", redirectTo: "app", pathMatch: "full"},
         {path: "app", component: LayoutAppComponent, children: [
-            {path: "", redirectTo: "guest", pathMatch: "full"},
-            {path: "guest", component: GuestComponent, children: [
+            {path: "", redirectTo: "system", pathMatch: "full"},
+            {path: "system", component: GuestComponent, children: [
                 {path: "", redirectTo: "home", pathMatch: "full"},
                 {path: "home", component: HomeComponent, title: "Home"},
                 {path: "login", component: LoginComponent, title: "LogIn"},
                 {path: "register", component: RegisterComponent, title: "Sign Up"},
                 {path: "shop", component: ShopComponent, title: "Shop"},
+                {path: "cart", component: CartComponent, title: "Cart"},
+                {path: "favorites", component: FavoritesComponent, title: "Favorites"},
                 {path: "product-details", component: ProductDetailsComponent, title: "Product Details"},
                 {path: "services", component: ServicesComponent, title: "Services"},
                 {path: "blog", component: BlogComponent, title: "Blog"},
@@ -41,8 +43,7 @@ export const routes: Routes = [
                 {path: "apiary-licence", component: ApiaryLicenceComponent, title: "Apiary Licence Application"},
             ]},
             {path: "user", component: UserComponent, children: [
-                {path: "cart", component: CartComponent, title: "Cart"},
-                {path: "favorites", component: FavoritesComponent, title: "Favorites"},
+                
                 {path: "user-profile", component: UserProfileComponent, title: "Profile"},
                 {path: "payment", component: PaymentComponent, title: "Payment"},
             ]},
