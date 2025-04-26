@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import * as AOS from 'aos';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,17 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  private readonly _PLATFORM_ID = inject(PLATFORM_ID);
+
+
+  ngOnInit(): void {
+    if(isPlatformBrowser(this._PLATFORM_ID)) {
+    AOS.init()
+    AOS.refresh()
+    }
+  }
 
   mainSlider: OwlOptions = {
     loop: true,
