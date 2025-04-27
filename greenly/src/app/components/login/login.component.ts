@@ -39,7 +39,7 @@ export class LoginComponent implements OnDestroy {
 
           this._Router.navigate(["/app/system/home"])
           }, 2000);
-          localStorage.setItem("userToken", res.token)
+          localStorage.setItem("userToken", res.data.accessToken)
           this._AuthService.getDecodedInfo()
         },
         error: (err) => {

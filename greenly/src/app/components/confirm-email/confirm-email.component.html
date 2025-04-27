@@ -1,0 +1,34 @@
+<section>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="bg-light p-5 rounded-3">
+            <div class="inner">
+                <h1 class="text-center special-font">Confirm Email</h1>
+                <p class="text-center">Please enter the code sent to your email.</p>
+                <form [formGroup]="confirmEmailForm" (ngSubmit)="confrimEmail()">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input [ngClass]="{
+                            'is-valid' : !confirmEmailForm.get('email')?.errors && (confirmEmailForm.get('email')?.touched || confirmEmailForm.get('email')?.dirty ),
+                            'is-invalid' : confirmEmailForm.get('email')?.errors && (confirmEmailForm.get('email')?.touched || confirmEmailForm.get('email')?.dirty )
+                        }" type="email" class="form-control" id="email"
+                            placeholder="name@example.com" formControlName="email">
+                            @if (confirmEmailForm.get("email")?.errors && confirmEmailForm.get("email")?.touched) {
+                                <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                                    @if (confirmEmailForm.get("email")?.getError("required")) {<p class="m-0">Email Is Required</p>
+                                    }
+                                    @else if (confirmEmailForm.get("email")?.getError("email")) {<p class="m-0">Email format is not
+                                        correct</p>}
+                                </div>
+                                }
+                    </div>
+                    <div class="mb-3">
+                        <label for="code" class="form-label">Code</label>
+                        <input type="text" class="form-control" id="code"
+                            placeholder="xxxx" formControlName="code">
+                    </div>
+                    <button class="btn btn-success w-50 d-block mx-auto px-4 py-2">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

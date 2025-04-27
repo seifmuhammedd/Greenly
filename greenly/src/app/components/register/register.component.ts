@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, RouterLink],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnDestroy {
         next: (res) =>{
           this._ToastrService.success(res.message , "Greenly" , {timeOut : 2000})
           setTimeout(() => {
-            this._Router.navigate(["/app/system/login"])
+            this._Router.navigate(["/app/system/confirm-email"])
           },2000)
         },
         error: (err) =>{

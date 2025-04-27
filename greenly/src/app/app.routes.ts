@@ -21,6 +21,7 @@ import { ApiaryLicenceComponent } from './components/apiary-licence/apiary-licen
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { LayoutAppComponent } from './core/layouts/layout-app/layout-app.component';
+import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 
 
 export const routes: Routes = [
@@ -33,6 +34,7 @@ export const routes: Routes = [
                 {path: "home", component: HomeComponent, title: "Home"},
                 {path: "login", component: LoginComponent, title: "LogIn"},
                 {path: "register", component: RegisterComponent, title: "Sign Up"},
+                {path: "confirm-email", component: ConfirmEmailComponent, title: "Confirm Email"},
                 {path: "shop", component: ShopComponent, title: "Shop"},
                 {path: "cart", component: CartComponent, title: "Cart"},
                 {path: "favorites", component: FavoritesComponent, title: "Favorites"},

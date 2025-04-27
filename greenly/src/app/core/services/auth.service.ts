@@ -22,6 +22,10 @@ export class AuthService {
     return this._HttpClient.post(`${environment.baseURL}/auth/signup`, userData);
   }
 
+  confirmEmail(userData: object):Observable<any> {
+    return this._HttpClient.patch(`${environment.baseURL}/auth/confirm-email`, userData);
+  }
+
   getDecodedInfo():void {
     if(localStorage.getItem('userToken') != null){
       this.decodedInfo = jwtDecode(sessionStorage.getItem('userToken') !)
