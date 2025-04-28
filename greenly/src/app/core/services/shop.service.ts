@@ -14,8 +14,8 @@ export class ShopService {
     return this._HttpClient.get(`${environment.baseURL}/product/allproducts`)
   }
 
-  getProductsByCategory():Observable<any>{
-    return this._HttpClient.get(`${environment.baseURL}/product/products-by-category`)
+  getProductsByCategory(p_ID: string):Observable<any>{
+    return this._HttpClient.get(`${environment.baseURL}/product/products-by-category/${p_ID}`)
   }
 
   getSpecificProduct(p_ID: string | null):Observable<any>{

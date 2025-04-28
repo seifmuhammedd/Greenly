@@ -20,7 +20,7 @@ export class ShopComponent implements OnInit {
     private _CategoriesService: CategoriesService
   ) {}
 
-  shopData!: IShop[];
+  shopData!: IShop;
   categoriesData!: ICategory[];
   productsSub!: Subscription;
   categoriesSub!: Subscription;
@@ -28,14 +28,24 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesSub = this._CategoriesService.getAllCategories().subscribe({
       next: (res) => {
-        console.log(res);
         this.categoriesData = res;
       },
       error: (err) => {
         console.log(err);
       },
     });
-    this.productsSub = this._ShopService.getProductsByCategory().subscribe({
+    this.productsSub = this._ShopService.getProductsByCategory("680f9db0a65c13f4c7fb9a0c").subscribe({
+      next: (res) => {
+        this.shopData = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  getProductsByCategory(p_ID: string):void{
+    this.productsSub = this._ShopService.getProductsByCategory(p_ID).subscribe({
       next: (res) => {
         this.shopData = res;
       },
