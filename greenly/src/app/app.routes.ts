@@ -38,7 +38,7 @@ export const routes: Routes = [
                 {path: "shop", component: ShopComponent, title: "Shop"},
                 {path: "cart", component: CartComponent, title: "Cart"},
                 {path: "favorites", component: FavoritesComponent, title: "Favorites"},
-                {path: "product-details", component: ProductDetailsComponent, title: "Product Details"},
+                {path: "product-details/:p_ID", component: ProductDetailsComponent, title: "Product Details"},
                 {path: "services", component: ServicesComponent, title: "Services"},
                 {path: "blog", component: BlogComponent, title: "Blog"},
                 {path: "loan", component: LoanComponent, title: "Loan Application"},
