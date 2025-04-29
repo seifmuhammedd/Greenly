@@ -1,88 +1,52 @@
 <section>
-    <div class="container-fluid p-0 ">
-        <div class="bg-main p-4 text-center text-white">
-            <h1 class="special-font mb-3">Blog</h1>
-        </div>
+    <div class="container-fluid p-0">
+      <div class="bg-main p-4 text-center text-white">
+        <h1 class="special-font mb-3">Blog</h1>
+      </div>
     </div>
+  
     <div class="container my-4">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <div class="inner p-3 rounded-3 text-center">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="user-info d-flex justify-content-center align-items-center gap-1">
-                            <div class=" fs-5">
-                                <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
-                            </div>
-                            <h2 class="fs-6 pt-2  fw-semibold">Seif Muhammed</h2>
-                        </div>
-                        <div class="date">
-                            <span class="pt-2 fw-semibold text-secondary">Today</span>
-                        </div>
+      @if(blogData){
+        <div class="row g-3 justify-content-center align-items-stretch d-flex flex-wrap">
+          @for (post of blogData.posts; track post._id) {
+            <div class="col-md-6 d-flex">
+              <div class="inner p-3 rounded-3 text-center w-100 d-flex flex-column justify-content-between">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="user-info d-flex justify-content-center align-items-center gap-1">
+                    <div class="fs-5">
+                      <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
                     </div>
-                    <div class="post-content my-3">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, magni?</p>
-                    </div>
+                    <h2 class="fs-6 pt-2 fw-semibold">{{post.createdBy.userName}}</h2>
+                  </div>
+                  <div class="date">
+                    <span class="pt-2 fw-semibold text-secondary">
+                      {{post.createdAt | date: "dd MMMM yyyy, hh:mm a"}}
+                    </span>
+                  </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="inner p-3 rounded-3 text-center">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="user-info d-flex justify-content-center align-items-center gap-1">
-                            <div class=" fs-5">
-                                <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
-                            </div>
-                            <h2 class="fs-6 pt-2  fw-semibold">Seif Muhammed</h2>
-                        </div>
-                        <div class="date">
-                            <span class="pt-2 fw-semibold text-secondary">Today</span>
-                        </div>
-                    </div>
-                    <div class="post-content my-3">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, magni?</p>
-                    </div>
+  
+                <div class="post-content my-3">
+                  <p>{{post.content.charAt(0).toUpperCase()+post.content.slice(1)}}</p>
                 </div>
+              </div>
             </div>
-            <div class="col-md-6">
-                <div class="inner p-3 rounded-3 text-center">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="user-info d-flex justify-content-center align-items-center gap-1">
-                            <div>
-                                <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
-                            </div>
-                            <h2 class="fs-6 pt-2  fw-semibold">Seif Muhammed</h2>
-                        </div>
-                        <div class="date">
-                            <span class="pt-2 fw-semibold text-secondary">Today</span>
-                        </div>
-                    </div>
-                    <div class="post-content my-3">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, magni?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="inner p-3 rounded-3 text-center">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="user-info d-flex justify-content-center align-items-center gap-1">
-                            <div class=" fs-5">
-                                <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
-                            </div>
-                            <h2 class="fs-6 pt-2  fw-semibold">Seif Muhammed</h2>
-                        </div>
-                        <div class="date">
-                            <span class="pt-2 fw-semibold text-secondary">Today</span>
-                        </div>
-                    </div>
-                    <div class="post-content my-3">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, magni?</p>
-                    </div>
-                </div>
-            </div>
+          }
         </div>
+      }
+  
+      <form [formGroup]="createPostForm" (ngSubmit)="createPost()">
         <div class="posting d-flex justify-content-center align-items-center gap-2 my-4 w-50 mx-auto">
-                <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
-                <input type="text" class="form-control" placeholder="Share your thoughts...">
-                <button class="btn btn-success" type="button">Post</button>
+          <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
+          <input type="text" class="form-control" placeholder="Share your thoughts..." formControlName="content">
+          <button class="btn btn-success" [disabled]="createPostForm.invalid">Post</button>
+        </div>
+        @if (createPostForm.get("content")?.errors && createPostForm.get("content")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2 w-50 mx-auto">
+                @if (createPostForm.get("content")?.getError("required")) {<p class="m-0">You cann't post an empty post</p>
+                }
             </div>
+            }
+      </form>
     </div>
-</section>
+  </section>
+  

@@ -7,7 +7,7 @@ export const reqHeaderInterceptor: HttpInterceptorFn = (req, next) => {
 
   if (isPlatformBrowser(_PLATFORM_ID)) {
 
-    if(req.url.includes("cart") || req.url.includes("wishList") || req.url.includes("orders")){
+    if(req.url.includes("cart") || req.url.includes("wishList") || req.url.includes("orders") || req.url.includes("/blog/createPost")){
 
       if (localStorage.getItem('userToken') != null) {
           req = req.clone({
