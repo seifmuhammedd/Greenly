@@ -44,7 +44,6 @@ export class CartComponent implements OnInit {
           closeButton: true,
         });
         this.cartData=res
-        console.log(this.cartData.products)
       },
       error: (err)=>{
         console.log(err.error.message)
