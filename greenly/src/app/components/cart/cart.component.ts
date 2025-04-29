@@ -39,12 +39,12 @@ export class CartComponent implements OnInit {
   removeProductFromCart(p_ID: string):void{
     this._CartService.removeItemFromCart(p_ID).subscribe({
       next: (res)=>{
-        console.log(res)
         this._ToastrService.success("Product Removed Successfully", 'Greenly', {
           timeOut: 1000,
           closeButton: true,
         });
         this.cartData=res
+        console.log(this.cartData.products)
       },
       error: (err)=>{
         console.log(err.error.message)
