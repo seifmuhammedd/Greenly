@@ -1,87 +1,56 @@
 <section>
     <div class="container my-5 bg-main-light p-3 rounded-2 shadow my-3">
-        <div class="cart-head d-flex align-items-center justify-content-between">
-            <div>
-                <h1 class="fs-1 fw-bold special-font">Shop Cart:</h1>
-                <h3 class="text-main fw-bold">Total cart price: 1200</h3>
-            </div>
-            <div class="clear-cart cursor-pointer text-danger">
-                <h3 class="fs-5">Empty Cart <i class="fa-solid fa-trash-can"></i></h3>
-            </div>
-        </div>
-        <div class="row mt-3 border-bottom border-3 pb-3">
-            <div class="col-md-4">
-                <div class="product-cart-img">
-                    <img src="./assets/e8413db6e03814d36461d2211cfbdba5.jpeg" class="w-100 rounded-2">
+        @if (cartData) {
+            <div class="cart-head d-flex align-items-center justify-content-between">
+                <div>
+                    <h1 class="fs-1 fw-bold special-font">Shop Cart:</h1>
+                    <h3 class="text-main fw-bold">Total cart price: {{cartData.totalPrice}}</h3>
+                </div>
+                <div class="clear-cart cursor-pointer text-danger">
+                    <h3 class="fs-5">Empty Cart <i class="fa-solid fa-trash-can"></i></h3>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="top-content d-flex justify-content-between align-items-center">
-                    <h2 class="fs-1 special-font">Compost</h2>
-                    <div class="product-price fs-5 fw-semibold">
-                        <span class="text-secondary mx-3"><del>500</del></span>
-                        <span class="text-main">125</span>
+            @for (product of cartData.products; track product._id) {
+                <div class="row mt-3 border-bottom border-3 pb-3">
+                    <div class="col-md-4">
+                        <div class="product-cart-img">
+                            <img [src]="product.productId.imageCover" class="w-100 rounded-2">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="top-content d-flex justify-content-between align-items-center">
+                            <h2 class="fs-1 special-font">{{product.productId.name}}</h2>
+                            <div class="product-price fs-5 fw-semibold">
+                                <span class="text-secondary mx-3"><del>{{product.productId.price | currency : "GBP"}}</del></span>
+                                <span class="text-main">{{product.productId.price | currency : "GBP" }}</span>
+                            </div>
+                        </div>
+                        <div class="product-description my-4 ">
+                            <p class="text-secondary fw-semibold w-75">
+                                {{product.productId.shortdescription}}
+                            </p>
+                            <div class="item-counter rounded-3 d-flex justify-content-center align-items-center ms-auto">
+                                @if(product.quantity > 1){
+                                    <button class="btn btn-secondary rounded-3 p-3 d-flex justify-content-center align-items-center bg-main" (click)="updateItemQuantity(product.productId._id, product.quantity-1)">
+                                        <img src="./assets/minus-svgrepo-com.svg" alt="counter-minus" width="12px" height="12px">
+                                    </button>
+                                }
+                                <span class="mx-3 text-main fw-bolder fs-4">{{product.quantity}}</span>
+                                <button class="btn btn-secondary rounded-3 p-3 d-flex justify-content-center align-items-center bg-main" (click)="updateItemQuantity(product.productId._id, product.quantity+1)">
+                                    <img src="./assets/plus-svgrepo-com.svg" alt="counter-plus" width="12px" height="12px">
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <span class="cursor-pointer" (click)="removeProductFromCart(product.productId._id)"><i
+                                    class="fa-solid fa-trash text-danger"></i> Remove</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="product-description my-4 ">
-                    <p class="text-secondary fw-semibold w-75">
-                        Compost is rich, natural soil made from decomposed organic waste. It enhances soil health,
-                        supports
-                        plant growth, and reduces environmental impact.
-                    </p>
-                    <div class="item-counter rounded-3 d-flex justify-content-center align-items-center ms-auto">
-                        <button class="btn btn-secondary rounded-3 p-3 d-flex justify-content-center align-items-center bg-main">
-                            <img src="./assets/minus-svgrepo-com.svg" alt="counter-minus" width="12px" height="12px">
-                        </button>
-                        <span class="mx-3 text-main fw-bolder fs-4">1</span>
-                        <button class="btn btn-secondary rounded-3 p-3 d-flex justify-content-center align-items-center bg-main">
-                            <img src="./assets/plus-svgrepo-com.svg" alt="counter-plus" width="12px" height="12px">
-                        </button>
-                    </div>
-                    <div class="mt-4">
-                        <span class="cursor-pointer"><i
-                            class="fa-solid fa-trash text-danger"></i> Remove</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-3 border-bottom border-3 pb-3">
-            <div class="col-md-4">
-                <div class="product-cart-img">
-                    <img src="./assets/e8413db6e03814d36461d2211cfbdba5.jpeg" class="w-100 rounded-2">
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="top-content d-flex justify-content-between align-items-center">
-                    <h2 class="fs-1 special-font">Compost</h2>
-                    <div class="product-price fs-5 fw-semibold">
-                        <span class="text-secondary mx-3"><del>500</del></span>
-                        <span class="text-main">125</span>
-                    </div>
-                </div>
-                <div class="product-description my-4 ">
-                    <p class="text-secondary fw-semibold w-75">
-                        Compost is rich, natural soil made from decomposed organic waste. It enhances soil health,
-                        supports
-                        plant growth, and reduces environmental impact.
-                    </p>
-                    <div class="item-counter rounded-3 d-flex justify-content-center align-items-center ms-auto">
-                        <button class="btn btn-secondary rounded-3 p-3 d-flex justify-content-center align-items-center bg-main">
-                            <img src="./assets/minus-svgrepo-com.svg" alt="counter-minus" width="12px" height="12px">
-                        </button>
-                        <span class="mx-3 text-main fw-bolder fs-4">1</span>
-                        <button class="btn btn-secondary rounded-3 p-3 d-flex justify-content-center align-items-center bg-main">
-                            <img src="./assets/plus-svgrepo-com.svg" alt="counter-plus" width="12px" height="12px">
-                        </button>
-                    </div>
-                    <div class="mt-4">
-                        <span class="cursor-pointer"><i
-                            class="fa-solid fa-trash text-danger"></i> Remove</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="btn-main ms-auto d-block rounded-3 px-5 my-3">Check Out</button>  
-
+            }@empty {
+                <h3 class="text-danger text-center special-font">No Products Added Yet!</h3>
+            }
+            <button class="btn-main ms-auto d-block rounded-3 px-5 my-3">Check Out</button>
+        } 
     </div>
 </section>
