@@ -55,7 +55,6 @@ export class CartComponent implements OnInit {
     if (count>0){
       this._CartService.updateItemCartQuantity(p_ID,count).subscribe({
         next: (res)=>{
-          console.log(res)
           this.cartData=res
           this._ToastrService.success("Quantity Updated", "Greenly", {timeOut:1000})
         },
