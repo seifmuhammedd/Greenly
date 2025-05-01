@@ -31,7 +31,7 @@
         @if(_AuthService.isLoggedIn()) {
           <button class="btn-special rounded-3 px-3 py-1 rounded-5" type="button" routerLink="/app/user/user-profile"><img src="./assets/user-svgrepo-green-com.svg" width="30px" height="30px"/>Profile</button>
           <button class="btn-special rounded-3 px-3 py-1 rounded-5 mx-2 position-relative" type="button" routerLink="/app/system/cart">
-            <span class="bg-main position-absolute cart-counter">0</span>
+            <span class="bg-main position-absolute cart-counter">{{cartCounter}}</span>
             <img src="./assets/cart-plus-svgrepo-com.svg" width="30px" height="30px"/>Cart
           </button>
           <button class="btn btn-success rounded-3 px-3" type="button" routerLink="/app/system/home" (click)="logOut()">Log Out<img src="./assets/logout-svgrepo-com.svg" style="filter: invert(1);" width="25px" height="25px"></button>

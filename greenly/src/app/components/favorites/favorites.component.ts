@@ -33,7 +33,7 @@ export class FavoritesComponent implements OnInit {
   deleteFromFavorites(p_id: string):void{
     this._FavoritesService.removeProductFromFavorites(p_id).subscribe({
       next: (res)=>{
-        this.favoritesData=res.wishlist  
+        this.favoritesData=res.wishlist
       },
       error: (err)=>{
         console.log(err.message)

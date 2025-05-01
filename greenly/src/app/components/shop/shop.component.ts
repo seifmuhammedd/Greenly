@@ -64,6 +64,7 @@ export class ShopComponent implements OnInit {
 
       this.favoritesSub = this._FavoritesService.getWishList().subscribe({
         next: (res)=>{
+          console.log(res)
           this.favoritesData = res.wishlist
         },
         error: (err)=>{
@@ -88,7 +89,8 @@ export class ShopComponent implements OnInit {
       if (localStorage.getItem('userToken')) {
         this.cartSub = this._CartService.addProductToCart(p_ID).subscribe({
           next: (res) => {
-            this._ToastrService.success(res.message, 'Greenly', {
+            this._CartService.cartCounter.next(res.counter) 
+            this._ToastrService.success("Added to cart successfully", 'Greenly', {
               timeOut: 2000,
               closeButton: true,
             });
@@ -125,6 +127,7 @@ export class ShopComponent implements OnInit {
       if (localStorage.getItem('userToken')) {
         this.addfavoritesSub = this._FavoritesService.addProductToFavorites(p_ID).subscribe({
           next: (res) => {
+            console.log(res)
             this.refreshFavoritesList()
             this._ToastrService.success(res.message, 'Greenly', {
               timeOut: 2000,
@@ -146,6 +149,7 @@ export class ShopComponent implements OnInit {
       if(localStorage.getItem("userToken")){
         this.removefavoritesSub = this._FavoritesService.removeProductFromFavorites(p_ID).subscribe({
           next: (res)=>{
+            console.log(res)
             this.refreshFavoritesList()
             this._ToastrService.info("Product removed successfully", "Greenly", {timeOut: 1000})
           }
@@ -160,7 +164,8 @@ export class ShopComponent implements OnInit {
   }
 
   toggleProductFavorites(p_ID: string): void {
-    const isInFavorites = this.favoritesData.products.some(
+    // debugger
+    const isInFavorites = this.favoritesData?.products.some(
       (fav) => fav.productId._id === p_ID
     );
   
@@ -170,5 +175,7 @@ export class ShopComponent implements OnInit {
       this.addProductToFavorites(p_ID);
     }
   }
+
+  
 
 }

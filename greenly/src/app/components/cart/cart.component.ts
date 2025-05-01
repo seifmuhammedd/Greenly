@@ -10,59 +10,81 @@ import { ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [CurrencyPipe],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+  styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
+  constructor(
+    private _CartService: CartService,
+    private _ToastrService: ToastrService
+  ) {}
 
-  constructor( private _CartService: CartService, private _ToastrService: ToastrService ) { } 
+  private readonly _PLATFORM_ID = inject(PLATFORM_ID);
 
-  private readonly _PLATFORM_ID= inject(PLATFORM_ID)
+  cartData!: ICart;
+  cartSub!: Subscription;
 
-  cartData !: ICart
-  cartSub !: Subscription
-  
   ngOnInit(): void {
-    if(isPlatformBrowser(this._PLATFORM_ID)){
+    if (isPlatformBrowser(this._PLATFORM_ID)) {
       const token = localStorage.getItem('userToken');
-    if (token) {
-      this.cartSub = this._CartService.getUserCart().subscribe({
-        next: (res) => this.cartData = res,
-        error: (err) => console.log(err)
-      });
-    } else {
-      console.warn("Token not found yet. Cart request skipped.");
-    }
+      if (token) {
+        this.cartSub = this._CartService.getUserCart().subscribe({
+          next: (res) => {
+            this._CartService.cartCounter.next(res.counter);
+            this.cartData = res;
+          },
+          error: (err) => console.log(err),
+        });
+      } else {
+        console.warn('Token not found yet. Cart request skipped.');
+      }
     }
   }
-  
 
-  removeProductFromCart(p_ID: string):void{
+  removeProductFromCart(p_ID: string): void {
     this._CartService.removeItemFromCart(p_ID).subscribe({
-      next: (res)=>{
-        this._ToastrService.success("Product Removed Successfully", 'Greenly', {
+      next: (res) => {
+        this._CartService.cartCounter.next(res.counter);
+        this._ToastrService.success('Product Removed Successfully', 'Greenly', {
           timeOut: 1000,
           closeButton: true,
         });
-        this.cartData=res
+        this.cartData = res;
       },
-      error: (err)=>{
-        console.log(err.error.message)
-      }
-    })
+      error: (err) => {
+        console.log(err.error.message);
+      },
+    });
   }
 
-  updateItemQuantity(p_ID:string, count: number):void{
-    if (count>0){
-      this._CartService.updateItemCartQuantity(p_ID,count).subscribe({
-        next: (res)=>{
-          this.cartData=res
-          this._ToastrService.success("Quantity Updated", "Greenly", {timeOut:1000})
+  updateItemQuantity(p_ID: string, count: number): void {
+    if (count > 0) {
+      this._CartService.updateItemCartQuantity(p_ID, count).subscribe({
+        next: (res) => {
+          this._CartService.cartCounter.next(res.counter);
+          this.cartData = res;
+          this._ToastrService.success('Quantity Updated', 'Greenly', {
+            timeOut: 1000,
+          });
         },
-        error: (err)=>{
-          console.log(err.error.message)
-        }
-      })
+        error: (err) => {
+          console.log(err.error.message);
+        },
+      });
     }
   }
 
+  emptyCart(): void {
+    this._CartService.emptyUserCart().subscribe({
+      next: (res) => {
+        this._CartService.cartCounter.next(res.counter);
+        this.cartData = res;
+        this._ToastrService.success('Quantity Updated', 'Greenly', {
+          timeOut: 1000,
+        });
+      },
+      error: (err) => {
+        console.log(err.message);
+      },
+    });
+  }
 }

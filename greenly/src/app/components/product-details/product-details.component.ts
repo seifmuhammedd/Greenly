@@ -54,6 +54,7 @@ export class ProductDetailsComponent implements OnInit {
       if (localStorage.getItem('userToken')) {
         this.cartSub = this._CartService.addProductToCart(p_ID).subscribe({
           next: (res) => {
+            this._CartService.cartCounter.next(res.counter)
             this._ToastrService.success(res.message, 'Greenly', {
               timeOut: 2000,
               closeButton: true,

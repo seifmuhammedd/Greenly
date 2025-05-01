@@ -5,6 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-register',
@@ -41,9 +43,10 @@ export class RegisterComponent implements OnDestroy {
       this.registerSub = this._AuthService.registerUser(this.registerForm.value).subscribe({
         next: (res) =>{
           this._ToastrService.success(res.message , "Greenly" , {timeOut : 2000})
-          setTimeout(() => {
-            this._Router.navigate(["/app/system/confirm-email"])
-          },2000)
+          this.showAlert()
+          // setTimeout(() => {
+          //   this._Router.navigate(["/app/system/confirm-email"])
+          // },2000)
         },
         error: (err) =>{
           this._ToastrService.error(err.error.message , "Greenly" , {timeOut : 2000})
@@ -54,6 +57,24 @@ export class RegisterComponent implements OnDestroy {
       this.registerForm.markAllAsTouched()
     }
   }
+  showAlert() {
+      Swal.fire({
+        title: 'We sent you a confirmation code, Please check your email.',
+        html: `<button id="customBtn" class="btn btn-success">Ok</button>`,
+        showConfirmButton: false,
+        icon: "success",
+        draggable: true,
+        didOpen: () => {
+          const btn = document.getElementById('customBtn');
+          btn?.addEventListener('click', () => {
+            Swal.close();
+            this._Router.navigate(['/app/system/confirm-email']); 
+          });
+        }
+      });
+    }
+
+
   ngOnDestroy(): void {
     this.registerSub?.unsubscribe()
   }
