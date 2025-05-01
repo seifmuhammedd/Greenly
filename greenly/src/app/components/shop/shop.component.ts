@@ -14,7 +14,7 @@ import { IFavorites } from '../../core/interfeces/i-favorites';
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe, NgClass],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css',
 })
