@@ -18,7 +18,7 @@ export class FavoritesService {
     return this._HttpClient.post(`${environment.baseURL}/wishList/addtowishlist`, {productId : p_ID})
   }
 
-  removeProductFromFavorites(productId: string) {
+  removeProductFromFavorites(productId: string):Observable<any> {
     return this._HttpClient.delete(`${environment.baseURL}/wishList/${productId}`)
   }
 
