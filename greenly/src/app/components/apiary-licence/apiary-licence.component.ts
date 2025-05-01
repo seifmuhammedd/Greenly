@@ -29,7 +29,7 @@ export class ApiaryLicenceComponent {
 
       requiredArea: [null, [Validators.required, Validators.min(1)]],
       requiredLocation: [null, [Validators.required]],
-      plants: [null, [Validators.required]],
+      plants: ["Select plant type", [Validators.required]],
       beeColonies: [null, [Validators.required, Validators.min(1)]],
       workPlan: [null, [Validators.required, Validators.maxLength(1500)]],
 

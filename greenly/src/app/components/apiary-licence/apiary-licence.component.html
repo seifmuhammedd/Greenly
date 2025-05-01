@@ -38,8 +38,15 @@
           </div>
           <div class="col-md-4 mb-3">
             <label class="form-label special-font fs-4">Surrounding plants type</label>
-            <input type="text" class="form-control border-success" formControlName="plants" placeholder="Flowering Trees" />
+            <select class="form-select border-success" formControlName="plants" aria-label="Select surrounding plants type">
+              <option disabled>Select plant type</option>
+              <option value="Flowering Trees">Flowering Trees</option>
+              <option value="Herbs">Herbs</option>
+              <option value="Fruit Trees">Fruit Trees</option>
+              <option value="Wild Plants">Wild Plants</option>
+            </select>
           </div>
+          
           <div class="col-md-4 mb-3">
             <label class="form-label special-font fs-4">Number of planned bee colonies</label>
             <input type="number" class="form-control border-success" formControlName="beeColonies" placeholder="20000" />
@@ -59,20 +66,17 @@
   
         <h4 class="special-font text-main position-relative fs-5">Required Documents</h4>
         <div class="row">
-            <div class="col-md-6 mb-3 text-center">
-                <label class="form-label special-font fs-4 d-block">National ID / Passport</label>
-                <label class="custom-file-upload d-inline-block">
-                  <input type="file" (change)="onFileChange($event, 'nationalID')" />
-                  Choose File
-                </label>
-              </div>              
+          <div class="col-md-6 mb-3">
+            <label class="form-label special-font fs-4">National ID / Passport</label>
+            <input type="file" class="file form-control border-success bg-light" (change)="onFileChange($event, 'nationalID')" />
+          </div>
           <div class="col-md-6 mb-3">
             <label class="form-label special-font fs-4">Beekeeping Experience Documents</label>
             <input type="file" class="file form-control border-success bg-light" (change)="onFileChange($event, 'experienceDocs')" />
           </div>
         </div>
   
-        <button type="submit" class="btn btn-success w-25 d-block px-3 py-2 mx-auto my-5">Apply</button>
+        <button type="submit" class="btn btn-success w-25 d-block px-3 py-2 mx-auto my-5" [disabled]="apiaryForm.invalid">Apply</button>
       </form>
     </div>
   </section>
