@@ -171,10 +171,4 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  isProductInFavorites(productId: string): boolean {
-    this.refreshFavoritesList()
-    if (!this.favoritesData || !this.favoritesData.products) return false;
-    return this.favoritesData.products.some(fav => fav.productId._id === productId);
-  }
-
 }
