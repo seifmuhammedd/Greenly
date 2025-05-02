@@ -1,4 +1,11 @@
-import { Component, ElementRef, inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ShopService } from '../../core/services/shop.service';
 import { Subscription } from 'rxjs';
@@ -19,7 +26,6 @@ import { IFavorites } from '../../core/interfeces/i-favorites';
   styleUrl: './shop.component.css',
 })
 export class ShopComponent implements OnInit {
-
   constructor(
     private _ShopService: ShopService,
     private _CategoriesService: CategoriesService,
@@ -32,7 +38,7 @@ export class ShopComponent implements OnInit {
 
   shopData!: IShop;
   categoriesData!: ICategory[];
-  favoritesData !: IFavorites
+  favoritesData!: IFavorites;
 
   productsSub!: Subscription;
   categoriesSub!: Subscription;
@@ -62,15 +68,15 @@ export class ShopComponent implements OnInit {
         },
       });
 
-      this.favoritesSub = this._FavoritesService.getWishList().subscribe({
-        next: (res)=>{
-          console.log(res)
-          this.favoritesData = res.wishlist
-        },
-        error: (err)=>{
-          console.log(err)
-        }
-      }) 
+    this.favoritesSub = this._FavoritesService.getWishList().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.favoritesData = res.wishlist;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   getProductsByCategory(p_ID: string): void {
@@ -89,11 +95,15 @@ export class ShopComponent implements OnInit {
       if (localStorage.getItem('userToken')) {
         this.cartSub = this._CartService.addProductToCart(p_ID).subscribe({
           next: (res) => {
-            this._CartService.cartCounter.next(res.counter) 
-            this._ToastrService.success("Added to cart successfully", 'Greenly', {
-              timeOut: 2000,
-              closeButton: true,
-            });
+            this._CartService.cartCounter.next(res.counter);
+            this._ToastrService.success(
+              'Added to cart successfully',
+              'Greenly',
+              {
+                timeOut: 2000,
+                closeButton: true,
+              }
+            );
           },
           error: (err) => {
             this._ToastrService.error(err.error.message, 'Greenly', {
@@ -111,30 +121,32 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  refreshFavoritesList():void{
+  refreshFavoritesList(): void {
     this._FavoritesService.getWishList().subscribe({
-      next: (res)=>{
-        this.favoritesData = res.wishlist
+      next: (res) => {
+        this.favoritesData = res.wishlist;
       },
-      error: (err)=>{
-        console.log(err)
-      }
-    })
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   addProductToFavorites(p_ID: string): void {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
       if (localStorage.getItem('userToken')) {
-        this.addfavoritesSub = this._FavoritesService.addProductToFavorites(p_ID).subscribe({
-          next: (res) => {
-            console.log(res)
-            this.refreshFavoritesList()
-            this._ToastrService.success(res.message, 'Greenly', {
-              timeOut: 2000,
-              closeButton: true,
-            });
-          },
-        });
+        this.addfavoritesSub = this._FavoritesService
+          .addProductToFavorites(p_ID)
+          .subscribe({
+            next: (res) => {
+              console.log(res);
+              this.refreshFavoritesList();
+              this._ToastrService.success(res.message, 'Greenly', {
+                timeOut: 2000,
+                closeButton: true,
+              });
+            },
+          });
       } else {
         this._ToastrService.error('Please LogIn First', 'Greenly', {
           timeOut: 1000,
@@ -144,17 +156,23 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  removeProductFromFavorites(p_ID: string):void{
-    if(isPlatformBrowser(this._PLATFORM_ID)){
-      if(localStorage.getItem("userToken")){
-        this.removefavoritesSub = this._FavoritesService.removeProductFromFavorites(p_ID).subscribe({
-          next: (res)=>{
-            console.log(res)
-            this.refreshFavoritesList()
-            this._ToastrService.info("Product removed successfully", "Greenly", {timeOut: 1000})
-          }
-        })
-      }else{
+  removeProductFromFavorites(p_ID: string): void {
+    if (isPlatformBrowser(this._PLATFORM_ID)) {
+      if (localStorage.getItem('userToken')) {
+        this.removefavoritesSub = this._FavoritesService
+          .removeProductFromFavorites(p_ID)
+          .subscribe({
+            next: (res) => {
+              console.log(res);
+              this.refreshFavoritesList();
+              this._ToastrService.info(
+                'Product removed successfully',
+                'Greenly',
+                { timeOut: 1000 }
+              );
+            },
+          });
+      } else {
         this._ToastrService.error('Please LogIn First', 'Greenly', {
           timeOut: 2000,
           closeButton: true,
@@ -163,19 +181,26 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  toggleProductFavorites(p_ID: string): void {
-    // debugger
+  toggleProductFavorites(p_ID: string): boolean {
     const isInFavorites = this.favoritesData?.products.some(
       (fav) => fav.productId._id === p_ID
     );
-  
+
     if (isInFavorites) {
       this.removeProductFromFavorites(p_ID);
+      return true;
     } else {
       this.addProductToFavorites(p_ID);
+      return false;
     }
   }
 
-  
+  isInFavorites(productId: string): boolean {
+    this.refreshFavoritesList()
+    if (!this.favoritesData?.products) return false;
 
+    return this.favoritesData.products.some(
+      (fav) => fav.productId._id === productId
+    );
+  }
 }
