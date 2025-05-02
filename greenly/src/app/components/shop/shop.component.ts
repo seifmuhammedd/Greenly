@@ -70,7 +70,6 @@ export class ShopComponent implements OnInit {
 
     this.favoritesSub = this._FavoritesService.getWishList().subscribe({
       next: (res) => {
-        console.log(res);
         this.favoritesData = res.wishlist;
       },
       error: (err) => {
@@ -139,7 +138,7 @@ export class ShopComponent implements OnInit {
           .addProductToFavorites(p_ID)
           .subscribe({
             next: (res) => {
-              console.log(res);
+              this.favoritesData = res.wishlist;
               this.refreshFavoritesList();
               this._ToastrService.success(res.message, 'Greenly', {
                 timeOut: 2000,
@@ -163,7 +162,7 @@ export class ShopComponent implements OnInit {
           .removeProductFromFavorites(p_ID)
           .subscribe({
             next: (res) => {
-              console.log(res);
+              this.favoritesData = res.wishlist;
               this.refreshFavoritesList();
               this._ToastrService.info(
                 'Product removed successfully',
@@ -196,9 +195,7 @@ export class ShopComponent implements OnInit {
   }
 
   isInFavorites(productId: string): boolean {
-    this.refreshFavoritesList()
     if (!this.favoritesData?.products) return false;
-
     return this.favoritesData.products.some(
       (fav) => fav.productId._id === productId
     );
