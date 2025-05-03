@@ -26,6 +26,18 @@ export class AuthService {
     return this._HttpClient.patch(`${environment.baseURL}/auth/confirm-email`, userData);
   }
 
+  forgetPassword(userData: object):Observable<any> {
+    return this._HttpClient.patch(`${environment.baseURL}/auth/forgetPassword`, userData);
+  }
+
+  confirmOtp(userData: object):Observable<any> {
+    return this._HttpClient.patch(`${environment.baseURL}/auth/validateForgetPassword`, userData);
+  }
+
+  resetPassword(userData: object):Observable<any> {
+    return this._HttpClient.patch(`${environment.baseURL}/auth/resetPassword`, userData);
+  }
+
   getDecodedInfo():void {
     if(localStorage.getItem('userToken') != null){
       this.decodedInfo = jwtDecode(localStorage.getItem('userToken') !)

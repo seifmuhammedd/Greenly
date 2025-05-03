@@ -49,8 +49,6 @@ export class ApiaryLicenceComponent {
   onSubmit(): void {
     if (this.apiaryForm.valid) {
       const formData = new FormData();
-  
-      // Append non-file values
       formData.append('fullName', this.apiaryForm.get('fullName')?.value);
       formData.append('phoneNumber', this.apiaryForm.get('phoneNumber')?.value);
       formData.append('email', this.apiaryForm.get('email')?.value);
@@ -61,8 +59,6 @@ export class ApiaryLicenceComponent {
       formData.append('plantsType', this.apiaryForm.get('plantsType')?.value);
       formData.append('numberOfColonies', this.apiaryForm.get('numberOfColonies')?.value);
       formData.append('workPlan', this.apiaryForm.get('workPlan')?.value);
-  
-      // Append files
       const nationalIdFile = this.apiaryForm.get('nationalId')?.value;
       if (nationalIdFile) {
         formData.append('nationalId', nationalIdFile);
@@ -72,8 +68,7 @@ export class ApiaryLicenceComponent {
       if (documentsFile) {
         formData.append('documents', documentsFile);
       }
-  
-      // Submit the form
+      
       this._LicenceService.requestLicence(formData).subscribe({
         next: (res) => console.log(res),
         error: (err) => console.error(err)

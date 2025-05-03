@@ -22,6 +22,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { LayoutAppComponent } from './core/layouts/layout-app/layout-app.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ConfirmOtpComponent } from './components/confirm-otp/confirm-otp.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 export const routes: Routes = [
@@ -35,6 +38,9 @@ export const routes: Routes = [
                 {path: "login", component: LoginComponent, title: "LogIn"},
                 {path: "register", component: RegisterComponent, title: "Sign Up"},
                 {path: "confirm-email", component: ConfirmEmailComponent, title: "Confirm Email"},
+                {path: "forgot-password", component: ForgotPasswordComponent, title: "Password Recovery"},
+                {path: "confirm-code", component: ConfirmOtpComponent, title: "Password Recovery"},
+                {path: "reset-password", component: ResetPasswordComponent, title: "Password Recovery"},
                 {path: "shop", component: ShopComponent, title: "Shop"},
                 {path: "cart", component: CartComponent, title: "Cart"},
                 {path: "favorites", component: FavoritesComponent, title: "Favorites"},

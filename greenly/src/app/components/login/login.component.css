@@ -10,3 +10,7 @@ input.form-control.is-valid.no-tick {
 input.form-control.is-invalid.no-x {
     background-image: none !important;
 }
+
+.pw{
+    font-size: 14px;
+}

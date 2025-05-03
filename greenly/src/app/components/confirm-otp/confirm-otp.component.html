@@ -1,0 +1,16 @@
+<section>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row w-50 bg-light rounded-5 border border-success">
+            <div class="col-md-12 p-5">
+                <p class="lead text-center special-font fs-4">Please enter the code sent to your email.</p>
+                <form [formGroup]="recoveryForm" (ngSubmit)="recoveryFormSubmit()">
+                    <div class=" p-5">
+                        <label for="code" class="form-label">Code</label>
+                        <input type="string" class="mb-3 form-control" id="code" placeholder="xxxx" formControlName="code">
+                      <button class="btn btn-success rounded-4 d-block w-100">Confrim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

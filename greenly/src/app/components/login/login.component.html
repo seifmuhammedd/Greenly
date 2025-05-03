@@ -19,7 +19,6 @@
                             <label for="email" class="form-label special-font fs-3">Email<img
                                     src="./assets/user-svgrepo-com.svg" width="25px" height="25px" alt="User Icon"
                                     class="pb-1"></label>
-
                             <input [ngClass]="{
                                     'is-valid' : !loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty ),
                                     'is-invalid' : loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty )
@@ -57,6 +56,8 @@
                 </div>
                 <h3 class="fs-6 mt-3 mx-auto fw-bold">Don't have an account? <span class="text-success cursor-pointer"
                         routerLink="/app/system/register">Sign Up Now!</span></h3>
+                <h3 class="pw mt-2 mx-auto fw-bold">Forgot password? <span class="text-info cursor-pointer"
+                        routerLink="/app/system/forgot-password">Click Here</span></h3>
             </div>
         </div>
     </div>

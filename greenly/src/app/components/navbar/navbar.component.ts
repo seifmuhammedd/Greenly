@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
   logOut():void{
     localStorage.removeItem("userToken")
     this._AuthService.isLoggedIn.set(false)
-    this._Router.navigate(["/login"])
+    this._Router.navigate(["/app/system/login"])
   }
 
 }

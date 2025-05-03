@@ -1,14 +1,12 @@
-<section>
+<section class="py-5">
     <div class="container my-5">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4">
-                <div class="text-center">
-                    <img src="./assets/confirm-svgrepo-com.svg" alt="confirm" width="250px" height="250px">
-                </div>
-            </div>
             <div class="col-md-8 p-0">
-                <div class="bg-light p-5 rounded-3 w-100">
-                    <div class="inner">
+                <div class="cover p-5 rounded-3 w-100 position-relative">
+                    <div class="img-holder text-center position-absolute translate-middle-x d-flex justify-content-center align-items-center">
+                        <img src="./assets/verified-check-svgrepo-com.svg" alt="confirm" width="170px" height="170px">
+                    </div>
+                    <div class="inner pt-5">
                         <h1 class="text-center special-font">Confirm Email</h1>
                         <p class="text-center">Please enter the code sent to your email.</p>
                         <form [formGroup]="confirmEmailForm" (ngSubmit)="confrimEmail()">

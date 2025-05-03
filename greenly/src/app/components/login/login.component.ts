@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { isPlatformBrowser, NgClass } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -39,8 +39,9 @@ export class LoginComponent implements OnDestroy {
 
           this._Router.navigate(["/app/system/home"])
           }, 2000);
-          localStorage.setItem("userToken", res.data.accessToken)
           this._AuthService.getDecodedInfo()
+          localStorage.setItem("userToken", res.data.accessToken)
+          localStorage.setItem("role",this._AuthService.decodedInfo.roleTypes )
         },
         error: (err) => {
           this._ToastrService.error(err.error.message , "Greenly" , {timeOut : 2000})
