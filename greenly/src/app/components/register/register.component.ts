@@ -44,9 +44,6 @@ export class RegisterComponent implements OnDestroy {
         next: (res) =>{
           this._ToastrService.success(res.message , "Greenly" , {timeOut : 2000})
           this.showAlert()
-          // setTimeout(() => {
-          //   this._Router.navigate(["/app/system/confirm-email"])
-          // },2000)
         },
         error: (err) =>{
           this._ToastrService.error(err.error.message , "Greenly" , {timeOut : 2000})

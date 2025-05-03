@@ -14,7 +14,15 @@ export class BlogService {
     return this._HttpClient.get(`${environment.baseURL}/blog/getAllPosts`)
   }
 
+  getUserPosts(user_ID: string):Observable<any>{
+    return this._HttpClient.get(`${environment.baseURL}/blog/${user_ID}`)
+  }
+
   createPost(post : object):Observable<any>{
     return this._HttpClient.post(`${environment.baseURL}/blog/createPost`, post)
+  }
+
+  deletePost(postID: string):Observable<any>{
+    return this._HttpClient.delete(`${environment.baseURL}/blog/${postID}`)
   }
 }

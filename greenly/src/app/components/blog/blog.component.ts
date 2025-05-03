@@ -17,13 +17,12 @@ export class BlogComponent implements OnInit {
   private readonly _FormBuilder = inject(FormBuilder)
   private readonly _PLATFORM_ID = inject(PLATFORM_ID)
 
-  blogData !: IBlog
+  blogData !: IBlog[]
 
   ngOnInit(): void {
     this._BlogService.getAllPosts().subscribe({
       next: (res)=>{
         this.blogData = res.data
-        console.log(this.blogData)
       },
       error: (err)=>{
         console.log(err.error.message)

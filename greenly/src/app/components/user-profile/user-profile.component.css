@@ -84,3 +84,6 @@ h4::before {
     border-radius: 50%;
     display: block;
   }
+  .w-10{
+    width: 10%;
+  }
