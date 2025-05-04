@@ -42,7 +42,7 @@ export class RegisterComponent implements OnDestroy {
     if(this.registerForm.valid){
       this.registerSub = this._AuthService.registerUser(this.registerForm.value).subscribe({
         next: (res) =>{
-          this._ToastrService.success(res.message , "Greenly" , {timeOut : 2000})
+          sessionStorage.setItem("email", this.registerForm.get("email")?.value)
           this.showAlert()
         },
         error: (err) =>{

@@ -58,7 +58,7 @@ export class ShopComponent implements OnInit {
     });
 
     this.productsSub = this._ShopService
-      .getProductsByCategory('680f9db0a65c13f4c7fb9a0c')
+      .getProductsByCategory('68113054d648ef5ed3587d29')
       .subscribe({
         next: (res) => {
           this.shopData = res;

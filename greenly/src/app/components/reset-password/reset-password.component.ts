@@ -48,20 +48,15 @@ export class ResetPasswordComponent {
           return;
         }
     
-        const code = this.recoveryForm.get('code')?.value;
-        if (!code) {
-          console.error("Code is empty");
-          return;
-        }
-    
         const data = {
           email: this.email,
           password: this.recoveryForm.get('password')?.value,
-          confirmpassword: this.recoveryForm.get('confirmpassword')?.value
+          confirmPassword: this.recoveryForm.get('confirmPassword')?.value
         };
         
         this._AuthService.resetPassword(data).subscribe({
-          next: () => {
+          next: (res) => {
+            console.log(res)
             setTimeout(() => {
               this._Router.navigate(["/app/system/login"])
             }, 2000);

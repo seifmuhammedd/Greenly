@@ -22,7 +22,9 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     this._BlogService.getAllPosts().subscribe({
       next: (res)=>{
+        console.log(res.data)
         this.blogData = res.data
+        console.log(this.blogData)
       },
       error: (err)=>{
         console.log(err.error.message)

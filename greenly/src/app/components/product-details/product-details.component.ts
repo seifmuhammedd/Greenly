@@ -39,6 +39,7 @@ export class ProductDetailsComponent implements OnInit {
           .getSpecificProduct(this.productId)
           .subscribe({
             next: (res) => {
+              console.log(res)
               this.productDetails = res;
             },
             error: (err) => {
