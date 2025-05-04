@@ -26,22 +26,12 @@
                     </p>
                 </div>
                 <div class="add-to-cart-btn mt-5 pt-5 d-flex justify-content-between align-items-center">
-                    <div class="product-rating">
-                        <span>
-                            <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                        </span>
-                        <span>
-                            <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                        </span>
-                        <span>
-                            <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                        </span>
-                        <span>
-                            <i class="fa-solid fa-star-half" style="color: #FFD43B;"></i>
-                        </span>
-                        <span>
-                            3.3
-                        </span>
+                    <div class="small">
+                        @for ( star of [1,2,3,4,5].slice(0,productDetails.ratingAvg); track $index ) {<i
+                            class="fa-solid fa-star rating-color"></i>}
+                        @if ( productDetails.ratingAvg % 1 != 0 ) {<i
+                            class="fa-solid fa-star-half-stroke rating-color"></i>}
+                        {{productDetails.ratingAvg}}
                     </div>
                     <button class="btn rounded-5 btn-special px-4" (click)="addProductToCart(productDetails._id)">
                         <img src="./assets/cart-plus-svgrepo-com.svg" width="25px" height="25px" alt="Add to Cart" />
