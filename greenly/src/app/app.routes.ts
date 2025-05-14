@@ -51,7 +51,6 @@ export const routes: Routes = [
                 {path: "apiary-licence", component: ApiaryLicenceComponent, title: "Apiary Licence Application"},
             ]},
             {path: "user", component: UserComponent, children: [
-                
                 {path: "user-profile", component: UserProfileComponent, title: "Profile"},
                 {path: "payment", component: PaymentComponent, title: "Payment"},
             ]},

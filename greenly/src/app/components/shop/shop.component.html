@@ -46,7 +46,11 @@
                       <i class="fa-solid fa-circle-exclamation"></i> Only
                       <span class="text-black">{{ product.stock }}</span> left in stock
                     </span>
-                  }@else {
+                  }@else if (product.stock == 0) {
+                    <span class="text-danger fw-semibold">
+                      <i class="fa-solid fa-circle-exclamation"></i> Out of stock</span> 
+                  }
+                  @else {
                     <span>
                       <img src="./assets/box-svgrepo-com.svg" alt="box-img" class="me-1" width="24px" height="24px">
                     </span>
