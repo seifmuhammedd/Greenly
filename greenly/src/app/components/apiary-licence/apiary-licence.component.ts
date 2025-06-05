@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LicenceService } from '../../core/services/licence.service';
 
@@ -9,35 +9,33 @@ import { LicenceService } from '../../core/services/licence.service';
   templateUrl: './apiary-licence.component.html',
   styleUrl: './apiary-licence.component.css',
 })
-export class ApiaryLicenceComponent {
+export class ApiaryLicenceComponent implements OnInit {
 
-  constructor ( private _FormBuilder: FormBuilder, private _LicenceService: LicenceService ) { }
+  constructor(private _FormBuilder: FormBuilder, private _LicenceService: LicenceService) { }
 
-  workPlanText: string = '';
-  charactersLeft: number = 1500;
-
-  countCharacters() {
-    const maxCharacters = 1500;
-    this.charactersLeft = maxCharacters - (this.workPlanText?.length || 0);
-  }
+  charactersLeft: number = 3000;
 
   apiaryForm: FormGroup = this._FormBuilder.group({
-      fullName: [null, [Validators.required]],
-      phoneNumber: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email]],
-      address: [null, [Validators.required]],
-      experience: [null, [Validators.required, Validators.min(0)]],
+    fullName: [null, [Validators.required]],
+    phoneNumber: [null, [Validators.required]],
+    email: [null, [Validators.required, Validators.email]],
+    address: [null, [Validators.required]],
+    experience: [null, [Validators.required, Validators.min(0)]],
+    requiredArea: [null, [Validators.required, Validators.min(1)]],
+    requiredLocation: [null, [Validators.required]],
+    plantsType: ["Select plant type", [Validators.required]],
+    numberOfColonies: [null, [Validators.required, Validators.min(1)]],
+    workPlan: [null, [Validators.required, Validators.maxLength(3000)]],
+    nationalId: [null, [Validators.required]],
+    documents: [null, [Validators.required]]
+  });
 
-      requiredArea: [null, [Validators.required, Validators.min(1)]],
-      requiredLocation: [null, [Validators.required]],
-      plantsType: ["Select plant type", [Validators.required]],
-      numberOfColonies: [null, [Validators.required, Validators.min(1)]],
-      workPlan: [null, [Validators.required, Validators.maxLength(1500)]],
-
-      nationalId: [null, [Validators.required]],
-      documents: [null, [Validators.required]]
-  })
-  
+  ngOnInit(): void {
+    this.apiaryForm.get('workPlan')?.valueChanges.subscribe(value => {
+      const maxCharacters = 3000;
+      this.charactersLeft = maxCharacters - (value?.length || 0);
+    });
+  }
 
   onFileChange(event: Event, controlName: string) {
     const file = (event.target as HTMLInputElement).files?.[0];
@@ -59,16 +57,17 @@ export class ApiaryLicenceComponent {
       formData.append('plantsType', this.apiaryForm.get('plantsType')?.value);
       formData.append('numberOfColonies', this.apiaryForm.get('numberOfColonies')?.value);
       formData.append('workPlan', this.apiaryForm.get('workPlan')?.value);
+
       const nationalIdFile = this.apiaryForm.get('nationalId')?.value;
       if (nationalIdFile) {
         formData.append('nationalId', nationalIdFile);
       }
-  
+
       const documentsFile = this.apiaryForm.get('documents')?.value;
       if (documentsFile) {
         formData.append('documents', documentsFile);
       }
-      
+
       this._LicenceService.requestLicence(formData).subscribe({
         next: (res) => console.log(res),
         error: (err) => console.error(err)
@@ -77,7 +76,5 @@ export class ApiaryLicenceComponent {
       this.apiaryForm.markAllAsTouched();
     }
   }
-  
-
 
 }
