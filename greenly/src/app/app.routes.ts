@@ -25,6 +25,8 @@ import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ConfirmOtpComponent } from './components/confirm-otp/confirm-otp.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { authGuard } from './core/guards/auth-gard.guard';
+import { adminGuard } from './core/guards/admin-guard.guard';
 
 
 export const routes: Routes = [
@@ -53,13 +55,13 @@ export const routes: Routes = [
             {path: "user", component: UserComponent, children: [
                 {path: "user-profile", component: UserProfileComponent, title: "Profile"},
                 {path: "payment", component: PaymentComponent, title: "Payment"},
-            ]},
+            ], canActivate : [authGuard]},
         ]},
         {path: "admin", component: AdminComponent, children: [
             {path: "home", component: HomeAdminComponent, title: "Home"},
             {path: "produts", component: ManageProductsComponent, title: "Manage Products"},
             {path: "users", component: ManageUsersComponent, title: "Manage Users"},
-        ]},
+        ], canActivate : [adminGuard]},
         {path: "**", component: NotFoundComponent, title: "Not Found"},
     ]},
     

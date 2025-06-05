@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -29,27 +30,40 @@ export class LoginComponent implements OnDestroy {
     password: [null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)]]
   })
 
-  loginData():void{
-    if(this.loginForm.valid){
-      this.loginSub = this._AuthService.logInUser(this.loginForm.value).subscribe({
-        next: (res) => {
-          this._ToastrService.success("Logged in successfully" , "Greenly" , {timeOut : 1500})
-          setTimeout(() => {
-          this._AuthService.isLoggedIn.set(true)
+loginData(): void {
+  if (this.loginForm.valid) {
+    this.loginSub = this._AuthService.logInUser(this.loginForm.value).subscribe({
+      next: (res) => {
+        this._ToastrService.success("Logged in successfully", "Greenly", { timeOut: 1500 });
 
-          this._Router.navigate(["/app/system/home"])
-          }, 2000);
-          this._AuthService.getDecodedInfo()
-          localStorage.setItem("userToken", res.data.accessToken)
-          localStorage.setItem("role",this._AuthService.decodedInfo.roleTypes )
-        },
-        error: (err) => {
-          this._ToastrService.error(err.error.message , "Greenly" , {timeOut : 2000})
-        }
-      })}else{
-      this.loginForm.markAllAsTouched()
-    }
+        const token = res.data.accessToken;
+        const decodedToken: any = jwtDecode(token);
+        const role = decodedToken?.roleTypes;
+
+        localStorage.setItem("userToken", token);
+        localStorage.setItem("role", role);
+
+        this._AuthService.isLoggedIn.set(true);
+
+        setTimeout(() => {
+          if (role === "admin") {
+            this._Router.navigate(["/admin/home"]);
+          } else {
+            this._Router.navigate(["/app/system/home"]);
+          }
+        }, 2000);
+      },
+      error: (err) => {
+        this._ToastrService.error(err.error.message, "Greenly", { timeOut: 2000 });
+      }
+    });
+  } else {
+    this.loginForm.markAllAsTouched();
   }
+}
+
+
+
 
   ngOnDestroy(): void {
     this.loginSub?.unsubscribe()
