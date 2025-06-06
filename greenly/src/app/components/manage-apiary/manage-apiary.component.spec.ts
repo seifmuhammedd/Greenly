@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageProductsComponent } from './manage-products.component';
+import { ManageApiaryComponent } from './manage-apiary.component';
 
-describe('ManageProductsComponent', () => {
-  let component: ManageProductsComponent;
-  let fixture: ComponentFixture<ManageProductsComponent>;
+describe('ManageApiaryComponent', () => {
+  let component: ManageApiaryComponent;
+  let fixture: ComponentFixture<ManageApiaryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManageProductsComponent]
+      imports: [ManageApiaryComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ManageProductsComponent);
+    fixture = TestBed.createComponent(ManageApiaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,1 +1,44 @@
-<p>admin-navbar works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-5">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center align-items-center cursor-pointer" routerLink="/app/system/home">
+      <div class="">
+        <img src="./assets/tree-svgrepo-com.svg" alt="greenly-logo" width="70px" height="70px">
+      </div>
+      <h1 class="text-main special-font cursor-pointer">Greenly</h1>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav special-font-i mx-auto">
+        <li class="nav-item px-2">
+          <a class="nav-link cursor-pointer fw-bold" routerLink="/app/system/home"
+            routerLinkActive="active-link">Loan Requests</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link cursor-pointer fw-bold" routerLink="/app/system/shop"
+            routerLinkActive="active-link">Licence Requests</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link cursor-pointer fw-bold" routerLink="/app/system/services"
+            routerLinkActive="active-link">Add Product</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link cursor-pointer fw-bold">Edit Product</a>
+        </li>
+      </ul>
+      @if(_AuthService.isLoggedIn()) {
+      <button class="btn-special rounded-3 px-3 py-1 rounded-5" type="button" routerLink="/app/user/user-profile"><img
+          src="./assets/user-svgrepo-green-com.svg" width="30px" height="30px" />Profile</button>
+      <button class="btn btn-success rounded-3 px-3" type="button" (click)="logOut()">Log Out<img src="./assets/logout-svgrepo-com.svg" style="filter: invert(1);" width="25px" height="25px"></button>
+      }@else{
+      <div class="nav-buttons me-4">
+        <button class="btn btn-success rounded-3 px-3 py-1" type="button" routerLink="/app/system/login">Log In <img
+            src="./assets/arrow-up-right-svgrepo-com.svg" style="filter: invert(1);" width="25px"
+            height="25px"></button>
+      </div>
+      }
+    </div>
+  </div>
+</nav>

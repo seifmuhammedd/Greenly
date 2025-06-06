@@ -1,0 +1,40 @@
+.req-item{
+    border: 2px solid #81E084;
+    transition: all 0.3s ease;
+    margin-inline: 15px;
+}
+.req-item:hover{
+    border: 2px solid #4CAF50;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+.req-item .icon{
+    font-size: 50px;
+}
+.item-1{
+    background-color: #177E39;
+    color: white;
+    transition: all 0.3s ease;
+}
+.item-1:hover{
+    background-color: #FFFFFF;
+    color: black;
+}
+.item-1{
+    transition: all 0.3s ease;
+}
+
+.item-2:hover{
+    background-color: #177E39;
+    color: white;
+}
+
+.circle{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #8BBF9C;
+}
