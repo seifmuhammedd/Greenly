@@ -8,6 +8,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { AdminComponent } from './core/layouts/admin/admin.component';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 import { ShopComponent } from './components/shop/shop.component';
@@ -26,10 +27,6 @@ import { ConfirmOtpComponent } from './components/confirm-otp/confirm-otp.compon
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { authGuard } from './core/guards/auth-gard.guard';
 import { adminGuard } from './core/guards/admin-guard.guard';
-import { AddProductComponent } from './components/add-product/add-product.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { ManageApiaryComponent } from './components/manage-apiary/manage-apiary.component';
-import { ManageLoanComponent } from './components/manage-loan/manage-loan.component';
 
 
 export const routes: Routes = [
@@ -62,10 +59,7 @@ export const routes: Routes = [
         ]},
         {path: "admin", component: AdminComponent, children: [
             {path: "home", component: HomeAdminComponent, title: "Home"},
-            {path: "add-product", component: AddProductComponent, title: "Add Product"},
-            {path: "edit-product", component: EditProductComponent, title: "Edit Product"},
-            {path: "manage-licences", component: ManageApiaryComponent, title: "Manage Apiary"},
-            {path: "manage-loans", component: ManageLoanComponent, title: "Manage Loans"},
+            {path: "produts", component: ManageProductsComponent, title: "Manage Products"},
             {path: "users", component: ManageUsersComponent, title: "Manage Users"},
         ], canActivate : [adminGuard]},
         {path: "**", component: NotFoundComponent, title: "Not Found"},
