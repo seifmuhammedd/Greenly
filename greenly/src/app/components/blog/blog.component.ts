@@ -3,6 +3,7 @@ import { BlogService } from '../../core/services/blog.service';
 import { IBlog } from '../../core/interfeces/i-blog';
 import { DatePipe, isPlatformBrowser, NgClass } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-blog',
@@ -16,6 +17,7 @@ export class BlogComponent implements OnInit {
   private readonly _BlogService = inject(BlogService)
   private readonly _FormBuilder = inject(FormBuilder)
   private readonly _PLATFORM_ID = inject(PLATFORM_ID)
+  private readonly _ToastrService = inject(ToastrService)
 
   blogData !: IBlog[]
 
@@ -46,6 +48,8 @@ export class BlogComponent implements OnInit {
               console.log(err.message)
             }
           })
+        }else{
+          this._ToastrService.error("You must be logged in to create a post", "Error")
         }
       }
     }else{

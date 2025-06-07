@@ -87,7 +87,7 @@
                                     @if (registerForm.get("password")?.errors && registerForm.get("password")?.touched) {
                                         <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
                                             @if (registerForm.get("password")?.getError("required")) {<p class="m-0">Password is required</p>}
-                                            @else if (registerForm.get("password")?.getError("pattern")) {<p class="m-0">Password must be at least 6 charachters and include numbers</p>}
+                                            @else if (registerForm.get("password")?.getError("pattern")) {<p class="m-0">Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.</p>}
                                         </div>
                                     }
                             </div>
