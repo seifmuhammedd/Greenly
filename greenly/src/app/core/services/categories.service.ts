@@ -13,4 +13,12 @@ export class CategoriesService {
   getAllCategories():Observable<any>{
     return this._HttpClient.get(`${environment.baseURL}/category/allcategories`)
   }
+
+  getSpecificCategory(p_ID: string | null):Observable<any>{
+    return this._HttpClient.get(`${environment.baseURL}/category/${p_ID}`)
+  }
+
+  addCategory(categoryData: object):Observable<any>{
+    return this._HttpClient.post(`${environment.baseURL}/category/addcategory`, categoryData, { headers: {Authorization: `Admin ${localStorage.getItem("userToken")}`} } )
+  }
 }

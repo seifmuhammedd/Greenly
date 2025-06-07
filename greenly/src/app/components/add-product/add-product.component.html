@@ -1,1 +1,143 @@
-<p>add-product works!</p>
+<section>
+  <div class="container my-3">
+    <h1 class="special-font text-center">Add Product</h1>
+    <form [formGroup]="addProductForm" class="form">
+      <div class="row mt-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="product-name" class="form-label fs-5 special-font">Product Name</label>
+            <input type="text" class="form-control border-success" id="product-name" formControlName="productName" />
+            @if (addProductForm.get('productName')?.errors && addProductForm.get('productName')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (addProductForm.get('productName')?.getError('required')) {
+                  <p class="m-0">Product Name is required</p>
+                } @else if (addProductForm.get('productName')?.getError('minlength')) {
+                  <p class="m-0">Product Name must be at least 3 characters</p>
+                } @else if (addProductForm.get('productName')?.getError('maxlength')) {
+                  <p class="m-0">Maximum allowed characters are 150</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="product-category" class="form-label fs-5 special-font">Product Category</label>
+            <select id="product-category" class="form-select border-success" formControlName="productCategory">
+              <option value="" disabled>Select a Category</option>
+              @for (category of categoriesData; track category._id) {
+                <option value="Agricultural" [id]="category._id">{{category.name}}</option>
+              }
+            </select>
+            @if (addProductForm.get('productCategory')?.errors && addProductForm.get('productCategory')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                <p class="m-0">Product Category is required</p>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="product-subCategory" class="form-label fs-5 special-font">Product Sub Category</label>
+            <input type="text" class="form-control border-success" id="product-subCategory" formControlName="productSubCategory" />
+            @if (addProductForm.get('productSubCategory')?.errors && addProductForm.get('productSubCategory')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                <p class="m-0">Product Sub Category is required</p>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="vendor" class="form-label fs-5 special-font">Vendor Name</label>
+            <input type="text" class="form-control border-success" id="vendor" formControlName="vendorName" />
+            @if (addProductForm.get('vendorName')?.errors && addProductForm.get('vendorName')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (addProductForm.get('vendorName')?.getError('required')) {
+                  <p class="m-0">Vendor Name is required</p>
+                } @else if (addProductForm.get('vendorName')?.getError('minlength')) {
+                  <p class="m-0">Vendor Name must be at least 3 characters</p>
+                } @else if (addProductForm.get('vendorName')?.getError('maxlength')) {
+                  <p class="m-0">Maximum allowed characters are 150</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="stock" class="form-label fs-5 special-font">Stock</label>
+            <input type="number" class="form-control border-success" id="stock" formControlName="stock" />
+            @if (addProductForm.get('stock')?.errors && addProductForm.get('stock')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (addProductForm.get('stock')?.getError('required')) {
+                  <p class="m-0">Stock is required</p>
+                } @else if (addProductForm.get('stock')?.getError('min')) {
+                  <p class="m-0">Minimum stock is 1</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="price" class="form-label fs-5 special-font">Price</label>
+            <input type="number" class="form-control border-success" id="price" formControlName="price" />
+            @if (addProductForm.get('price')?.errors && addProductForm.get('price')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (addProductForm.get('price')?.getError('required')) {
+                  <p class="m-0">Price is required</p>
+                } @else if (addProductForm.get('price')?.getError('min')) {
+                  <p class="m-0">Minimum price is 1</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="long-description" class="form-label fs-5 special-font">Long Description</label>
+            <textarea rows="7" class="form-control border-success" id="long-description" formControlName="longDescription"></textarea>
+            @if (addProductForm.get('longDescription')?.errors && addProductForm.get('longDescription')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (addProductForm.get('longDescription')?.getError('required')) {
+                  <p class="m-0">Long Description is required</p>
+                } @else if (addProductForm.get('longDescription')?.getError('minlength')) {
+                  <p class="m-0">Minimum characters allowed are 20</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="short-description" class="form-label fs-5 special-font">Short Description</label>
+            <textarea rows="3" class="form-control border-success" id="short-description" formControlName="shortDescription"></textarea>
+            @if (addProductForm.get('shortDescription')?.errors && addProductForm.get('shortDescription')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (addProductForm.get('shortDescription')?.getError('required')) {
+                  <p class="m-0">Short Description is required</p>
+                } @else if (addProductForm.get('shortDescription')?.getError('minlength')) {
+                  <p class="m-0">Minimum characters allowed are 10</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label special-font fs-4">Cover Image</label>
+          <input type="file" class="file form-control border-success bg-light" formControlName="imageCover" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label special-font fs-4">Images</label>
+          <input type="file" class="file form-control border-success bg-light" formControlName="images" multiple />
+        </div>
+      </div>
+      <div class="row mt-3 mb-5 justify-content-center">
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-success w-100 fs-5 special-font">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

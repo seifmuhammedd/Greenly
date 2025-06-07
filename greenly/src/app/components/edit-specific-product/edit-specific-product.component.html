@@ -1,0 +1,90 @@
+<section>
+    <div class="container my-3">
+        <h1 class="special-font text-center">Edit Product</h1>
+        <form [formGroup]="editProductForm" class="form" (ngSubmit)="editProduct()">
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="product-name" class="form-label fs-5 special-font">Product name</label>
+                        <input type="text" class="form-control border-success" id="product-name"
+                            formControlName="productName">
+                        @if (editProductForm.get("productName")?.errors && editProductForm.get("productName")?.touched)
+                        {
+                        <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                            @if (editProductForm.get("productName")?.getError("required")) {<p class="m-0">Product Name is
+                                required</p>}
+                            @else if (editProductForm.get("productName")?.getError("minlength")) {<p class="m-0">Product
+                                Name be at least 3 charachters</p>}
+                            @else if (editProductForm.get("productName")?.getError("maxlength")) {<p class="m-0">Maximum
+                                characters allowed are 150</p>}
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="stock" class="form-label fs-5 special-font">Stock</label>
+                        <input type="number" class="form-control border-success" id="stock" formControlName="stock">
+                         @if (editProductForm.get("stock")?.errors && editProductForm.get("stock")?.touched)
+                        {
+                        <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                            @if (editProductForm.get("stock")?.getError("required")) {<p class="m-0">Stock is
+                                required</p>}
+                            @else if (editProductForm.get("stock")?.getError("min")) {<p class="m-0">Minimum stock is 1</p>}
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="price" class="form-label fs-5 special-font">Price</label>
+                        <input type="number" class="form-control border-success" id="price" formControlName="price">
+                        @if (editProductForm.get("price")?.errors && editProductForm.get("price")?.touched)
+                        {
+                        <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                            @if (editProductForm.get("price")?.getError("required")) {<p class="m-0">Price is
+                                required</p>}
+                            @else if (editProductForm.get("price")?.getError("min")) {<p class="m-0">Minimum price is 1</p>}
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="long-description" class="form-label fs-5 special-font">Long description</label>
+                        <textarea rows="7" type="text" class="form-control border-success" id="long-description"
+                            formControlName="longDescription"></textarea>
+                            @if (editProductForm.get("longDescription")?.errors && editProductForm.get("longDescription")?.touched)
+                        {
+                        <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                            @if (editProductForm.get("longDescription")?.getError("required")) {<p class="m-0">Long Description is
+                                required</p>}
+                            @else if (editProductForm.get("longDescription")?.getError("minlength")) {<p class="m-0">Minimum charachters allowed are 20</p>}
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="short-description" class="form-label fs-5 special-font">Short Description</label>
+                        <textarea t rows="3" ype="text" class="form-control border-success" id="short-description"
+                            formControlName="shortDescription"></textarea>
+                             @if (editProductForm.get("shortDescription")?.errors && editProductForm.get("shortDescription")?.touched)
+                        {
+                        <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                            @if (editProductForm.get("shortDescription")?.getError("required")) {<p class="m-0">Short Description is
+                                required</p>}
+                            @else if (editProductForm.get("shortDescription")?.getError("minlength")) {<p class="m-0">Minimum charachters allowed are 10</p>}
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3 mb-5 justify-content-center">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success w-100 fs-5 special-font">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
