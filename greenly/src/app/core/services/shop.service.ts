@@ -22,6 +22,10 @@ export class ShopService {
     return this._HttpClient.get(`${environment.baseURL}/product/${p_ID}`)
   }
 
+  addProduct(productData: object): Observable<any> {
+    return this._HttpClient.post(`${environment.baseURL}/product/addproduct`, productData, { headers: { 'Authorization': `Admin ${localStorage.getItem("userToken")}` } });
+  }
+
   deleteProduct(p_ID: string | null): Observable<any> {
     return this._HttpClient.delete(`${environment.baseURL}/product/${p_ID}`, { headers: { 'Authorization': `Admin ${localStorage.getItem("userToken")}` } });
   }

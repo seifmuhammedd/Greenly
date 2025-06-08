@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CategoriesService } from '../../core/services/categories.service';
 import { ICategory } from '../../core/interfeces/i-category';
+import { ISubCategory } from '../../core/interfeces/i-sub-category';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-product',
@@ -28,7 +30,8 @@ export class AddProductComponent implements OnInit {
     private _ToastrService: ToastrService
   ) {}
 
-  categoriesData !: ICategory[];
+  categoriesData!: ICategory[];
+  subCategories: ISubCategory[] = [];
 
   ngOnInit(): void {
     this._CategoriesService.getAllCategories().subscribe({
@@ -40,25 +43,34 @@ export class AddProductComponent implements OnInit {
       },
     });
 
-  //   this.addProductForm.get('productCategory')?.valueChanges.subscribe(categoryId => {
-  //   if (categoryId) {
-  //     this.getSubCategories(categoryId);
-  //   } else {
-  //     this.subCategories = [];
-  //     this.addProductForm.get('productSubCategory')?.setValue('');
-  //   }
-  // });
+    this.addProductForm
+      .get('categoryid')
+      ?.valueChanges.subscribe((categoryId) => {
+        if (categoryId) {
+          this.getSubCategories(categoryId);
+        } else {
+          this.subCategories = [];
+          this.addProductForm.get('subcategoryid')?.setValue('');
+        }
+      });
   }
 
   addProductForm: FormGroup = this._FormBuilder.group({
-    productName: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)],],
-    productCategory: ['', [Validators.required]],
-    productSubCategory: ['', [Validators.required]],
+    name: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(150)],
+    ],
+    categoryid: ['', [Validators.required]],
+    subcategoryid: ['', [Validators.required]],
     shortDescription: ['', [Validators.required, Validators.minLength(10)]],
     longDescription: ['', [Validators.required, Validators.minLength(20)]],
-    vendorName: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(150)],],
+    vendor: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(150)],
+    ],
     stock: ['', [Validators.required, Validators.min(1)]],
     price: ['', [Validators.required, Validators.min(1)]],
+    ratingAvg: ['', [Validators.required, Validators.min(1)]],
     imageCover: ['', [Validators.required]],
     images: ['', [Validators.required]],
   });
@@ -78,4 +90,75 @@ export class AddProductComponent implements OnInit {
       this.addProductForm.get('images')?.updateValueAndValidity();
     }
   }
+
+  getSubCategories(categoryId: string) {
+    this._CategoriesService.getSubCategoriesByCategory(categoryId).subscribe({
+      next: (res) => {
+        this.subCategories = res;
+      },
+      error: (err) => {
+        console.error('Error fetching subcategories:', err);
+      },
+    });
+  }
+
+  onSubmit(): void {
+  if (this.addProductForm.invalid) {
+    this.addProductForm.markAllAsTouched();
+    return;
+  }
+
+  const formData = new FormData();
+
+  formData.append('name', this.addProductForm.get('name')?.value);
+  formData.append('categoryid', this.addProductForm.get('categoryid')?.value);
+  formData.append('subcategoryid', this.addProductForm.get('subcategoryid')?.value);
+  formData.append('shortDescription', this.addProductForm.get('shortDescription')?.value);
+  formData.append('longDescription', this.addProductForm.get('longDescription')?.value);
+  formData.append('vendor', this.addProductForm.get('vendor')?.value);
+  formData.append('stock', this.addProductForm.get('stock')?.value);
+  formData.append('price', this.addProductForm.get('price')?.value);
+  formData.append('ratingAvg', this.addProductForm.get('ratingAvg')?.value);
+
+  const cover = this.addProductForm.get('imageCover')?.value;
+  if (cover) {
+    formData.append('imageCover', cover);
+  }
+
+  const images: File[] = this.addProductForm.get('images')?.value;
+  if (images && Array.isArray(images)) {
+    images.forEach((img, index) => {
+      formData.append('images', img);
+    });
+  }
+
+  this._ShopService.addProduct(formData).subscribe({
+    next: (res) => {
+      this.showAlert();
+    },
+    error: (err) => {
+      console.error('Error adding product:', err);
+      this._ToastrService.error('Failed to add product');
+    }
+  });
+  console.log('Form submitted:', this.addProductForm.value);
+}
+
+showAlert() {
+      Swal.fire({
+        title: 'Product added successfully',
+        html: `<button id="customBtn" class="btn btn-success">Ok</button>`,
+        showConfirmButton: false,
+        icon: "success",
+        draggable: true,
+        didOpen: () => {
+          const btn = document.getElementById('customBtn');
+          btn?.addEventListener('click', () => {
+            Swal.close();
+            this._Router.navigate(['/admin/edit-product']); 
+          });
+        }
+      });
+    }
+
 }

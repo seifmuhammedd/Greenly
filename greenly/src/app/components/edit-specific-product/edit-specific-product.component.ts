@@ -42,6 +42,7 @@ export class EditSpecificProductComponent implements OnInit {
         if (this.productID) {
           this._ShopService.getSpecificProduct(this.productID).subscribe({
             next: (res) => {
+              console.log("hello",res);
               this.productDetails = res;
               this.editProductForm.patchValue({
                 productName: res.name,
