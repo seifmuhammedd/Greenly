@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LicenceService } from '../../core/services/licence.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-apiary-licence',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, NgClass],
   templateUrl: './apiary-licence.component.html',
   styleUrl: './apiary-licence.component.css',
 })

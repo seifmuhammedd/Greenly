@@ -1,0 +1,74 @@
+<section>
+    <div class="container py-5">
+        <h1 class="special-font text-center mb-3">Apiary licence Application</h1>
+        <form [formGroup]="apiaryForm">
+            <h4 class="special-font text-main position-relative fs-5">Personal Information</h4>
+            <div class="row mb-4 justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label special-font fs-4">Full Name</label>
+                    <input type="text" class="form-control border-success" formControlName="fullName" readonly />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label special-font fs-4">Phone Number</label>
+                    <input type="tel" class="form-control border-success" formControlName="phoneNumber" readonly />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label special-font fs-4">Email</label>
+                    <input type="email" class="form-control border-success" formControlName="email" readonly />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label special-font fs-4">Address</label>
+                    <input type="text" class="form-control border-success" formControlName="address" readonly />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label special-font fs-4">Experience in beekeeping <span class="text-secondary">in
+                            years</span></label>
+                    <input type="number" class="form-control border-success" formControlName="experience" readonly />
+                </div>
+            </div>
+
+            <h4 class="special-font text-main position-relative fs-5">Apiary Licence Information</h4>
+            <div class="row justify-content-center mb-3">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label special-font fs-4">Required Area <span class="text-secondary">in meter
+                            square</span></label>
+                    <input type="number" class="form-control border-success" formControlName="requiredArea" readonly />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label special-font fs-4">Required Location</label>
+                    <input type="text" class="form-control border-success" formControlName="requiredLocation"
+                        readonly />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label special-font fs-4">Surrounding plants type</label>
+                    <input type="text" class="form-control border-success" formControlName="plantsType" readonly />
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label special-font fs-4">Number of planned bee colonies</label>
+                    <input type="number" class="form-control border-success" formControlName="numberOfColonies"
+                        readonly />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="form-label special-font fs-4">Proposed work plan</label>
+                    <textarea class="form-control border-success" rows="5" formControlName="workPlan"
+                        readonly></textarea>
+                </div>
+            </div>
+
+            <h4 class="special-font text-main position-relative fs-5">Required Documents</h4>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label special-font fs-4">National ID / Passport</label>
+                    <input type="file" class="file form-control border-success bg-light" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label special-font fs-4">Beekeeping Experience Documents</label>
+                    <input type="file" class="file form-control border-success bg-light" />
+                </div>
+            </div>
+        </form>
+
+        <button type="submit" class="btn btn-success w-25 d-block px-3 py-2 mx-auto my-5">Apply</button>
+    </div>
+</section>

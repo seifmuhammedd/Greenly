@@ -14,4 +14,12 @@ export class LicenceService {
     return this._HttpClient.post(`${environment.baseURL}/license/requestLicense`, requestData)
   }
 
+  getAllRequests():Observable<any>{
+    return this._HttpClient.get(`${environment.baseURL}/license/getAllRequests`, { headers: { 'Authorization': `Admin ${localStorage.getItem("userToken")}` } })
+  }
+
+  getSpecificLicence(licence_ID: string | null):Observable<any>{
+    return this._HttpClient.get(`${environment.baseURL}/license/${licence_ID}`, { headers: { 'Authorization': `Admin ${localStorage.getItem("userToken")}` } })
+  }
+
 }

@@ -31,6 +31,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { ManageLicencesComponent } from './components/manage-licences/manage-licences.component';
 import { ManageLoansComponent } from './components/manage-loans/manage-loans.component';
 import { EditSpecificProductComponent } from './components/edit-specific-product/edit-specific-product.component';
+import { ManageSpecificLicenceComponent } from './components/manage-specific-licence/manage-specific-licence.component';
 
 
 export const routes: Routes = [
@@ -66,6 +67,7 @@ export const routes: Routes = [
             {path: "add-product", component: AddProductComponent, title: "Add Product"},
             {path: "edit-product", component: EditProductComponent, title: "Edit Product"},
             {path: "edit-specific-product/:p_ID", component: EditSpecificProductComponent, title: "Edit Product"},
+            {path: "manage-specific-licence/:p_ID", component: ManageSpecificLicenceComponent, title: "Manage Licence"},
             {path: "manage-licences", component: ManageLicencesComponent, title: "Manage Apiary"},
             {path: "manage-loans", component: ManageLoansComponent, title: "Manage Loans"},
             {path: "users", component: ManageUsersComponent, title: "Manage Users"},
