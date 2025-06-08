@@ -62,8 +62,8 @@ export class AddProductComponent implements OnInit {
     ],
     categoryid: ['', [Validators.required]],
     subcategoryid: ['', [Validators.required]],
-    shortDescription: ['', [Validators.required, Validators.minLength(10)]],
-    longDescription: ['', [Validators.required, Validators.minLength(20)]],
+    shortdescription: ['', [Validators.required, Validators.minLength(10)]],
+    longdescription: ['', [Validators.required, Validators.minLength(20)]],
     vendor: [
       '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(150)],
@@ -113,8 +113,8 @@ export class AddProductComponent implements OnInit {
   formData.append('name', this.addProductForm.get('name')?.value);
   formData.append('categoryid', this.addProductForm.get('categoryid')?.value);
   formData.append('subcategoryid', this.addProductForm.get('subcategoryid')?.value);
-  formData.append('shortDescription', this.addProductForm.get('shortDescription')?.value);
-  formData.append('longDescription', this.addProductForm.get('longDescription')?.value);
+  formData.append('shortdescription', this.addProductForm.get('shortdescription')?.value);
+  formData.append('longdescription', this.addProductForm.get('longdescription')?.value);
   formData.append('vendor', this.addProductForm.get('vendor')?.value);
   formData.append('stock', this.addProductForm.get('stock')?.value);
   formData.append('price', this.addProductForm.get('price')?.value);
@@ -141,7 +141,6 @@ export class AddProductComponent implements OnInit {
       this._ToastrService.error('Failed to add product');
     }
   });
-  console.log('Form submitted:', this.addProductForm.value);
 }
 
 showAlert() {

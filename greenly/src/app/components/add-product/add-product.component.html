@@ -126,13 +126,13 @@
                     <div class="mb-3">
                         <label for="long-description" class="form-label fs-5 special-font">Long Description</label>
                         <textarea rows="7" class="form-control border-success" id="long-description"
-                            formControlName="longDescription"></textarea>
-                        @if (addProductForm.get('longDescription')?.errors &&
-                        addProductForm.get('longDescription')?.touched) {
+                            formControlName="longdescription"></textarea>
+                        @if (addProductForm.get('longdescription')?.errors &&
+                        addProductForm.get('longdescription')?.touched) {
                         <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-                            @if (addProductForm.get('longDescription')?.getError('required')) {
+                            @if (addProductForm.get('longdescription')?.getError('required')) {
                             <p class="m-0">Long Description is required</p>
-                            } @else if (addProductForm.get('longDescription')?.getError('minlength')) {
+                            } @else if (addProductForm.get('longdescription')?.getError('minlength')) {
                             <p class="m-0">Minimum characters allowed are 20</p>
                             }
                         </div>
@@ -143,13 +143,13 @@
                     <div class="mb-3">
                         <label for="short-description" class="form-label fs-5 special-font">Short Description</label>
                         <textarea rows="3" class="form-control border-success" id="short-description"
-                            formControlName="shortDescription"></textarea>
-                        @if (addProductForm.get('shortDescription')?.errors &&
-                        addProductForm.get('shortDescription')?.touched) {
+                            formControlName="shortdescription"></textarea>
+                        @if (addProductForm.get('shortdescription')?.errors &&
+                        addProductForm.get('shortdescription')?.touched) {
                         <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-                            @if (addProductForm.get('shortDescription')?.getError('required')) {
+                            @if (addProductForm.get('shortdescription')?.getError('required')) {
                             <p class="m-0">Short Description is required</p>
-                            } @else if (addProductForm.get('shortDescription')?.getError('minlength')) {
+                            } @else if (addProductForm.get('shortdescription')?.getError('minlength')) {
                             <p class="m-0">Minimum characters allowed are 10</p>
                             }
                         </div>
