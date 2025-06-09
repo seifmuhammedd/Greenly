@@ -2,11 +2,12 @@ import { AfterViewInit, Component, inject, OnInit, PLATFORM_ID } from '@angular/
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import * as AOS from 'aos';
 import { isPlatformBrowser } from '@angular/common';
+import { CounterComponent } from "../counter/counter.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselModule],
+  imports: [CarouselModule, CounterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

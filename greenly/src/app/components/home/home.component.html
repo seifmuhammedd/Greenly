@@ -113,41 +113,59 @@
             <div class="col-md-6">
                 <div class="wrapper">
                     <div class="my-inner" style="--quantity: 6;">
-                        <div class="card" style="--index: 0;--color-card: 142, 249, 252;">
+                        <div class="card" style="--index: 0;--color-card: 142, 252, 157;">
+                            <div>
+                                <span class="small special-font">Recycling</span>
+                            </div>
                             <div class="img">
-                                <img src="./assets/1.jpg" class="w-100 h-100"
+                                <img src="./assets/recycling-svgrepo-com.svg" class="w-100 h-100"
                                     alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 1;--color-card: 142, 252, 204;">
+                        <div class="card" style="--index: 1;--color-card: 142, 252, 157;">
+                            <div>
+                                <span class="small special-font">Factories</span>
+                            </div>
                             <div class="img">
-                                <img src="./assets/2.jpg" class="w-100 h-100"
+                                <img src="./assets/factory-pollution-svgrepo-com.svg" class="w-100 h-100"
                                     alt="slider-img">
                             </div>
                         </div>
                         <div class="card" style="--index: 2;--color-card: 142, 252, 157;">
+                            <div>
+                                <span class="small special-font">Agricultural</span>
+                            </div>
                             <div class="img">
-                                <img src="./assets/3.jpg" class="w-100 h-100"
+                                <img src="./assets/scythe-agriculture-svgrepo-com.svg" class="w-100 h-100"
                                     alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 3;--color-card: 215, 252, 142;">
+                        <div class="card" style="--index: 3;--color-card: 142, 252, 157;">
+                            <div>
+                                <span class="small special-font">Homes</span>
+                            </div>
                             <div class="img">
-                                <img src="./assets/4.jpg" class="w-100 h-100"
+                                <img src="./assets/eco-home-eco-house-svgrepo-com.svg" class="w-100 h-100"
                                     alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 4;--color-card: 252, 252, 142;">
+                        <div class="card" style="--index: 4;--color-card: 142, 252, 157;">
+                            <div>
+                                <span class="small special-font">Mobility</span>
+                            </div>
                             <div class="img">
-                                <img src="./assets/5.jpg" class="w-100 h-100"
+                                <img src="./assets/ecologism-cars-svgrepo-com.svg" class="w-100 h-100"
                                     alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 5;--color-card: 252, 208, 142;">
-                            <div class="img">
-                                <img src="./assets/6.jpg" class="w-100 h-100"
-                                    alt="slider-img">
+                        <div class="card" style="--index: 5;--color-card: 142, 252, 157;">
+                            <div>
+                                <span class="small special-font">Solar Panels</span>
                             </div>
+                            <div class="img">
+                                <img src="./assets/solar-energy-svgrepo-com.svg" class="w-100 h-100"
+                                    alt="slider-img">
+                            </div>  
                         </div>
                     </div>
                 </div>
@@ -157,7 +175,7 @@
     </div>
 
 </section>
-<section class="our-services p-5 mb-5">
+<section class="top-products p-5 mb-5">
     <div class="container">
         <div class="position-relative" data-aos="slide-right">
             <h4 class="text-main fs-6 position-absolute top-0">Top Products</h4>
@@ -211,8 +229,23 @@
         </div>
     </div>
 </section>
-<section>
-    
+<section class="stats-section p-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <app-counter [endValue]="1250" label="Happy Customers"></app-counter>
+      </div>
+      <div class="col-md-3">
+        <app-counter [endValue]="350" label="Apiaries Licensed"></app-counter>
+      </div>
+      <div class="col-md-3">
+        <app-counter [endValue]="350" label="Orders Placed"></app-counter>
+      </div>
+      <div class="col-md-3">
+        <app-counter [endValue]="15" label="Years Experience"></app-counter>
+      </div>
+    </div>
+  </div>
 </section>
 <section class="p-5 mb-5">
     <div class="container">
