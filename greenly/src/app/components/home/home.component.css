@@ -369,3 +369,6 @@ h4::before{
     transform: translateY(0px);
     transition-delay: .7s;
 }
+.testimonial-section{
+    background-color: rgba(0, 150, 0, 0.3);
+}
