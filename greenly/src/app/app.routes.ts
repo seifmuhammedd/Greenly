@@ -67,7 +67,7 @@ export const routes: Routes = [
             {path: "add-product", component: AddProductComponent, title: "Add Product"},
             {path: "edit-product", component: EditProductComponent, title: "Edit Product"},
             {path: "edit-specific-product/:p_ID", component: EditSpecificProductComponent, title: "Edit Product"},
-            {path: "manage-specific-licence/:p_ID", component: ManageSpecificLicenceComponent, title: "Manage Licence"},
+            {path: "manage-specific-licence/:l_ID", component: ManageSpecificLicenceComponent, title: "Manage Licence"},
             {path: "manage-licences", component: ManageLicencesComponent, title: "Manage Apiary"},
             {path: "manage-loans", component: ManageLoansComponent, title: "Manage Loans"},
             {path: "users", component: ManageUsersComponent, title: "Manage Users"},

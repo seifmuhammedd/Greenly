@@ -57,18 +57,29 @@
             </div>
 
             <h4 class="special-font text-main position-relative fs-5">Required Documents</h4>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class="form-label special-font fs-4">National ID / Passport</label>
-                    <input type="file" class="file form-control border-success bg-light" />
+                    <a [href]="licenceDetails.nationalId" target="_blank"
+                        class="form-control border-success bg-light text-decoration-none text-dark py-2 px-3 d-block">
+                        Open National ID Document
+                    </a>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label special-font fs-4">Beekeeping Experience Documents</label>
-                    <input type="file" class="file form-control border-success bg-light" />
+                    <a [href]="licenceDetails.documents[0]" target="_blank"
+                        class="form-control border-success bg-light text-decoration-none text-dark py-2 px-3 d-block">
+                        Open Experience Documents
+                    </a>
                 </div>
-            </div>
+            </div> -->
         </form>
 
-        <button type="submit" class="btn btn-success w-25 d-block px-3 py-2 mx-auto my-5">Apply</button>
+        @if (licenceDetails.status === "pending") {
+            <div class="d-flex justify-content-center w-50 mx-auto">
+            <button class="btn btn-success w-25 d-block px-3 py-2 mx-auto my-5" (click)="updateLicenceStatus(licenceDetails._id ,'approved')">Accept Request</button>
+            <button class="btn btn-danger w-25 d-block px-3 py-2 mx-auto my-5" (click)="updateLicenceStatus(licenceDetails._id ,'rejected')">Reject Request</button>
+        </div>
+        }                                                                                                                  
     </div>
 </section>
