@@ -1,6 +1,6 @@
 <section class="home-slider mb-5">
     <div class="container-fluid p-0">
-        <div class="row g-0">
+        <div class="row g-0 slider-row">
             <div class="col-md-12">
                 <owl-carousel-o [options]="mainSlider">
                     <ng-template carouselSlide class="position-relative">
@@ -27,7 +27,8 @@
                                 come.
                             </p>
                         </div>
-                        <img src="./assets/roy-luthfi-dhayugantara-D-oAUO46-9c-unsplash.jpg" alt="Slide 1" class="w-100" />
+                        <img src="./assets/roy-luthfi-dhayugantara-D-oAUO46-9c-unsplash.jpg" alt="Slide 1"
+                            class="w-100" />
                     </ng-template>
                     <ng-template carouselSlide class="position-relative">
                         <div class="img-text position-absolute top-50 start-50 translate-middle text-white w-100">
@@ -74,59 +75,139 @@
         </div>
     </div>
 </section>
+<section class="ourServices p-5 pt-0">
+    <div class="container-fluid">
+        <div class="position-relative bg-danger mb-5">
+            <h4 class="text-main fs-6 position-absolute top-0">Our Services</h4>
+        </div>
+        <div class="row mt-5 py-5">
+            <div class="col-md-6 d-flex align-items-center" data-aos="fade-right">
+                <div class="cards">
+                    <div class="my-container">
+                        <div data-text="Blog" style="--r:-15;" class="glass cursor-pointer">
+                            <div class="mb-3">
+                                <img src="./assets/message-square-svgrepo-com.svg" width="50px" height="50px"
+                                    alt="Blog Icon" />
+                            </div>
+                            <p>We support beekeepers with efficient tools and practices that promote responsible apiary
+                                growth, healthier pollinators, and sustainability in agriculture and nature.</p>
+                        </div>
+                        <div data-text="Agricultural Loans" style="--r:5;" class="glass cursor-pointer">
+                            <div class="mb-3">
+                                <img src="./assets/farmer-working-svgrepo-com.svg" width="50px" height="50px"
+                                    alt="Blog Icon" />
+                            </div>
+                            <p>We lead change with smart solutions that accelerate electric vehicle adoption, fostering
+                                a cleaner environment and a more sustainable future of transport.</p>
+                        </div>
+                        <div data-text="Apiary Licences" style="--r:25;" class="glass cursor-pointer">
+                            <div class="mb-3">
+                                <img src="./assets/honey-svgrepo-com.svg" width="50px" height="50px" alt="Blog Icon" />
+                            </div>
+                            <p>We support beekeepers with efficient tools and practices that promote responsible apiary
+                                growth, healthier pollinators, and sustainability in agriculture and nature.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="wrapper">
+                    <div class="my-inner" style="--quantity: 6;">
+                        <div class="card" style="--index: 0;--color-card: 142, 249, 252;">
+                            <div class="img">
+                                <img src="./assets/1.jpg" class="w-100 h-100"
+                                    alt="slider-img">
+                            </div>
+                        </div>
+                        <div class="card" style="--index: 1;--color-card: 142, 252, 204;">
+                            <div class="img">
+                                <img src="./assets/2.jpg" class="w-100 h-100"
+                                    alt="slider-img">
+                            </div>
+                        </div>
+                        <div class="card" style="--index: 2;--color-card: 142, 252, 157;">
+                            <div class="img">
+                                <img src="./assets/3.jpg" class="w-100 h-100"
+                                    alt="slider-img">
+                            </div>
+                        </div>
+                        <div class="card" style="--index: 3;--color-card: 215, 252, 142;">
+                            <div class="img">
+                                <img src="./assets/4.jpg" class="w-100 h-100"
+                                    alt="slider-img">
+                            </div>
+                        </div>
+                        <div class="card" style="--index: 4;--color-card: 252, 252, 142;">
+                            <div class="img">
+                                <img src="./assets/5.jpg" class="w-100 h-100"
+                                    alt="slider-img">
+                            </div>
+                        </div>
+                        <div class="card" style="--index: 5;--color-card: 252, 208, 142;">
+                            <div class="img">
+                                <img src="./assets/6.jpg" class="w-100 h-100"
+                                    alt="slider-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
 <section class="our-services p-5 mb-5">
     <div class="container">
         <div class="position-relative" data-aos="slide-right">
-            <h4 class="text-main fs-6 position-absolute top-0">Our Services</h4>
-            <h3 class="special-font w-75 ps-5 pt-3">We provide the best solutions for a thriving and sustainable natural
-                world.</h3>
+            <h4 class="text-main fs-6 position-absolute top-0">Top Products</h4>
         </div>
-        <div class="row px-5 g-4 justify-content-center">
-            <div class="col-md-4" data-aos="fade-right">
-                <div class="inner rounded-3 py-5 px-3">
-                    <img src="./assets/farmer-working-svgrepo-com.svg" alt="Farmer Working" width="70px"
-                        height="70px" />
-                    <h5 class="special-font mt-5 fs-2">Farmers</h5>
-                    <p>We lead change with smart solutions that accelerate electric vehicle adoption, fostering a
-                        cleaner environment and a more sustainable future of transport.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-down">
-                <div class="inner rounded-3 py-5 px-3">
-                    <img src="./assets/car-side-svgrepo-com.svg" alt="Electric Cars" width="70px" height="70px" />
-                    <h5 class="special-font mt-5 fs-2">Electric Cars</h5>
-                    <p>We assist factories in adopting sustainable methods that boost operational efficiency and
-                        significantly reduce their overall environmental footprint.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-left">
-                <div class="inner rounded-3 py-5 px-3">
-                    <img src="./assets/factories-factory-svgrepo-com.svg" alt="Factories Support" width="70px"
-                        height="70px" />
-                    <h5 class="special-font mt-5 fs-2">Factories</h5>
-                    <p class="pb-4">We help factories transition to sustainable practices, enhancing efficiency while
-                        reducing environmental impact.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="inner rounded-3 py-5 pb-4 px-3">
-                    <img src="./assets/dollar-finance-money-4-svgrepo-com.svg" alt="Loan Application" width="70px"
-                        height="70px" />
-                    <h5 class="special-font mt-5 fs-2">Apply on a loan</h5>
-                    <p class="pb-4">We empower farmers with access to agricultural loans through smart solutions,
-                        supporting sustainable farming, improved productivity, and stronger communities in rural
-                        agricultural areas.</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="inner rounded-3 py-5 px-3">
-                    <img src="./assets/honey-svgrepo-com.svg" alt="Apiary license" width="70px" height="70px" />
-                    <h5 class="special-font mt-5 fs-2">Apply on apiary license</h5>
-                    <p class="pb-4">We support beekeepers with efficient tools and practices that promote responsible
-                        apiary growth, healthier pollinators, and sustainability in agriculture and nature.</p>
-                </div>
-            </div>
+        <div class="row  px-5 g-4 justify-content-center pt-5">
+            <div class="col-md-4 container-2">
+                <div class="card cursor-pointer">
+                    <div class="imgBx">
+                        <img src="../../../assets/blue-water-9-inch-activated-carbon-filter.jpg"
+                            alt="nike-air-shoe">
+                    </div>
 
+                    <div class="contentBx">
+
+                        <h2>Activated Carbon Filter</h2>
+                        <a class="cursor-pointer">Buy Now</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 container-2">
+                <div class="card cursor-pointer">
+                    <div class="imgBx">
+                        <img src="../../../assets/images.png"
+                            alt="nike-air-shoe" class="w-50">
+                    </div>
+
+                    <div class="contentBx">
+
+                        <h2>Electric Scooter</h2>
+                        <a class="cursor-pointer">Buy Now</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 container-2">
+                <div class="card cursor-pointer">
+                    <div class="imgBx">
+                        <img src="../../../assets/blue-water-9-inch-activated-carbon-filter.jpg"
+                            alt="nike-air-shoe">
+                    </div>
+
+                    <div class="contentBx">
+
+                        <h2>Activated Carbon Filters</h2>
+                        <a class="cursor-pointer">Buy Now</a>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </section>
