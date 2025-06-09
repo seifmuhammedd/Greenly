@@ -1,156 +1,192 @@
 <section>
-    <div class="container my-3">
-        <h1 class="special-font text-center">Loan Application</h1>
-        <form>
-            <div class="row pt-5 pb-3 g-3">
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="age" class="form-label fs-4 special-font">Age</label>
-                        <input type="number" class="form-control" id="age" placeholder="22">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="experience" class="form-label fs-4 special-font">Experience <span
-                                class="text-secondary fs-6">In years</span></label>
-                        <input type="number" class="form-control" id="experience" placeholder="1">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="income" class="form-label fs-4 special-font">Income <span
-                                class="text-secondary fs-6">In thousands</span></label>
-                        <input type="number" class="form-control" id="income" placeholder="3000">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="zip-code" class="form-label fs-4 special-font">ZIP Code</label>
-                        <input type="number" class="form-control" id="zip-code" placeholder="11765">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="family-members" class="form-label fs-4 special-font">Family members</label>
-                        <input type="number" class="form-control" id="family-members" placeholder="5">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="CCAvg" class="form-label fs-4 special-font">CCAvg <span
-                                class="text-secondary fs-6">Avg monthly spending with credit card in
-                                thousands</span></label>
-                        <input type="number" class="form-control" id="CCAvg" placeholder="3000">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="education" class="form-label fs-4 special-font">Education</label>
-                    <select class="form-select" aria-label="Default select example" id="education">
-                        <option disabled selected value="">Choose your education level</option>
-                        <option value="1">Less than High School</option>
-                        <option value="2">High School Graduate</option>
-                        <option value="3">Bachelor’s Degree</option>
-                        <option value="4">Postgraduate (Master’s / Doctorate)</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="mortgage" class="form-label fs-4 special-font">Mortgage</label>
-                        <input type="number" class="form-control" id="mortgage" placeholder="3000">
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <label for="securities-account" class="form-label fs-4 special-font">Securities account</label>
-                    <div class="d-flex gap-3 justify-content-center">
-                        <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="security" id="security-yes">
-                            <label class="form-check-label fw-bold" for="security-yes">
-                              Yes
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="security" id="security-no" checked>
-                            <label class="form-check-label fw-bold" for="security-no">
-                              No
-                            </label>
-                          </div>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <label for="cd-account" class="form-label fs-4 special-font">CD account</label>
-                    <div class="d-flex gap-3 justify-content-center">
-                        <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="cd" id="cd-yes">
-                            <label class="form-check-label fw-bold" for="cd-yes">
-                              Yes
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="cd" id="cd-no" checked>
-                            <label class="form-check-label fw-bold" for="cd-no">
-                              No
-                            </label>
-                          </div>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <label for="online" class="form-label fs-4 special-font">Online</label>
-                    <div class="d-flex gap-3 justify-content-center">
-                        <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="online" id="online-yes">
-                            <label class="form-check-label fw-bold" for="online-yes">
-                              Yes
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="online" id="online-no" checked>
-                            <label class="form-check-label fw-bold" for="online-no">
-                              No
-                            </label>
-                          </div>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <label for="credit-card" class="form-label fs-4 special-font">Credit Card</label>
-                    <div class="d-flex gap-3 justify-content-center">
-                        <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="credit" id="credit-yes">
-                            <label class="form-check-label fw-bold" for="credit-yes">
-                              Yes
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="credit" id="credit-no" checked>
-                            <label class="form-check-label fw-bold" for="credit-no">
-                              No
-                            </label>
-                          </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mx-auto text-center">
-                    <label for="personal-loan" class="form-label fs-4 special-font">Personal loan</label>
-                    <div class="d-flex gap-3 justify-content-center">
-                        <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="personal-loan" id="personal-loan-yes">
-                            <label class="form-check-label fw-bold" for="personal-loan-yes">
-                              Yes
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input border-success" type="radio" name="personal-loan" id="personal-loan-no" checked>
-                            <label class="form-check-label fw-bold" for="personal-loan-no">
-                              No
-                            </label>
-                          </div>
-                    </div>
-                </div>
+  <div class="container my-3">
+    <h1 class="special-font text-center">Loan Application</h1>
+
+    <form [formGroup]="loanForm" (ngSubmit)="onSubmit()" class="row pt-5 pb-3 g-3">
+
+      <!-- Gender -->
+      <div class="col-md-4">
+        <label for="gender" class="form-label fs-4 special-font">Gender</label>
+        <select id="gender" class="form-select" formControlName="Gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        @if (loanForm.get("Gender")?.errors && loanForm.get("Gender")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Gender is required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Dependents -->
+      <div class="col-md-4">
+        <label for="dependents" class="form-label fs-4 special-font">Dependents</label>
+        <select id="dependents" class="form-select" formControlName="Dependents">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3+">3+</option>
+        </select>
+        @if (loanForm.get("Dependents")?.errors && loanForm.get("Dependents")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Dependents are required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Education -->
+      <div class="col-md-4">
+        <label for="education" class="form-label fs-4 special-font">Education</label>
+        <select id="education" class="form-select" formControlName="Education">
+          <option value="Graduate">Graduate</option>
+          <option value="not Graduate">Not Graduate</option>
+        </select>
+        @if (loanForm.get("Education")?.errors && loanForm.get("Education")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Education level is required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Applicant Income -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label for="applicant-income" class="form-label fs-4 special-font">Applicant Income</label>
+          <input type="number" class="form-control" id="applicant-income" formControlName="ApplicantIncome">
+          @if (loanForm.get("ApplicantIncome")?.errors && loanForm.get("ApplicantIncome")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">Applicant income is required</p>
             </div>
-            <button class="btn btn-success rounded-3 px-5 py-2 d-block mx-auto w-25">Apply</button>
-            <hr class="bold-line w-75 mx-auto">
-        </form>
-        <div class="text-center">
-        <h3 class=""><span class="special-font">AI model loan eligibility: </span><span class="model-evaluation fw-bold text-success special-font">Yes</span></h3>
-        <h3 class=""><span class="special-font">The amount of money you can obtain: </span><span class="money-amount fw-bold special-font">30,000</span></h3>
+          }
         </div>
-    </div>
+      </div>
+
+      <!-- Co-Applicant Income -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label for="co-applicant-income" class="form-label fs-4 special-font">Co-Applicant Income</label>
+          <input type="number" class="form-control" id="co-applicant-income" formControlName="CoApplicantIncome">
+          @if (loanForm.get("CoApplicantIncome")?.errors && loanForm.get("CoApplicantIncome")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">Co-applicant income is required</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Loan Amount -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label for="loan-amount" class="form-label fs-4 special-font">Loan Amount</label>
+          <input type="number" class="form-control" id="loan-amount" formControlName="LoanAmount">
+          @if (loanForm.get("LoanAmount")?.errors && loanForm.get("LoanAmount")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">Loan amount is required</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Loan Term -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label for="loan-term" class="form-label fs-4 special-font">Loan Term (Months)</label>
+          <input type="number" class="form-control" id="loan-term" formControlName="Loan_Amount_Term">
+          @if (loanForm.get("Loan_Amount_Term")?.errors && loanForm.get("Loan_Amount_Term")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">Loan term is required</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Property Area -->
+      <div class="col-md-4">
+        <label for="property-area" class="form-label fs-4 special-font">Property Area</label>
+        <select id="property-area" class="form-select" formControlName="Property_Area">
+          <option value="Urban">Urban</option>
+          <option value="Rural">Rural</option>
+          <option value="Semiurban">Semiurban</option>
+        </select>
+        @if (loanForm.get("Property_Area")?.errors && loanForm.get("Property_Area")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Property area is required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Married -->
+      <div class="col-md-4 text-center">
+        <label class="form-label fs-4 special-font">Married</label>
+        <div class="d-flex gap-3 justify-content-center">
+          <div class="form-check">
+            <input class="form-check-input border-success" type="radio" name="Married" id="married-yes" value="Yes" formControlName="Married">
+            <label class="form-check-label fw-bold" for="married-yes">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input border-success" type="radio" name="Married" id="married-no" value="No" formControlName="Married">
+            <label class="form-check-label fw-bold" for="married-no">No</label>
+          </div>
+        </div>
+        @if (loanForm.get("Married")?.errors && loanForm.get("Married")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Married status is required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Self Employed -->
+      <div class="col-md-4 text-center">
+        <label class="form-label fs-4 special-font">Self Employed</label>
+        <div class="d-flex gap-3 justify-content-center">
+          <div class="form-check">
+            <input class="form-check-input border-success" type="radio" name="Self_Employed" id="self-employed-yes" value="yes" formControlName="Self_Employed">
+            <label class="form-check-label fw-bold" for="self-employed-yes">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input border-success" type="radio" name="Self_Employed" id="self-employed-no" value="no" formControlName="Self_Employed">
+            <label class="form-check-label fw-bold" for="self-employed-no">No</label>
+          </div>
+        </div>
+        @if (loanForm.get("Self_Employed")?.errors && loanForm.get("Self_Employed")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Self employed status is required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Credit History -->
+      <div class="col-md-4 text-center">
+        <label class="form-label fs-4 special-font">Credit History</label>
+        <div class="d-flex gap-3 justify-content-center">
+          <div class="form-check">
+            <input class="form-check-input border-success" type="radio" name="Credit_History" id="credit-history-1" value="1" formControlName="Credit_History">
+            <label class="form-check-label fw-bold" for="credit-history-1">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input border-success" type="radio" name="Credit_History" id="credit-history-0" value="0" formControlName="Credit_History">
+            <label class="form-check-label fw-bold" for="credit-history-0">No</label>
+          </div>
+        </div>
+        @if (loanForm.get("Credit_History")?.errors && loanForm.get("Credit_History")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Credit history is required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-md-12 text-center mt-4">
+        <button type="submit" class="btn btn-success rounded-3 px-5 py-2 w-25" [disabled]="loanForm.invalid">Apply</button>
+      </div>
+
+      <hr class="bold-line w-75 mx-auto mt-4">
+
+    </form>
+
+    <!-- <div class="text-center mt-4">
+      <h3><span class="special-font">AI model loan eligibility: </span><span class="model-evaluation fw-bold text-success special-font">Yes</span></h3>
+      <h3><span class="special-font">The amount of money you can obtain: </span><span class="money-amount fw-bold special-font">30,000</span></h3>
+    </div> -->
+  </div>
 </section>
