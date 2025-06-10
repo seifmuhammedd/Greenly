@@ -1,0 +1,31 @@
+.slider-row {
+  height: 500px !important;
+}
+
+.home-slider owl-carousel-o,
+.home-slider .owl-carousel,
+.home-slider .owl-stage-outer,
+.home-slider .owl-stage,
+.home-slider .owl-item {
+  height: 100% !important;
+}
+
+.home-slider img {
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
+#carouselExampleAutoplaying {
+  height: 500px;
+  overflow: hidden;
+}
+
+#carouselExampleAutoplaying .carousel-inner,
+#carouselExampleAutoplaying .carousel-item,
+#carouselExampleAutoplaying img {
+  height: 100%;
+}
+
+#carouselExampleAutoplaying img {
+  object-fit: cover; /* Or use 'contain' if you prefer the full image shown */
+}

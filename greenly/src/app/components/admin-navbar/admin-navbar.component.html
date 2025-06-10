@@ -18,18 +18,24 @@
         </li>
         <li class="nav-item px-2">
           <a class="nav-link cursor-pointer fw-bold" routerLink="/admin/manage-loans"
-            routerLinkActive="active-link">Loan Requests</a>
+            routerLinkActive="active-link">Manage Loans</a>
         </li>
         <li class="nav-item px-2">
           <a class="nav-link cursor-pointer fw-bold" routerLink="/admin/manage-licences"
-            routerLinkActive="active-link">Licence Requests</a>
+            routerLinkActive="active-link">Manage Licences</a>
         </li>
         <li class="nav-item px-2">
-          <a class="nav-link cursor-pointer fw-bold" routerLink="/admin/add-product"
-            routerLinkActive="active-link">Add Product</a>
+          <a class="nav-link cursor-pointer fw-bold" routerLink="/admin/edit-product"
+            routerLinkActive="active-link">Manage Products</a>
         </li>
         <li class="nav-item px-2">
-          <a class="nav-link cursor-pointer fw-bold" routerLink="/admin/edit-product" routerLinkActive="active-link">Edit Product</a>
+          <a class="nav-link cursor-pointer fw-bold" routerLink="/admin/manage-categories" routerLinkActive="active-link">Manage Categories</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link cursor-pointer fw-bold" routerLink="/admin/manage-blog" routerLinkActive="active-link">Manage Blog</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link cursor-pointer fw-bold" routerLinkActive="active-link">Manage Orders</a>
         </li>
       </ul>
       @if(_AuthService.isLoggedIn()) {
