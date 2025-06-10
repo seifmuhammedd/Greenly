@@ -1,1 +1,128 @@
-<p>payment works!</p>
+<section class="py-5">
+  <div class="container">
+    <h1 class="special-font text-center mb-4">Delivery Information</h1>
+    <p class="text-muted text-center mb-4">Please enter your delivery information below.</p>
+
+    <form [formGroup]="addressForm" (ngSubmit)="submitAddress()" class="needs-validation">
+
+      <!-- Row for city, state -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="city" class="form-label fs-5 special-font">City</label>
+          <input type="text" class="form-control border-success" id="city" formControlName="city">
+          @if (addressForm.get("city")?.errors && addressForm.get("city")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">City is required</p>
+            </div>
+          }
+        </div>
+
+        <div class="col-md-6">
+          <label for="state" class="form-label fs-5 special-font">State</label>
+          <input type="text" class="form-control border-success" id="state" formControlName="state">
+          @if (addressForm.get("state")?.errors && addressForm.get("state")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">State is required</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Country Dropdown -->
+      <div class="mb-3">
+        <label for="country" class="form-label fs-5 special-font">Country</label>
+        <select id="country" class="form-select border-success" formControlName="country">
+          <option value="" disabled selected>Select Country</option>
+          <option value="EG">Egypt</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="UK">United Kingdom</option>
+        </select>
+        @if (addressForm.get("country")?.errors && addressForm.get("country")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Country is required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Street, Building -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-8">
+          <label for="street" class="form-label fs-5 special-font">Street</label>
+          <input type="text" class="form-control border-success" id="street" formControlName="street">
+          @if (addressForm.get("street")?.errors && addressForm.get("street")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">Street is required</p>
+            </div>
+          }
+        </div>
+
+        <div class="col-md-4">
+          <label for="building" class="form-label fs-5 special-font">Building</label>
+          <input type="text" class="form-control border-success" id="building" formControlName="building">
+          @if (addressForm.get("building")?.errors && addressForm.get("building")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">Building is required</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Floor, Apartment -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="floor" class="form-label fs-5 special-font">Floor</label>
+          <input type="number" class="form-control border-success" id="floor" formControlName="floor">
+          @if (addressForm.get("floor")?.errors && addressForm.get("floor")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">Floor is required</p>
+            </div>
+          }
+        </div>
+
+        <div class="col-md-6">
+          <label for="apartment" class="form-label fs-5 special-font">Apartment</label>
+          <input type="number" class="form-control border-success" id="apartment" formControlName="apartment">
+          @if (addressForm.get("apartment")?.errors && addressForm.get("apartment")?.touched) {
+            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+              <p class="m-0">Apartment is required</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Postal Code -->
+      <div class="mb-3">
+        <label for="postal-code" class="form-label fs-5 special-font">Postal Code</label>
+        <input type="text" class="form-control border-success" id="postal-code" formControlName="postal_code">
+        @if (addressForm.get("postal_code")?.errors && addressForm.get("postal_code")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            <p class="m-0">Postal code is required</p>
+          </div>
+        }
+      </div>
+
+      <!-- Phone Number -->
+      <div class="mb-3">
+        <label for="phone" class="form-label fs-5 special-font">Phone Number</label>
+        <input type="tel" class="form-control border-success" id="phone" formControlName="phone">
+        @if (addressForm.get("phone")?.errors && addressForm.get("phone")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (addressForm.get("phone")?.getError("required")) {
+              <p class="m-0">Phone number is required</p>
+            } @else if (addressForm.get("phone")?.getError("pattern")) {
+              <p class="m-0">Please enter a valid phone number</p>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid mt-4">
+        <button type="submit" class="btn btn-success w-50 mx-auto py-2 px-4 rounded-5 shadow-sm" [disabled]="addressForm.invalid">
+          Confirm Delivery Info
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

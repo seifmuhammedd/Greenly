@@ -1,0 +1,31 @@
+/* Container */
+.container {
+  max-width: 700px;
+}
+
+/* Inputs */
+.form-control, .form-select {
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.btn-success {
+  background-color: #24BB54;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-success:hover {
+  background-color: #1e9a43;
+  transform: scale(1.02);
+}

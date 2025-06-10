@@ -61,7 +61,6 @@ export class ShopComponent implements OnInit {
       .getProductsByCategory('68113054d648ef5ed3587d29')
       .subscribe({
         next: (res) => {
-          console.log(res)
           this.shopData = res;
         },
         error: (err) => {
