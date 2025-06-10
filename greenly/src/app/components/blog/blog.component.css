@@ -1,17 +1,55 @@
-.inner {
-    background-color: #EEEEEE;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* Card Styling */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.post-content {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Input Field & Post Button */
+.posting input[type="text"] {
+  padding-right: 80px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.3s ease;
+}
+
+.posting input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.posting button {
+  z-index: 1;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.posting button:hover {
+  background-color: #1e9a43;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .posting {
+    width: 100% !important;
   }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
+
+  .card-body {
+    font-size: 0.95rem;
   }
-  
-  .col-md-6 {
-    display: flex;
-  }
-  
+}

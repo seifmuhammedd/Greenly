@@ -24,8 +24,7 @@
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label for="product-category" class="form-label fs-5 special-font">Product Category</label>
-                        <select id="product-category" class="form-select border-success"
-                            formControlName="categoryid">
+                        <select id="product-category" class="form-select border-success" formControlName="categoryid">
                             <option value="" disabled>Select a Category</option>
                             @for (category of categoriesData; track category._id) {
                             <option [value]="category._id">{{category.name}}</option>
@@ -62,8 +61,7 @@
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label for="vendor" class="form-label fs-5 special-font">Vendor Name</label>
-                        <input type="text" class="form-control border-success" id="vendor"
-                            formControlName="vendor" />
+                        <input type="text" class="form-control border-success" id="vendor" formControlName="vendor" />
                         @if (addProductForm.get('vendor')?.errors && addProductForm.get('vendor')?.touched) {
                         <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
                             @if (addProductForm.get('vendor')?.getError('required')) {
@@ -110,7 +108,8 @@
                 <div class="col-md-7">
                     <div class="mb-3">
                         <label for="ratingAvg" class="form-label fs-5 special-font">Rating Average</label>
-                        <input type="number" class="form-control border-success" id="ratingAvg" formControlName="ratingAvg" />
+                        <input type="number" class="form-control border-success" id="ratingAvg"
+                            formControlName="ratingAvg" />
                         @if (addProductForm.get('ratingAvg')?.errors && addProductForm.get('ratingAvg')?.touched) {
                         <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
                             @if (addProductForm.get('ratingAvg')?.getError('required')) {
@@ -158,17 +157,19 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label special-font fs-4">Cover Image</label>
-                    <input type="file" class="file form-control border-success bg-light" formControlName="imageCover" />
+                    <input type="file" class="file form-control border-success bg-light" formControlName="imageCover"
+                        (change)="onCoverImageSelected($event)" />
                 </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label special-font fs-4">Images</label>
                     <input type="file" class="file form-control border-success bg-light" formControlName="images"
-                        multiple />
+                        multiple (change)="onImagesSelected($event)" />
                 </div>
             </div>
             <div class="row mt-3 mb-5 justify-content-center">
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-success w-100 fs-5 special-font" [disabled]="addProductForm.invalid">Add</button>
+                    <button type="submit" class="btn btn-success w-100 fs-5 special-font"
+                        [disabled]="addProductForm.invalid">Add</button>
                 </div>
             </div>
         </form>

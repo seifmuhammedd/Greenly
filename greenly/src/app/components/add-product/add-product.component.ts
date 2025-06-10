@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -10,154 +9,173 @@ import { ShopService } from '../../core/services/shop.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CategoriesService } from '../../core/services/categories.service';
+import Swal from 'sweetalert2';
 import { ICategory } from '../../core/interfeces/i-category';
 import { ISubCategory } from '../../core/interfeces/i-sub-category';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule],
   templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.css',
+  styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  constructor(
-    private _CategoriesService: CategoriesService,
-    private _FormBuilder: FormBuilder,
-    private _ShopService: ShopService,
-    private _Router: Router,
-    private _ToastrService: ToastrService
-  ) {}
+
+  // Reactive form definition
+  addProductForm: FormGroup = this._formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
+    categoryid: ['', [Validators.required]],
+    subcategoryid: ['', [Validators.required]],
+    vendor: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
+    stock: ['', [Validators.required, Validators.min(1)]],
+    price: ['', [Validators.required, Validators.min(1)]],
+    ratingAvg: ['', [Validators.required, Validators.min(1)]],
+    shortdescription: ['', [Validators.required, Validators.minLength(10)]],
+    longdescription: ['', [Validators.required, Validators.minLength(20)]],
+    imageCover: [null, [Validators.required]],
+    images: [null, [Validators.required]]
+  });
 
   categoriesData!: ICategory[];
   subCategories: ISubCategory[] = [];
 
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _shopService: ShopService,
+    private _router: Router,
+    private _toastr: ToastrService,
+    private _categoriesService: CategoriesService
+  ) {}
+
   ngOnInit(): void {
-    this._CategoriesService.getAllCategories().subscribe({
+    // Load all categories on init
+    this._categoriesService.getAllCategories().subscribe({
       next: (res) => {
         this.categoriesData = res;
       },
       error: (err) => {
         console.error('Error fetching categories:', err);
-      },
+      }
     });
 
-    this.addProductForm
-      .get('categoryid')
-      ?.valueChanges.subscribe((categoryId) => {
-        if (categoryId) {
-          this.getSubCategories(categoryId);
-        } else {
-          this.subCategories = [];
-          this.addProductForm.get('subcategoryid')?.setValue('');
-        }
-      });
+    // When category changes → get subcategories
+    this.addProductForm.get('categoryid')?.valueChanges.subscribe((categoryId) => {
+      if (categoryId) {
+        this.getSubCategories(categoryId);
+      } else {
+        this.subCategories = [];
+        this.addProductForm.get('subcategoryid')?.setValue('');
+      }
+    });
   }
 
-  addProductForm: FormGroup = this._FormBuilder.group({
-    name: [
-      '',
-      [Validators.required, Validators.minLength(3), Validators.maxLength(150)],
-    ],
-    categoryid: ['', [Validators.required]],
-    subcategoryid: ['', [Validators.required]],
-    shortdescription: ['', [Validators.required, Validators.minLength(10)]],
-    longdescription: ['', [Validators.required, Validators.minLength(20)]],
-    vendor: [
-      '',
-      [Validators.required, Validators.minLength(3), Validators.maxLength(150)],
-    ],
-    stock: ['', [Validators.required, Validators.min(1)]],
-    price: ['', [Validators.required, Validators.min(1)]],
-    ratingAvg: ['', [Validators.required, Validators.min(1)]],
-    imageCover: ['', [Validators.required]],
-    images: ['', [Validators.required]],
-  });
-
+  // Handle cover image selection
   onCoverImageSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
       this.addProductForm.patchValue({ imageCover: file });
       this.addProductForm.get('imageCover')?.updateValueAndValidity();
     }
   }
 
+  // Handle multiple images selection
   onImagesSelected(event: Event): void {
-    const files = (event.target as HTMLInputElement).files;
-    if (files && files.length > 0) {
-      this.addProductForm.patchValue({ images: Array.from(files) });
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const files = Array.from(input.files);
+      this.addProductForm.patchValue({ images: files });
       this.addProductForm.get('images')?.updateValueAndValidity();
     }
   }
 
-  getSubCategories(categoryId: string) {
-    this._CategoriesService.getSubCategoriesByCategory(categoryId).subscribe({
+  // Fetch subcategories based on selected category
+  getSubCategories(categoryId: string): void {
+    this._categoriesService.getSubCategoriesByCategory(categoryId).subscribe({
       next: (res) => {
         this.subCategories = res;
       },
       error: (err) => {
         console.error('Error fetching subcategories:', err);
-      },
+      }
     });
   }
 
   onSubmit(): void {
-  if (this.addProductForm.invalid) {
-    this.addProductForm.markAllAsTouched();
-    return;
-  }
-
-  const formData = new FormData();
-
-  formData.append('name', this.addProductForm.get('name')?.value);
-  formData.append('categoryid', this.addProductForm.get('categoryid')?.value);
-  formData.append('subcategoryid', this.addProductForm.get('subcategoryid')?.value);
-  formData.append('shortdescription', this.addProductForm.get('shortdescription')?.value);
-  formData.append('longdescription', this.addProductForm.get('longdescription')?.value);
-  formData.append('vendor', this.addProductForm.get('vendor')?.value);
-  formData.append('stock', this.addProductForm.get('stock')?.value);
-  formData.append('price', this.addProductForm.get('price')?.value);
-  formData.append('ratingAvg', this.addProductForm.get('ratingAvg')?.value);
-
-  const cover = this.addProductForm.get('imageCover')?.value;
-  if (cover) {
-    formData.append('imageCover', cover);
-  }
-
-  const images: File[] = this.addProductForm.get('images')?.value;
-  if (images && Array.isArray(images)) {
-    images.forEach((img, index) => {
-      formData.append('images', img);
-    });
-  }
-
-  this._ShopService.addProduct(formData).subscribe({
-    next: (res) => {
-      this.showAlert();
-    },
-    error: (err) => {
-      console.error('Error adding product:', err);
-      this._ToastrService.error('Failed to add product');
+    if (this.addProductForm.invalid) {
+      this.addProductForm.markAllAsTouched();
+      return;
     }
-  });
-}
 
-showAlert() {
-      Swal.fire({
-        title: 'Product added successfully',
-        html: `<button id="customBtn" class="btn btn-success">Ok</button>`,
-        showConfirmButton: false,
-        icon: "success",
-        draggable: true,
-        didOpen: () => {
-          const btn = document.getElementById('customBtn');
-          btn?.addEventListener('click', () => {
-            Swal.close();
-            this._Router.navigate(['/admin/edit-product']); 
-          });
+    const formData = new FormData();
+
+    // Append text fields
+    formData.append('name', this.addProductForm.get('name')?.value || '');
+    formData.append('categoryid', this.addProductForm.get('categoryid')?.value || '');
+    formData.append('subcategoryid', this.addProductForm.get('subcategoryid')?.value || '');
+    formData.append('vendor', this.addProductForm.get('vendor')?.value || '');
+    formData.append('stock', this.addProductForm.get('stock')?.value || '');
+    formData.append('price', this.addProductForm.get('price')?.value || '');
+    formData.append('ratingAvg', this.addProductForm.get('ratingAvg')?.value || '');
+    formData.append('shortdescription', this.addProductForm.get('shortdescription')?.value || '');
+    formData.append('longdescription', this.addProductForm.get('longdescription')?.value || '');
+
+    // Append Cover Image
+    const coverImage = this.addProductForm.get('imageCover')?.value;
+    if (coverImage instanceof File) {
+      formData.append('imageCover', coverImage, coverImage.name);
+    }
+
+    // Append Additional Images
+    const additionalImages = this.addProductForm.get('images')?.value;
+    if (Array.isArray(additionalImages)) {
+      additionalImages.forEach((file: File) => {
+        if (file instanceof File) {
+          formData.append('images', file, file.name);
         }
       });
     }
 
+    // Show loading alert
+    Swal.fire({
+      title: 'Adding Product...',
+      html: `
+        <div class="d-flex justify-content-center mt-3">
+          <div class="spinner-border text-success" role="status"></div>
+        </div>
+      `,
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      
+    });
+
+    // Submit the form data
+    this._shopService.addProduct(formData).subscribe({
+      next: (res) => {
+        // Show success alert
+        Swal.fire({
+          title: 'Product added successfully',
+          html: `<button id="customBtn" class="btn btn-success">Ok</button>`,
+          icon: 'success',
+          showConfirmButton: false,
+          didOpen: () => {
+            const btn = document.getElementById('customBtn');
+            btn?.addEventListener('click', () => {
+              Swal.close();
+              this._router.navigate(['/admin/edit-product']);
+            });
+          }
+        });
+      },
+      error: (err) => {
+        // Close loader and show error
+        Swal.close();
+        console.error('Error adding product:', err);
+        this._toastr.error('Failed to add product.', 'Error');
+      }
+    });
+  }
 }

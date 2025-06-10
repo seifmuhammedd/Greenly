@@ -1,30 +1,48 @@
 <section>
-    <div class="container my-2">
-        <h1 class="special-font text-center">Products</h1>
-        <button class="btn my-btn text-white special-font fs-5 d-block ms-auto px-5 py-2 rounded-5" routerLink="/admin/add-category">Add Category</button>
-        <div class="row gy-4 mt-3 mb-5">
-            @for (category of categoriesdata; track category._id) {
-                <div class="col-md-4">
-                <div class="inner p-3 rounded-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-center align-items-center gap-1">
-                            <div>
-                                <img src="./assets/folder-svgrepo-com.svg" [alt]="category.name">
-                            </div>
-                            <h2 class="special-font fs-5 pt-2">{{category.name}}</h2>
-                        </div>
-                        <span class="text-secondary small">{{category.createdAt | date }}</span>
-                    </div>
-                    <div class="my-2 d-flex justify-content-center">
-                        <p>{{category.description}}</p>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center mt-3">
-                        <button
-                            class="btn btn-danger text-white special-font d-block w-35 py-2 rounded-5 me-5" (click)="deleteCategory(category._id)">Delete</button>
-                    </div>
+  <div class="container my-2">
+    <h1 class="special-font text-center mb-4">Categories</h1>
+
+    <!-- Add Category Button -->
+    <button class="btn my-btn text-white special-font fs-5 d-block ms-auto px-4 py-2 rounded-5 shadow-sm"
+            routerLink="/admin/add-category">
+      Add Category
+    </button>
+
+    <!-- Categories Grid -->
+    <div class="row gy-4 mt-3 justify-content-start">
+      @for (category of categoriesdata; track category._id) {
+        <div class="col-md-4 col-sm-6 col-10">
+          <div class="product-card p-4 rounded-3 shadow-sm position-relative h-100">
+            <div class="d-flex justify-content-between align-items-start">
+              <!-- Category Info -->
+              <div class="d-flex align-items-center gap-3">
+                <div class="product-img rounded-circle overflow-hidden shadow-sm">
+                  <img src="./assets/folder-svgrepo-com.svg" [alt]="category.name" width="60" height="60" />
                 </div>
+                <div>
+                  <h2 class="special-font fs-5 m-0">{{ category.name }}</h2>
+                  <p class="text-muted small mt-1 mb-0">
+                    Added: {{ category.createdAt | date }}
+                  </p>
+                </div>
+              </div>
             </div>
-            }
+
+            <!-- Description -->
+            <div class="mt-3">
+              <p class="mb-0 text-truncate">{{ category.description }}</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-4 d-flex justify-content-end">
+              <button class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+                      (click)="deleteCategory(category._id)">
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
+      }
     </div>
+  </div>
 </section>

@@ -1,9 +1,40 @@
-.inner{
-    height: 500px;
-    border: 1px solid #81E084;
-    transition: all 0.3s ease-in-out;
+/* Service Card Base */
+.service-card {
+  min-height: 350px;
+  border: 2px solid #81E084;
+  transition: all 0.4s ease-in-out;
+  background-color: #f9fff9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
 }
-.inner:hover{
-    border: 1px solid #177E39;
-    box-shadow: 0 0 10px #81E084;
+
+/* Hover Effects */
+.service-card:hover {
+  border-color: #177E39;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  background: linear-gradient(to bottom right, #e6fae6, #f0fdf0);
+}
+
+/* Read More Link */
+.read-more {
+  font-weight: bold;
+  color: #177E39;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.read-more:hover {
+  color: #1e9a43;
+  text-decoration: underline;
+}
+
+/* Optional: Add subtle scale effect on hover */
+.service-card {
+  will-change: transform;
+}
+
+.service-card:hover .read-more {
+  color: #1e9a43;
 }
