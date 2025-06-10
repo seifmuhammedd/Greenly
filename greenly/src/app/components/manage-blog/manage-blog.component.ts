@@ -20,7 +20,6 @@ export class ManageBlogComponent {
   ngOnInit(): void {
     this._BlogService.getAllPosts().subscribe({
       next: (res) => {
-        console.log(res)
         this.blogData = res.data;
       },
       error: (err) => {
@@ -32,7 +31,9 @@ export class ManageBlogComponent {
   deletePost(postID: string): void {
     this._BlogService.deletePost(postID).subscribe({
       next: (res) => {
+        console.log(res)
         this.blogData = res.data
+        this._ToastrService.success( res.message, "Greenly")
       },
       error: (err) => {
         this._ToastrService.error(err.error.message);

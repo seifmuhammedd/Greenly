@@ -22,6 +22,14 @@ export class BlogComponent implements OnInit {
   blogData !: IBlog[]
 
   ngOnInit(): void {
+    this.getAllPosts()
+  }
+
+  createPostForm : FormGroup = this._FormBuilder.group({
+    content: [null, [Validators.required, Validators.max(5000)]]
+  })
+
+  getAllPosts(){
     this._BlogService.getAllPosts().subscribe({
       next: (res)=>{
         this.blogData = res.data
@@ -32,16 +40,15 @@ export class BlogComponent implements OnInit {
     })
   }
 
-  createPostForm : FormGroup = this._FormBuilder.group({
-    content: [null, [Validators.required, Validators.max(5000)]]
-  })
-
   createPost():void{
     if(this.createPostForm.valid){
       if(isPlatformBrowser(this._PLATFORM_ID)){
         if(localStorage.getItem("userToken")){
           this._BlogService.createPost(this.createPostForm.value).subscribe({
-            next: ()=>{window.location.reload();},
+            next: (res)=>{
+              this.createPostForm.reset()
+              this.getAllPosts()
+            },
             error: (err)=>{
               console.log(err.message)
             }
