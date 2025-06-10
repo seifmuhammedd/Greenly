@@ -26,4 +26,8 @@ export class LicenceService {
     return this._HttpClient.patch(`${environment.baseURL}/license/${licence_ID}`, { status } , { headers: { 'Authorization': `Admin ${localStorage.getItem("userToken")}` } });
   }
 
+  getLicencseByStatus(status: string):Observable<any>{
+    return this._HttpClient.post(`${environment.baseURL}/license/getByStatus`, { status } , { headers: { 'Authorization': `Admin ${localStorage.getItem("userToken")}` } });
+  }
+
 }

@@ -1,0 +1,18 @@
+.my-btn{
+    background-color: #24BB54;
+}
+.my-btn:hover{
+    background-color: #1E9A43;
+}
+.inner{
+    background-color: #EEEEEE;
+    height: 250px;
+}
+.inner img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.w-35{
+    width: 35%;
+}

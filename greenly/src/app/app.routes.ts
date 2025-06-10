@@ -32,6 +32,10 @@ import { ManageLicencesComponent } from './components/manage-licences/manage-lic
 import { ManageLoansComponent } from './components/manage-loans/manage-loans.component';
 import { EditSpecificProductComponent } from './components/edit-specific-product/edit-specific-product.component';
 import { ManageSpecificLicenceComponent } from './components/manage-specific-licence/manage-specific-licence.component';
+import { ManageCategoriesComponent } from './components/manage-categories/manage-categories.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { ManageSubCategoriesComponent } from './components/manage-sub-categories/manage-sub-categories.component';
+import { AddSubCategoryComponent } from './components/add-sub-category/add-sub-category.component';
 
 
 export const routes: Routes = [
@@ -67,6 +71,10 @@ export const routes: Routes = [
             {path: "add-product", component: AddProductComponent, title: "Add Product"},
             {path: "edit-product", component: EditProductComponent, title: "Edit Product"},
             {path: "edit-specific-product/:p_ID", component: EditSpecificProductComponent, title: "Edit Product"},
+            {path: "manage-categories", component: ManageCategoriesComponent, title: "Manage Categories"},
+            {path: "add-category", component: AddCategoryComponent, title: "Add Category"},
+            {path: "manage-sub-categories", component: ManageSubCategoriesComponent, title: "Manage Sub Categories"},
+            {path: "add-sub-category", component: AddSubCategoryComponent, title: "Add Sub Category"},
             {path: "manage-specific-licence/:l_ID", component: ManageSpecificLicenceComponent, title: "Manage Licence"},
             {path: "manage-licences", component: ManageLicencesComponent, title: "Manage Apiary"},
             {path: "manage-loans", component: ManageLoansComponent, title: "Manage Loans"},

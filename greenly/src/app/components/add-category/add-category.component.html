@@ -1,0 +1,56 @@
+<section>
+  <div class="container my-3">
+    <h1 class="special-font text-center">Add Category</h1>
+
+    <form [formGroup]="addCategoryForm" class="form" (ngSubmit)="onSubmit()">
+      <div class="row mt-4 justify-content-center">
+
+        <!-- Category Name -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="category-name" class="form-label fs-5 special-font">Category Name</label>
+            <input type="text" class="form-control border-success" id="category-name" formControlName="name" />
+            @if (addCategoryForm.get('name')?.errors && addCategoryForm.get('name')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (addCategoryForm.get('name')?.getError('required')) {
+                  <p class="m-0">Category name is required</p>
+                } @else if (addCategoryForm.get('name')?.getError('minlength')) {
+                  <p class="m-0">Category name must be at least 3 characters</p>
+                } @else if (addCategoryForm.get('name')?.getError('maxlength')) {
+                  <p class="m-0">Maximum allowed characters are 150</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="category-description" class="form-label fs-5 special-font">Description</label>
+            <textarea rows="3" class="form-control border-success" id="category-description" formControlName="description"></textarea>
+            @if (addCategoryForm.get('description')?.errors && addCategoryForm.get('description')?.touched) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (addCategoryForm.get('description')?.getError('required')) {
+                  <p class="m-0">Description is required</p>
+                } @else if (addCategoryForm.get('description')?.getError('minlength')) {
+                  <p class="m-0">Minimum characters allowed are 10</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Submit Button -->
+      <div class="row mt-3 mb-5 justify-content-center">
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-success w-100 fs-5 special-font" [disabled]="addCategoryForm.invalid">
+            Add
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

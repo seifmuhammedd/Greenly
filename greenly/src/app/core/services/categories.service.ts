@@ -14,6 +14,10 @@ export class CategoriesService {
     return this._HttpClient.get(`${environment.baseURL}/category/allcategories`)
   }
 
+  getAllSubCategories():Observable<any>{
+    return this._HttpClient.get(`${environment.baseURL}/subCategory/allsubcategories`)
+  }
+
   getSpecificCategory(p_ID: string | null):Observable<any>{
     return this._HttpClient.get(`${environment.baseURL}/category/${p_ID}`)
   }
@@ -25,4 +29,18 @@ export class CategoriesService {
   addCategory(categoryData: object):Observable<any>{
     return this._HttpClient.post(`${environment.baseURL}/category/addcategory`, categoryData, { headers: {Authorization: `Admin ${localStorage.getItem("userToken")}`} } )
   }
+
+  addSubCategory(subCategoryData: object):Observable<any>{
+    return this._HttpClient.post(`${environment.baseURL}/subCategory/addsubcategory`, subCategoryData, { headers: {Authorization: `Admin ${localStorage.getItem("userToken")}`} } )
+  }
+
+  deleteCategory(c_ID: string | null):Observable<any>{
+    return this._HttpClient.delete(`${environment.baseURL}/category/delete/${c_ID}`, { headers: {Authorization: `Admin ${localStorage.getItem("userToken")}`} })
+  }
+
+  deleteSubCategory(sc_ID: string | null):Observable<any>{
+    return this._HttpClient.delete(`${environment.baseURL}/subCategory/delete/${sc_ID}`, { headers: {Authorization: `Admin ${localStorage.getItem("userToken")}`} })
+  }
+
+
 }
