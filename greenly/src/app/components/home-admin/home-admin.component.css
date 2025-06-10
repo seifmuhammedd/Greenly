@@ -1,40 +1,62 @@
-.req-item{
-    border: 2px solid #81E084;
-    transition: all 0.3s ease;
-    margin-inline: 15px;
-}
-.req-item:hover{
-    border: 2px solid #4CAF50;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.02);
-}
-.req-item .icon{
-    font-size: 50px;
-}
-.item-1{
-    background-color: #177E39;
-    color: white;
-    transition: all 0.3s ease;
-}
-.item-1:hover{
-    background-color: #FFFFFF;
-    color: black;
-}
-.item-1{
-    transition: all 0.3s ease;
+.req-card {
+  border: 2px solid #81E084;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: #ffffff;
 }
 
-.item-2:hover{
-    background-color: #177E39;
-    color: white;
+.req-card:hover {
+  border-color: #4CAF50;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
 }
 
-.circle{
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 5px solid #8BBF9C;
+.req-card h3 {
+  transition: color 0.3s ease;
+}
+
+.req-card:hover h3 {
+  color: #4CAF50;
+}
+
+.icon-box {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #d7f5db;
+  transition: all 0.3s ease;
+}
+
+.req-card:hover .icon-box {
+  background-color: #aee9b6;
+}
+
+.circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #8BBF9C;
+  background-color: #177E39;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.item-1:hover {
+  background-color: #ffffff !important;
+  color: black;
+}
+
+.item-1:hover .circle {
+  background-color: #177E39;
+  border-color: #177E39;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }

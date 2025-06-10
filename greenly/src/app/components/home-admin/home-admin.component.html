@@ -1,76 +1,64 @@
 <section class="my-3">
-    <div class="container">
-        <div class="my-4">
-            <h2 class="text-center special-font">Manage Requests</h2>
-            <div class="row justify-content-center mt-3">
-                <div class="col-md-4 req-item rounded-4 px-3 py-4 cursor-pointer" routerLink="/admin/manage-loans">
-                    <div class="mb-5">
-                        <img src="./assets/dollar-finance-money-4-svgrepo-com.svg" alt="loan" width="75px"
-                            height="75px">
-                    </div>
-                    <h3 class="special-font">Loan Requests</h3>
-                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eum, necessitatibus tempore, quo odio sed eveniet voluptas aliquid error ipsa velit at, vero nostrum consectetur voluptates! Modi magni laboriosam dolores.</p>
-                </div>
-                <div class="col-md-4 req-item rounded-4 px-3 py-4 cursor-pointer" routerLink="/admin/manage-licences">
-                    <div class="mb-5">
-                        <img src="./assets/honey-svgrepo-com.svg" alt="loan" width="75px"
-                            height="75px">
-                    </div>
-                    <h3 class="special-font">Licence Requests</h3>
-                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eum, necessitatibus tempore, quo odio sed eveniet voluptas aliquid error ipsa velit at, vero nostrum consectetur voluptates! Modi magni laboriosam dolores.</p>
-                </div>
-            </div>
+  <div class="container">
+    <h2 class="text-center special-font mb-4">What are you thinking of today?</h2>
+
+    <div class="row justify-content-center g-4">
+
+      <!-- Loan Requests -->
+      <div class="col-md-6 col-sm-6 col-10">
+        <div class="req-card rounded-4 p-4 text-center shadow-sm h-100" routerLink="/admin/manage-loans">
+          <div class="mb-4 icon-box bg-success-subtle d-inline-flex align-items-center justify-content-center rounded-circle mx-auto">
+            <img src="./assets/money-cash-svgrepo-com.svg" alt="Loan Icon" width="60" height="60">
+          </div>
+          <h3 class="special-font fs-4 mt-3">Loan Requests</h3>
+          <p class="text-muted mt-2">View and manage all loan applications submitted by users.</p>
         </div>
-    </div>
-</section>
-<section class="my-3">
-    <div class="container">
-        <div class="my-4">
-            <h2 class="text-center special-font">Manage Products</h2>
-            <div class="row justify-content-center align-items-start mt-3">
-                <div class="col-md-4 req-item item-1 rounded-4 p-3 cursor-pointer" routerLink="/admin/add-product">
-                    <div class="mb-2 circle">
-                        <span class="icon"><i class="fa-solid fa-plus"></i></span>
-                    </div>
-                    <h3 class="special-font">Add new product</h3>
-                </div>
-                <div class="col-md-4 req-item item-2 rounded-4 p-3 cursor-pointer" routerLink="/admin/edit-product">
-                    <div class="mb-2">
-                        <span class="icon"><i class="fa-solid fa-pen-to-square"></i></span>
-                    </div>
-                    <h3 class="special-font">Edit Products</h3>
-                </div>
-            </div>
+      </div>
+
+      <!-- Licence Requests -->
+      <div class="col-md-6 col-sm-6 col-10">
+        <div class="req-card rounded-4 p-4 text-center shadow-sm h-100" routerLink="/admin/manage-licences">
+          <div class="mb-4 icon-box bg-success-subtle d-flex align-items-center justify-content-center rounded-circle mx-auto">
+            <img src="./assets/honey-pot-svgrepo-com.svg" alt="Licence Icon" width="60px" height="60px">
+          </div>
+          <h3 class="special-font fs-4 mt-3">Licence Requests</h3>
+          <p class="text-muted mt-2">Review and approve/reject apiary licence requests.</p>
         </div>
-    </div>
-</section>
-<section class="my-3">
-    <div class="container">
-        <div class="my-4">
-            <h2 class="text-center special-font">Manage Categories</h2>
-            <div class="row justify-content-center align-items-start mt-3">
-                <div class="col-md-4 req-item item-1 rounded-4 p-3 cursor-pointer" routerLink="/admin/manage-categories">
-                    <div class="mb-2 circle">
-                        <span class="icon"><i class="fa-solid fa-plus"></i></span>
-                    </div>
-                    <h3 class="special-font">Manage Categories</h3>
-                </div>
-            </div>
+      </div>
+
+      <!-- Manage Products -->
+      <div class="col-md-4 col-sm-6 col-10">
+        <div class="req-card rounded-4 p-4 text-center shadow-sm h-100" routerLink="/admin/edit-product">
+          <div class="mb-4 icon-box bg-success-subtle d-inline-flex align-items-center justify-content-center rounded-circle mx-auto">
+            <i class="fa-solid fa-pen-to-square text-success fs-2"></i>
+          </div>
+          <h3 class="special-font fs-4 mt-3">Manage Products</h3>
+          <p class="text-muted mt-2">Add, edit or delete products from your store inventory.</p>
         </div>
-    </div>
-</section>
-<section class="my-3">
-    <div class="container">
-        <div class="my-4">
-            <h2 class="text-center special-font">Manage Sub Categories</h2>
-            <div class="row justify-content-center align-items-start mt-3">
-                <div class="col-md-4 req-item item-1 rounded-4 p-3 cursor-pointer" routerLink="/admin/manage-sub-categories">
-                    <div class="mb-2 circle">
-                        <span class="icon"><i class="fa-solid fa-plus"></i></span>
-                    </div>
-                    <h3 class="special-font">Manage Sub Categories</h3>
-                </div>
-            </div>
+      </div>
+
+      <!-- Manage Categories -->
+      <div class="col-md-4 col-sm-6 col-10">
+        <div class="req-card item-1 rounded-4 p-4 text-center shadow-sm h-100" routerLink="/admin/manage-categories">
+          <div class="mb-4 circle d-inline-flex align-items-center justify-content-center mx-auto">
+            <span class="icon"><img src="./assets/folder-svgrepo-com.svg" width="50px" height="50px" /></span>
+          </div>
+          <h3 class="special-font fs-4 mt-3">Manage Categories</h3>
+          <p class="mt-2 text-muted">Create or remove categories for your products.</p>
         </div>
+      </div>
+
+      <!-- Manage Sub-Categories -->
+      <div class="col-md-4 col-sm-6 col-10">
+        <div class="req-card item-1 rounded-4 p-4 text-center shadow-sm h-100" routerLink="/admin/manage-sub-categories">
+          <div class="mb-4 circle d-inline-flex align-items-center justify-content-center mx-auto">
+            <span class="icon"><img src="./assets/folder-svgrepo-com.svg" width="50px" height="50px" /></span>
+          </div>
+          <h3 class="special-font fs-4 mt-3">Manage Sub Categories</h3>
+          <p class="mt-2 text-muted">Organize subcategories under main categories here.</p>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
