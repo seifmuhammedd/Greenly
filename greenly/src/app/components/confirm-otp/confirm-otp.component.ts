@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../core/services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-confirm-otp',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class ConfirmOtpComponent implements OnInit {
 
-  constructor( private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router ) { }
+  constructor( private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router, private _ToastrService: ToastrService ) { }
 
     private readonly _PLATFORM_ID = inject(PLATFORM_ID);
   email !: string|null
@@ -56,7 +57,9 @@ export class ConfirmOtpComponent implements OnInit {
               this._Router.navigate(["/app/system/reset-password"])
             }, 2000);
           },
-          error: err => console.log(err.message)
+          error: (err) => {
+            this._ToastrService.error("Incorrect Code", "Greenly")
+          }
         });
         
       } else {

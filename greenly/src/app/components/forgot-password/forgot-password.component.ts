@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,11 +12,12 @@ import { RouterLink } from '@angular/router';
 })
 export class ForgotPasswordComponent {
 
-  constructor( private _FormBuilder: FormBuilder, private _AuthService: AuthService ) { }
+  constructor( private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router ) { }
 
   recoveryForm: FormGroup = this._FormBuilder.group({
     email: [null, [Validators.required, Validators.email]]
   })
+   routerLink="/app/system/confirm-code"
 
   recoveryFormSubmit():void{
     if (this.recoveryForm.valid){
@@ -24,6 +25,7 @@ export class ForgotPasswordComponent {
         next:()=>{
           this._AuthService.getDecodedInfo()
           localStorage.setItem("email",this.recoveryForm.get("email")?.value )
+          this._Router.navigate(["/app/system/confirm-code"])
         },
         error: (err)=> console.log(err.message)
       })

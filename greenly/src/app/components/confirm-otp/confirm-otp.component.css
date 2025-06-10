@@ -1,0 +1,30 @@
+.card {
+  max-width: 500px;
+  margin-top: 50px;
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(245, 245, 220, 0.7); /* Semi-transparent beige */
+  backdrop-filter: blur(8px); /* Add blur effect */
+  border-radius: 10px; /* Optional: rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: subtle border */
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(40, 167, 69, 0.2);
+}
+
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}

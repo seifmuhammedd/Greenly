@@ -1,16 +1,40 @@
 <section>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="row w-50 bg-light rounded-5 border border-success">
-            <div class="col-md-12 p-5">
-                <p class="lead text-center special-font fs-4">Please enter the code sent to your email.</p>
-                <form [formGroup]="recoveryForm" (ngSubmit)="recoveryFormSubmit()">
-                    <div class=" p-5">
-                        <label for="code" class="form-label">Code</label>
-                        <input type="string" class="mb-3 form-control" id="code" placeholder="xxxx" formControlName="code">
-                      <button class="btn btn-success rounded-4 d-block w-100">Confrim</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+  <div class="container d-flex justify-content-center align-items-center min-vh-100 py-5">
+    <div class="card shadow-sm border-0 rounded-4 w-50">
+      <div class="card-body p-5 text-center">
+
+        <!-- Title -->
+        <h2 class="fw-bold special-font mb-3">Verify Recovery Code</h2>
+        <p class="text-muted mb-4">Please enter the code sent to your email.</p>
+
+        <!-- Form -->
+        <form [formGroup]="recoveryForm" (ngSubmit)="recoveryFormSubmit()" class="needs-validation">
+          <div class="mb-4">
+            <label for="code" class="form-label fw-semibold text-start d-block">Verification Code</label>
+            <input type="string"
+                   id="code"
+                   class="form-control form-control-lg text-center fs-4"
+                   placeholder="XXXX"
+                   formControlName="code" />
+
+            <!-- Validation Message -->
+            @if (recoveryForm.get('code')?.touched && recoveryForm.get('code')?.errors) {
+              <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+                @if (recoveryForm.get("code")?.getError("required")) {
+                  <p class="m-0">Code is required</p>
+                } @else if (recoveryForm.get("code")?.getError("pattern")) {
+                  <p class="m-0">Code must be 6 digits</p>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn btn-success w-100 py-2 fs-5 rounded-pill" type="submit" [disabled]="recoveryForm.invalid">
+            Confirm
+          </button>
+        </form>
+      </div>
     </div>
+  </div>
 </section>
