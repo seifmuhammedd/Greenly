@@ -21,49 +21,46 @@
       <h4 class="mt-4 mb-3 text-main fs-6 position-relative">{{ subCategory.subCategoryName }}</h4>
       <div class="row mt-3 g-4">
         @for (product of subCategory.products; track product._id) {
-        <div class="col-md-4">
-          <div class="card cursor-pointer h-100">
-            <div class="inner position-relative">
-              <span class="text-white position-absolute favorite-circle" (click)="toggleProductFavorites(product._id)">
-                <i [class]="isInFavorites(product._id)? 'fa-solid fa-heart text-main fs-3': 'fa-regular fa-heart text-main fs-3'"></i>
-              </span>
-              <div class="product-body" [routerLink]="['/app/system/product-details', product._id]">
-                <img [src]="product.imageCover" class="card-img-top rounded-bottom-2" alt="product-img">
-                <div class="card-body">
-                  <div class="top-content d-flex justify-content-between align-items-center my-2">
-                    <h3 class="card-title special-font">{{ product.name }}</h3>
-                    <div>
-                      <span class="special-font fs-3">{{ product.price | currency : "GBP" }}</span>
-                    </div>
-                  </div>
-                  <p class="card-text fw-semibold">{{ product.shortdescription }}</p>
-                </div>
+        <div class="col-md-4 mb-4">
+          <div class="product-card">
+            <!-- Favorite Button -->
+            <div class="favorite-btn" (click)="toggleProductFavorites(product._id)">
+              <i [class]="isInFavorites(product._id)? 'fas fa-heart text-danger': 'far fa-heart'"></i>
+            </div>
+            
+            <!-- Product Image -->
+            <div class="product-image-container" [routerLink]="['/app/system/product-details', product._id]">
+              <img [src]="product.imageCover" class="product-image" alt="product-img">
+              <div class="image-overlay"></div>
+              @if(product.stock == 0) {
+                <div class="out-of-stock-badge">Sold Out</div>
+              } @else if(product.stock < 5) {
+                <div class="low-stock-badge">Only {{product.stock}} Left</div>
+              }
+            </div>
+            
+            <!-- Product Info -->
+            <div class="product-info">
+              <div class="product-header" [routerLink]="['/app/system/product-details', product._id]">
+                <h3 class="product-title special-font">{{ product.name }}</h3>
+                <p class="product-description">{{ product.shortdescription }}</p>
               </div>
-              <div class="d-flex justify-content-between align-items-center p-3">
-                <div>
-                  @if(product.stock < 5){
-                    <span class="text-warning fw-semibold">
-                      <i class="fa-solid fa-circle-exclamation"></i> Only
-                      <span class="text-black">{{ product.stock }}</span> left in stock
-                    </span>
-                  }@else if (product.stock == 0) {
-                    <span class="text-danger fw-semibold">
-                      <i class="fa-solid fa-circle-exclamation"></i> Out of stock</span> 
-                  }
-                  @else {
-                    <span>
-                      <img src="./assets/box-svgrepo-com.svg" alt="box-img" class="me-1" width="24px" height="24px">
-                    </span>
-                    <span class="text-secondary fw-semibold">
-                      <span class="text-black">In stock : {{ product.stock }}</span>
-                    </span>
+              
+              <div class="product-footer">
+                <div class="price-stock">
+                  <div class="price special-font">{{ product.price | currency : "GBP" }}</div>
+                  @if(product.stock > 0) {
+                    <div class="stock-status">
+                      <i class="fas fa-box-open"></i>
+                      <span>{{ product.stock }} in stock</span>
+                    </div>
                   }
                 </div>
-                <span class="special-font fs-3 text-main cart-holder rounded-3 cursor-pointer"
-                  (click)="addProductToCart(product._id)">
-                  <img src="./assets/cart-plus-svgrepo-com.svg" alt="cart-icon" class="cart-icon" width="35px"
-                    height="35px" fill="#177E39">
-                </span>
+                
+                <button class="add-to-cart-btn" (click)="addProductToCart(product._id)" [disabled]="product.stock == 0">
+                  <i class="fas fa-cart-plus"></i>
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
