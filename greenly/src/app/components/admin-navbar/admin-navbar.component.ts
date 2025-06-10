@@ -15,7 +15,7 @@ export class AdminNavbarComponent {
   private readonly _Router = inject(Router);
 
   logOut(): void {
-    localStorage.removeItem('userToken');
+    localStorage.clear()
     this._AuthService.isLoggedIn.set(false);
     this._Router.navigate(['/app/system/login']);
   }

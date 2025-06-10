@@ -63,6 +63,7 @@ export const routes: Routes = [
                 {path: "blog", component: BlogComponent, title: "Blog"},
                 {path: "loan", component: LoanComponent, title: "Loan Application"},
                 {path: "apiary-licence", component: ApiaryLicenceComponent, title: "Apiary Licence Application"},
+                {path: "check-out", component: PaymentComponent, title: "Check Out"},
             ]},
             {path: "user", component: UserComponent, children: [
                 {path: "user-profile", component: UserProfileComponent, title: "Profile"},

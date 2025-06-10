@@ -1,64 +1,103 @@
-<section>
-    <div class="container my-5 bg-main-light p-3 rounded-2 shadow my-3">
-        @if (cartData) {
-            <div class="cart-head d-flex align-items-center justify-content-between">
-                <div>
-                    <h1 class="fs-1 fw-bold special-font">Shop Cart:</h1>
-                    <h3 class="text-main fw-bold">Total cart price: {{cartData.totalPrice | currency: "GBP"}}</h3>
-                </div>
-                @if(cartData.products.length > 0){
-                    <div class="clear-cart cursor-pointer text-danger">
-                        <h3 class="fs-5" (click)="emptyCart()">Empty Cart <i class="fa-solid fa-trash-can"></i></h3>
-                    </div>
-                }
-            </div>
-            @for (product of cartData.products; track product._id) {
-                <div class="row mt-3 border-bottom border-3 pb-3">
-                    <div class="col-md-4">
-                        <div class="product-cart-img">
-                            <img [src]="product.productId.imageCover" class="w-100 rounded-2">
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="top-content d-flex justify-content-between align-items-center">
-                            <h2 class="fs-1 special-font">{{product.productId.name}}</h2>
-                            <div class="product-price fs-5 fw-semibold">
-                                <span class="text-secondary mx-3"><del>{{product.productId.price | currency : "GBP"}}</del></span>
-                                <span class="text-main">{{product.productId.price | currency : "GBP" }}</span>
-                            </div>
-                        </div>
-                        <div class="product-description my-4 ">
-                            <p class="text-secondary fw-semibold w-75">
-                                {{product.productId.shortdescription}}
-                            </p>
-                            <div class="item-counter rounded-3 d-flex justify-content-center align-items-center ms-auto">
-                                @if(product.quantity > 1){
-                                    <button class="btn btn-secondary rounded-3 p-3 d-flex justify-content-center align-items-center bg-main" (click)="updateItemQuantity(product.productId._id, product.quantity-1)">
-                                        <img src="./assets/minus-svgrepo-com.svg" alt="counter-minus" width="12px" height="12px">
-                                    </button>
-                                }
-                                <span class="mx-3 text-main fw-bolder fs-4">{{product.quantity}}</span>
-                                <button class="btn btn-secondary rounded-3 p-3 d-flex justify-content-center align-items-center bg-main" (click)="updateItemQuantity(product.productId._id, product.quantity+1)">
-                                    <img src="./assets/plus-svgrepo-com.svg" alt="counter-plus" width="12px" height="12px">
-                                </button>
-                            </div>
-                            <div class="mt-4">
-                                <span class="cursor-pointer" (click)="removeProductFromCart(product.productId._id)"><i
-                                    class="fa-solid fa-trash text-danger"></i> Remove</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }@empty {
-                <h3 class="text-danger text-center special-font">No Products Added Yet!</h3>
-            }
-            @if (cartData.products.length > 0) {
-                <button class="btn-main ms-auto d-block rounded-3 px-5 my-3">Check Out</button>
-              }
-        }@else {
-            <h1 class="fs-1 fw-bold special-font">Shop Cart:</h1>
-            <h3 class="text-main fw-bold">Total cart price: 0</h3>
-            <h3 class="text-danger text-center special-font">No Products Added Yet!</h3>
-        }
+<section class="shopping-cart">
+  <div class="container">
+    <!-- Cart Header -->
+    <div class="cart-header text-center mb-5">
+      <h1 class="display-4 special-font mb-3">Your Shopping Cart</h1>
+      <div class="divider"></div>
     </div>
+
+    @if (cartData) {
+      <div class="cart-container">
+        <!-- Cart Summary -->
+        <div class="cart-summary glass-card p-4 mb-5">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h3 class="special-font mb-0">Total Items: {{cartData.products.length}}</h3>
+            </div>
+            <div class="text-end">
+              <h2 class="special-font mb-1">Total: <span class="text-gradient">{{cartData.totalPrice | currency: "GBP"}}</span></h2>
+              @if(cartData.products.length > 0){
+                <button class="btn btn-sm btn-outline-danger" (click)="emptyCart()">
+                  <i class="fas fa-trash me-2"></i>Empty Cart
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Items -->
+        <div class="cart-items">
+          @for (product of cartData.products; track product._id) {
+            <div class="cart-item card-hover-effect">
+              <div class="row g-0">
+                <!-- Product Image -->
+                <div class="col-md-3">
+                  <div class="product-image-container">
+                    <img [src]="product.productId.imageCover" class="product-image" alt="{{product.productId.name}}">
+                    <div class="image-overlay"></div>
+                  </div>
+                </div>
+                
+                <!-- Product Details -->
+                <div class="col-md-9">
+                  <div class="product-details p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                      <h2 class="product-title special-font mb-0">{{product.productId.name}}</h2>
+                      <div class="product-price">
+                        <span class="current-price">{{product.productId.price | currency : "GBP"}}</span>
+                      </div>
+                    </div>
+                    
+                    <p class="product-description mb-4">
+                      {{product.productId.shortdescription}}
+                    </p>
+                    
+                    <div class="product-actions d-flex justify-content-between align-items-center">
+                      <!-- Quantity Controls -->
+                      <div class="quantity-controls">
+                        @if(product.quantity > 1){
+                          <button class="btn btn-quantity" (click)="updateItemQuantity(product.productId._id, product.quantity-1)">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                        }
+                        <span class="quantity-display">{{product.quantity}}</span>
+                        <button class="btn btn-quantity" (click)="updateItemQuantity(product.productId._id, product.quantity+1)">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                      
+                      <!-- Remove Button -->
+                      <button class="btn btn-remove" (click)="removeProductFromCart(product.productId._id)">
+                        <i class="fas fa-trash me-2"></i>Remove
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+          @empty {
+            <div class="empty-cart text-center py-5">
+              <div class="empty-icon mb-4">
+                <i class="fas fa-shopping-cart fa-4x text-muted"></i>
+              </div>
+              <h3 class="special-font text-muted">Your cart feels lonely</h3>
+              <p class="text-muted">Add some products to get started</p>
+              <button class="btn btn-primary mt-3" routerLink="/app/system/shop">Continue Shopping</button>
+            </div>
+          }
+        </div>
+
+        <!-- Checkout Button -->
+        @if (cartData.products.length > 0) {
+          <div class="checkout-section text-center mt-5">
+            <button class="btn btn-checkout" routerLink="/app/system/check-out">
+              Proceed to Checkout <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        }
+      </div>
+    }
+    
+  </div>
 </section>

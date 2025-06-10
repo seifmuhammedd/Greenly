@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit , OnDestroy {
   }
 
   logOut():void{
-    localStorage.removeItem("userToken")
+    localStorage.clear()
     this._AuthService.isLoggedIn.set(false)
     this._Router.navigate(["/app/system/login"])
   }
