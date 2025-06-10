@@ -43,10 +43,11 @@ export class PaymentComponent {
 
   submitAddress() {
     if (this.addressForm.valid) {
-
+      console.log(localStorage.getItem("userToken"))
       // this._PaymentService.checkOut(this.addressForm.value).subscribe({
       //   next: (res) => {
       //     console.log(res);
+      //     window.open(res.url)
       //   },
       //   error: (err) => {
       //     console.log(err);

@@ -12,13 +12,9 @@ export class PaymentService {
     return this._HttpClient.post(
       'https://aa1d-154-177-114-6.ngrok-free.app/payment/create-order',
       {
-        address: formData,
+        "address": formData,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('userToken')}`,
-        },
-      }
+      { headers: {Authorization: `${localStorage.getItem("userToken")}`} }
     );
   }
 }
