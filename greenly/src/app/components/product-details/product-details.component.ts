@@ -1,30 +1,32 @@
 import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { ShopService } from '../../core/services/shop.service';
-import { IProduct } from '../../core/interfeces/i-product';
 import { Subscription } from 'rxjs';
 import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
-import { isPlatformBrowser } from '@angular/common';
+import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
+import { FavoritesService } from '../../core/services/favorites.service';
+import { IProduct } from '../../core/interfeces/i-product';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CarouselModule],
+  imports: [CarouselModule, CurrencyPipe],
   templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.css',
+  styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
   constructor(
     private _ActivatedRoute: ActivatedRoute,
     private _ShopService: ShopService,
+    private _FavoritesService: FavoritesService,
     private _CartService: CartService,
     private _ToastrService: ToastrService,
+    private _Router: Router
   ) {}
 
   private _PLATFORM_ID = inject(PLATFORM_ID);
-
 
   productId!: string | null;
   productDetails!: IProduct;
@@ -39,7 +41,6 @@ export class ProductDetailsComponent implements OnInit {
           .getSpecificProduct(this.productId)
           .subscribe({
             next: (res) => {
-              console.log(res)
               this.productDetails = res;
             },
             error: (err) => {
@@ -55,7 +56,7 @@ export class ProductDetailsComponent implements OnInit {
       if (localStorage.getItem('userToken')) {
         this.cartSub = this._CartService.addProductToCart(p_ID).subscribe({
           next: (res) => {
-            this._CartService.cartCounter.next(res.counter)
+            this._CartService.cartCounter.next(res.counter);
             this._ToastrService.success(res.message, 'Greenly', {
               timeOut: 2000,
               closeButton: true,
@@ -77,6 +78,34 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
+  addProductToFavorites(productID: string): void {
+    this._FavoritesService.addProductToFavorites(productID).subscribe({
+      next: (res) => {
+        this._ToastrService.success('Added To Favorites', 'Greenly');
+      },
+      error: (err) => {
+        this._ToastrService.info('Already in Favorites', 'Greenly');
+      },
+    });
+  }
+
+  shareProductLink(): void {
+    if (!isPlatformBrowser(this._PLATFORM_ID)) return;
+
+    const currentUrl = `${window.location.origin}/app/system/product-details/${this.productDetails._id}`;
+
+    navigator.clipboard.writeText(currentUrl).then(() => {
+      this._ToastrService.info('Product link copied to clipboard', 'Success!');
+    }).catch((err) => {
+      console.error('Could not copy text: ', err);
+      this._ToastrService.error('Failed to copy link', 'Error', {
+        timeOut: 2000,
+        progressBar: true,
+        toastClass: 'toast-error'
+      });
+    });
+  }
+
   productSlider: OwlOptions = {
     loop: true,
     autoplay: true,
@@ -86,20 +115,11 @@ export class ProductDetailsComponent implements OnInit {
     pullDrag: false,
     dots: true,
     navSpeed: 700,
-    navText: ['', ''],
     responsive: {
-      0: {
-        items: 1,
-      },
-      400: {
-        items: 1,
-      },
-      740: {
-        items: 1,
-      },
-      940: {
-        items: 1,
-      },
+      0: { items: 1 },
+      400: { items: 1 },
+      740: { items: 1 },
+      940: { items: 1 },
     },
     nav: false,
   };
