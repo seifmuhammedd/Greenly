@@ -36,6 +36,7 @@ import { ManageCategoriesComponent } from './components/manage-categories/manage
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { ManageSubCategoriesComponent } from './components/manage-sub-categories/manage-sub-categories.component';
 import { AddSubCategoryComponent } from './components/add-sub-category/add-sub-category.component';
+import { ManageBlogComponent } from './components/manage-blog/manage-blog.component';
 
 
 export const routes: Routes = [
@@ -71,6 +72,7 @@ export const routes: Routes = [
             {path: "add-product", component: AddProductComponent, title: "Add Product"},
             {path: "edit-product", component: EditProductComponent, title: "Edit Product"},
             {path: "edit-specific-product/:p_ID", component: EditSpecificProductComponent, title: "Edit Product"},
+            {path: "manage-blog", component: ManageBlogComponent, title: "Manage Blog"},
             {path: "manage-categories", component: ManageCategoriesComponent, title: "Manage Categories"},
             {path: "add-category", component: AddCategoryComponent, title: "Add Category"},
             {path: "manage-sub-categories", component: ManageSubCategoriesComponent, title: "Manage Sub Categories"},

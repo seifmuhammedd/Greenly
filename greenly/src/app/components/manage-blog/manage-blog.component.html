@@ -1,0 +1,38 @@
+<section>
+    <div class="container my-4">
+        <h1 class="special-font text-center mb-4">Posts</h1>
+
+        <!-- Blog Posts Section -->
+        @if(blogData){
+        <div class="row my-3 g-4 justify-content-center">
+            @for (post of blogData; track post._id) {
+            <div class="col-md-6 col-sm-8 col-12">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body d-flex flex-column">
+                        <!-- User Info -->
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="user-info d-flex align-items-center gap-2">
+                                <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle"
+                                    width="30px" height="30px">
+                                <h5 class="fs-6 m-0 fw-bold">{{ post.createdBy.userName }}</h5>
+                            </div>
+                            <small class="text-muted">
+                                {{ post.createdAt | date: "dd MMMM yyyy, hh:mm a" }}
+                            </small>
+                        </div>
+
+                        <!-- Post Content -->
+                        <div class="post-content mt-3">
+                            <p class="mb-0 fs-5 text-start">
+                                {{ post.content.charAt(0).toUpperCase() + post.content.slice(1) }}
+                            </p>
+                        </div>
+                        <div class="btn btn-danger px-3 py-2 rounded-pill w-25 d-block ms-auto" (click)="deletePost(post._id)">Delete</div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+</section>
