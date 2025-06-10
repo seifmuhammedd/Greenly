@@ -29,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
   private _PLATFORM_ID = inject(PLATFORM_ID);
 
   productId!: string | null;
-  productDetails!: IProduct;
+  productDetails: IProduct = {} as IProduct;
   productSub!: Subscription;
   cartSub!: Subscription;
 

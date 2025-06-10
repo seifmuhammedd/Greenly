@@ -3,30 +3,30 @@
         <div class="product-container">
             <!-- Product Gallery -->
             <div class="product-gallery">
-                <owl-carousel-o [options]="productSlider" class="main-carousel">
-                    @if (productDetails.images) {
+                @if (productDetails.images) {
+                <owl-carousel-o [options]="productSlider" class="main-carousel">  
                     @for (image of productDetails.images; track $index) {
                     <ng-template carouselSlide>
                         <div class="slide-container">
                             <img [src]="image" class="product-main-image" alt="Product image {{$index + 1}}">
                         </div>
                     </ng-template>
-                    }
-                    }
+                    } 
                 </owl-carousel-o>
+                }
             </div>
 
             <!-- Product Info -->
             <div class="product-info">
                 <div class="product-header">
-                    <h1 class="product-title">{{productDetails.name}}</h1>
+                    <h1 class="product-title special-font">{{productDetails.name}}</h1>
 
                     <div class="price-container">
-                        <span class="current-price">{{productDetails.price | currency:'GBP'}}</span>
+                        <span class="current-price special-font">{{productDetails.price | currency:'GBP'}}</span>
                     </div>
                 </div>
 
-                <div class="product-description">
+                <div class="product-description special-font">
                     <p>{{productDetails.shortdescription}}</p>
                 </div>
 
