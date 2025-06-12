@@ -31,6 +31,6 @@ export class BlogService {
   }
 
   deleteReply(post_id: string, replyId: string):Observable<any>{
-    return this._HttpClient.delete(`${environment.baseURL}/blog/reply/${post_id}/${replyId}`)
+    return this._HttpClient.delete(`${environment.baseURL}/blog/deleteReply/${post_id}/${replyId}`)
   }
 }

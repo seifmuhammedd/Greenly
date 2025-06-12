@@ -102,40 +102,42 @@ export class BlogComponent implements OnInit {
   }
 
   deletePost(postID: string): void {
-  // Confirm deletion
   const isConfirmed = confirm('Are you sure you want to delete this post?');
 
   if (isConfirmed) {
     this._BlogService.deletePost(postID).subscribe({
       next: (res) => {
-        // Update blog data after successful deletion
         this.blogData = res.data;
 
-        // Show success notification
         this._ToastrService.success('Post deleted successfully', 'Success');
       },
       error: (err) => {
         console.error(err);
 
-        // Show error notification
         this._ToastrService.error('Failed to delete post', 'Error');
       }
     });
   } else {
-    // Optional: inform user that deletion was canceled
     this._ToastrService.info('Deletion canceled', 'Info');
   }
 }
 
-deleteReply(post_id:string, replyId: string ){
-  this._BlogService.deleteReply(post_id, replyId).subscribe({
-    next:(res)=>{
-      this.getAllPosts()
-      this._ToastrService.success("reply deleted")
-    },
-    error:(err)=>{
-      console.log(err)
-    }
-  })
+deleteReply(post_id: string, replyId: string): void {
+  const isConfirmed = confirm('Are you sure you want to delete this reply?');
+
+  if (isConfirmed) {
+    this._BlogService.deleteReply(post_id, replyId).subscribe({
+      next: () => {
+        this.getAllPosts();
+        this._ToastrService.success('Reply deleted successfully', 'Success');
+      },
+      error: (err) => {
+        console.error(err);
+        this._ToastrService.error('Failed to delete reply', 'Error');
+      }
+    });
+  } else {
+    this._ToastrService.info('Deletion canceled', 'Info');
+  }
 }
 }

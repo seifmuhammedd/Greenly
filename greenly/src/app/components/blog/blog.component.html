@@ -8,6 +8,39 @@
   </div>
 
   <div class="container my-4">
+    <!-- Create New Post Form -->
+    <div class="create-post-container my-5 p-4 bg-white rounded shadow-sm">
+      <form [formGroup]="createPostForm" (ngSubmit)="createPost()">
+        <div class="d-flex gap-3">
+          <div class="user-avatar">
+            <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img">
+          </div>
+          <div class="flex-grow-1">
+            <textarea
+              class="form-control mb-2"
+              placeholder="Share your thoughts with the community..."
+              formControlName="content"
+              rows="3"
+            ></textarea>
+            <div class="d-flex justify-content-end">
+              <button
+                class="btn btn-success px-4"
+                [disabled]="createPostForm.invalid"
+              >
+                Post
+              </button>
+            </div>
+            @if (createPostForm.get('content')?.invalid && (createPostForm.get('content')?.dirty || createPostForm.get('content')?.touched)) {
+              <div class="text-danger small mt-1">
+                @if (createPostForm.get('content')?.errors?.['required']) {
+                  Post cannot be empty
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </form>
+    </div>
     <!-- Blog Posts Section -->
     @if(blogData){
       <div class="row g-4 justify-content-center">
@@ -32,7 +65,7 @@
                   <!-- Show Delete Post Button If Match -->
                   @if (isOwner(post.createdBy._id)) {
                     <button class="btn btn-sm btn-outline-danger" (click)="deletePost(post._id)">
-                      <i class="bi bi-trash"></i> Delete
+                      <i class="fa fa-trash"></i> Delete
                     </button>
                   }
                 </div>
@@ -46,7 +79,7 @@
 
                 <!-- Reply Button -->
                 <button class="btn btn-sm btn-outline-secondary mb-3" (click)="toggleReplyForm(post._id)">
-                  <i class="bi bi-reply"></i> Reply
+                  <i class="fa fa-reply"></i> Reply
                 </button>
 
                 <!-- Replies Section -->
@@ -74,7 +107,7 @@
                           </small>
                           @if (isOwner(reply.createdBy._id)) {
                             <button class="btn btn-sm btn-outline-danger ms-auto" (click)="deleteReply(post._id, reply._id)">
-                              <i class="bi bi-trash"></i> Delete
+                              <i class="fa fa-trash"></i> Delete
                             </button>
                           }
 
@@ -111,39 +144,5 @@
         }
       </div>
     }
-
-    <!-- Create New Post Form -->
-    <div class="create-post-container mt-5 p-4 bg-white rounded shadow-sm">
-      <form [formGroup]="createPostForm" (ngSubmit)="createPost()">
-        <div class="d-flex gap-3">
-          <div class="user-avatar">
-            <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img">
-          </div>
-          <div class="flex-grow-1">
-            <textarea
-              class="form-control mb-2"
-              placeholder="Share your thoughts with the community..."
-              formControlName="content"
-              rows="3"
-            ></textarea>
-            <div class="d-flex justify-content-end">
-              <button
-                class="btn btn-success px-4"
-                [disabled]="createPostForm.invalid"
-              >
-                Post
-              </button>
-            </div>
-            @if (createPostForm.get('content')?.invalid && (createPostForm.get('content')?.dirty || createPostForm.get('content')?.touched)) {
-              <div class="text-danger small mt-1">
-                @if (createPostForm.get('content')?.errors?.['required']) {
-                  Post cannot be empty
-                }
-              </div>
-            }
-          </div>
-        </div>
-      </form>
-    </div>
   </div>
 </section>
