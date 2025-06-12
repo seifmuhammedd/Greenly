@@ -56,9 +56,11 @@ export class LoginComponent implements OnDestroy {
             const token = res.data.accessToken;
             const decodedToken: any = jwtDecode(token);
             const role = decodedToken?.roleTypes;
+            const id = decodedToken?.id;
 
             localStorage.setItem('userToken', token);
             localStorage.setItem('role', role);
+            localStorage.setItem('userId', id); 
 
             this._AuthService.isLoggedIn.set(true);
             console.log(decodedToken)

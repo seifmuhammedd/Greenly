@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { IBlog } from '../../core/interfeces/i-blog';
-import { DatePipe, isPlatformBrowser, NgClass } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DatePipe, isPlatformBrowser } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -13,13 +13,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './blog.component.css'
 })
 export class BlogComponent implements OnInit {
-
   private readonly _BlogService = inject(BlogService)
   private readonly _FormBuilder = inject(FormBuilder)
   private readonly _PLATFORM_ID = inject(PLATFORM_ID)
   private readonly _ToastrService = inject(ToastrService)
 
   blogData !: IBlog[]
+  activeReplyForm: string | null = null;
 
   ngOnInit(): void {
     this.getAllPosts()
@@ -29,9 +29,23 @@ export class BlogComponent implements OnInit {
     content: [null, [Validators.required, Validators.max(5000)]]
   })
 
+  addReplyForm : FormGroup = this._FormBuilder.group({
+    content: [null, [Validators.required, Validators.max(5000)]]
+  })
+
+  toggleReplyForm(postId: string): void {
+    if (this.activeReplyForm === postId) {
+      this.activeReplyForm = null;
+    } else {
+      this.activeReplyForm = postId;
+      this.addReplyForm.reset();
+    }
+  }
+
   getAllPosts(){
     this._BlogService.getAllPosts().subscribe({
       next: (res)=>{
+        console.log(res)
         this.blogData = res.data
       },
       error: (err)=>{
@@ -61,4 +75,67 @@ export class BlogComponent implements OnInit {
       this.createPostForm.markAllAsTouched()
     }
   }
+
+  addReply(postID: string):void{
+    if(this.addReplyForm.valid){
+      this._BlogService.addReply(postID, this.addReplyForm.value).subscribe({
+        next: (res)=>{
+          console.log(res)
+          this._ToastrService.success("Reply added successfully", "Greenly", {timeOut: 1000})
+          this.addReplyForm.reset()
+          this.activeReplyForm = null;
+          this.getAllPosts()
+        },
+        error: (err)=>{
+          console.log(err)
+        }
+      })
+    }
+  }
+
+  // 🔐 Check ownership safely using isPlatformBrowser
+  isOwner(authorId: string): boolean {
+    if (!isPlatformBrowser(this._PLATFORM_ID)) return false;
+
+    const userId = localStorage.getItem('userId');
+    return userId === authorId;
+  }
+
+  deletePost(postID: string): void {
+  // Confirm deletion
+  const isConfirmed = confirm('Are you sure you want to delete this post?');
+
+  if (isConfirmed) {
+    this._BlogService.deletePost(postID).subscribe({
+      next: (res) => {
+        // Update blog data after successful deletion
+        this.blogData = res.data;
+
+        // Show success notification
+        this._ToastrService.success('Post deleted successfully', 'Success');
+      },
+      error: (err) => {
+        console.error(err);
+
+        // Show error notification
+        this._ToastrService.error('Failed to delete post', 'Error');
+      }
+    });
+  } else {
+    // Optional: inform user that deletion was canceled
+    this._ToastrService.info('Deletion canceled', 'Info');
+  }
+}
+
+deleteReply(post_id:string, replyId: string ){
+  this._BlogService.deleteReply(post_id, replyId).subscribe({
+    next:(res)=>{
+      this.getAllPosts()
+      this._ToastrService.success("reply deleted")
+    },
+    error:(err)=>{
+      console.log(err)
+    }
+  })
+}
 }

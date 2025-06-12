@@ -3,6 +3,7 @@
   <div class="container-fluid p-0">
     <div class="bg-main p-4 text-center text-white">
       <h1 class="special-font mb-3">Blog</h1>
+      <p class="mb-0">Share your thoughts with the community</p>
     </div>
   </div>
 
@@ -11,26 +12,99 @@
     @if(blogData){
       <div class="row g-4 justify-content-center">
         @for (post of blogData; track post._id) {
-          <div class="col-md-6 col-sm-8 col-12">
-            <div class="card shadow-sm border-0 h-100">
-              <div class="card-body d-flex flex-column">
-                <!-- User Info -->
-                <div class="d-flex align-items-center justify-content-between">
-                  <div class="user-info d-flex align-items-center gap-2">
-                    <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
-                    <h5 class="fs-6 m-0 fw-bold">{{ post.createdBy.userName }}</h5>
+          <div class="col-md-8 col-12">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <!-- User Info + Optional Delete Button -->
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <div class="user-info d-flex align-items-center gap-3">
+                    <div class="user-avatar">
+                      <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img">
+                    </div>
+                    <div>
+                      <h5 class="m-0 fw-bold">{{ post.createdBy.userName }}</h5>
+                      <small class="text-muted">
+                        {{ post.createdAt | date: "MMM d, y 'at' h:mm a" }}
+                      </small>
+                    </div>
                   </div>
-                  <small class="text-muted">
-                    {{ post.createdAt | date: "dd MMMM yyyy, hh:mm a" }}
-                  </small>
+
+                  <!-- Show Delete Post Button If Match -->
+                  @if (isOwner(post.createdBy._id)) {
+                    <button class="btn btn-sm btn-outline-danger" (click)="deletePost(post._id)">
+                      <i class="bi bi-trash"></i> Delete
+                    </button>
+                  }
                 </div>
 
                 <!-- Post Content -->
-                <div class="post-content mt-3">
-                  <p class="mb-0 fs-5 text-start">
+                <div class="post-content mb-3">
+                  <p class="mb-0">
                     {{ post.content.charAt(0).toUpperCase() + post.content.slice(1) }}
                   </p>
                 </div>
+
+                <!-- Reply Button -->
+                <button class="btn btn-sm btn-outline-secondary mb-3" (click)="toggleReplyForm(post._id)">
+                  <i class="bi bi-reply"></i> Reply
+                </button>
+
+                <!-- Replies Section -->
+                @if(post.replies && post.replies.length > 0) {
+                  <div class="replies-section">
+                    <div class="replies-header d-flex align-items-center mb-3">
+                      <div class="divider-line"></div>
+                      <span class="replies-count px-2">{{ post.replies.length }} replies</span>
+                      <div class="divider-line"></div>
+                    </div>
+                    
+                    @for (reply of post.replies; track reply._id) {
+                      <div class="reply-card mb-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                          <div class="user-info d-flex align-items-center gap-2">
+                            <div class="user-avatar-sm">
+                              <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img">
+                            </div>
+                            <span class="fw-bold">{{ reply.createdBy.userName }}</span>
+                          </div>
+
+                          <!-- Show Delete Reply Button If Match -->
+                           <small class="text-muted mx-2">
+                            {{ reply.createdAt | date: "MMM d, h:mm a" }}
+                          </small>
+                          @if (isOwner(reply.createdBy._id)) {
+                            <button class="btn btn-sm btn-outline-danger ms-auto" (click)="deleteReply(post._id, reply._id)">
+                              <i class="bi bi-trash"></i> Delete
+                            </button>
+                          }
+
+                          
+                        </div>
+                        <p class="mb-0">{{ reply.content }}</p>
+                      </div>
+                    }
+                  </div>
+                }
+
+                <!-- Reply Form (Conditional) -->
+                @if(activeReplyForm === post._id) {
+                  <form class="reply-form mt-3" [formGroup]="addReplyForm" (ngSubmit)="addReply(post._id)">
+                    <div class="input-group">
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Write your reply..."
+                        formControlName="content"
+                      >
+                      <button class="btn btn-success" type="submit" [disabled]="addReplyForm.invalid">Post</button>
+                    </div>
+                    @if (addReplyForm.get('content')?.invalid && (addReplyForm.get('content')?.dirty || addReplyForm.get('content')?.touched)) {
+                      <div class="text-danger small mt-1">
+                        Reply cannot be empty
+                      </div>
+                    }
+                  </form>
+                }
               </div>
             </div>
           </div>
@@ -39,31 +113,37 @@
     }
 
     <!-- Create New Post Form -->
-    <form [formGroup]="createPostForm" (ngSubmit)="createPost()" class="mt-5">
-      <div class="posting d-flex align-items-center gap-2 w-75 mx-auto position-relative">
-        <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img" class="rounded-circle" width="30px" height="30px">
-        <input
-          type="text"
-          class="form-control rounded-pill ps-4"
-          placeholder="Share your thoughts..."
-          formControlName="content"
-        />
-        <button
-          class="btn btn-success btn-sm position-absolute end-0 me-2 rounded-pill"
-          [disabled]="createPostForm.invalid"
-        >
-          Post
-        </button>
-      </div>
-
-      <!-- Validation Message -->
-      @if (createPostForm.get("content")?.errors && createPostForm.get("content")?.touched) {
-        <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2 w-75 mx-auto">
-          @if (createPostForm.get("content")?.getError("required")) {
-            <p class="m-0">You cannot post an empty post</p>
-          }
+    <div class="create-post-container mt-5 p-4 bg-white rounded shadow-sm">
+      <form [formGroup]="createPostForm" (ngSubmit)="createPost()">
+        <div class="d-flex gap-3">
+          <div class="user-avatar">
+            <img src="./assets/user-circle-1-svgrepo-com.svg" alt="user-img">
+          </div>
+          <div class="flex-grow-1">
+            <textarea
+              class="form-control mb-2"
+              placeholder="Share your thoughts with the community..."
+              formControlName="content"
+              rows="3"
+            ></textarea>
+            <div class="d-flex justify-content-end">
+              <button
+                class="btn btn-success px-4"
+                [disabled]="createPostForm.invalid"
+              >
+                Post
+              </button>
+            </div>
+            @if (createPostForm.get('content')?.invalid && (createPostForm.get('content')?.dirty || createPostForm.get('content')?.touched)) {
+              <div class="text-danger small mt-1">
+                @if (createPostForm.get('content')?.errors?.['required']) {
+                  Post cannot be empty
+                }
+              </div>
+            }
+          </div>
         </div>
-      }
-    </form>
+      </form>
+    </div>
   </div>
 </section>
