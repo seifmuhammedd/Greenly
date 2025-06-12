@@ -48,33 +48,6 @@
         </div>
     </div>
 </section>
-<section class="about-us p-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6" data-aos="fade-right">
-                <div class="left-about-content p-5 pe-0 position-relative">
-                    <h4 class="text-main fs-6 position-absolute">About Us</h4>
-                    <p class="special-font about-main-text">
-                        We help bring your vision of a harmonious world with nature to life.
-                    </p>
-                    <p class="bottom-text">We work to create a harmonious connection between people and nature, helping
-                        bring your vision of
-                        a thriving natural world to life.</p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div about-imgs class="d-flex gap-2">
-                    <div class="img-1" data-aos="fade-up">
-                        <img src="./assets/Image-1.png" class="w-100" />
-                    </div>
-                    <div class="img-2 pt-5" data-aos="fade-down">
-                        <img src="./assets/Image.png" class="w-100" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <section class="ourServices p-5 pt-0">
     <div class="container-fluid">
         <div class="position-relative bg-danger mb-5">
@@ -113,16 +86,15 @@
             <div class="col-md-6">
                 <div class="wrapper">
                     <div class="my-inner" style="--quantity: 6;">
-                        <div class="card" style="--index: 0;--color-card: 142, 252, 157;">
+                        <div class="card cursor-pointer" style="--index: 0;--color-card: 142, 252, 157;">
                             <div>
                                 <span class="small special-font">Recycling</span>
                             </div>
                             <div class="img">
-                                <img src="./assets/recycling-svgrepo-com.svg" class="w-100 h-100"
-                                    alt="slider-img">
+                                <img src="./assets/recycling-svgrepo-com.svg" class="w-100 h-100" alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 1;--color-card: 142, 252, 157;">
+                        <div class="card cursor-pointer" style="--index: 1;--color-card: 142, 252, 157;">
                             <div>
                                 <span class="small special-font">Factories</span>
                             </div>
@@ -131,7 +103,7 @@
                                     alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 2;--color-card: 142, 252, 157;">
+                        <div class="card cursor-pointer" style="--index: 2;--color-card: 142, 252, 157;">
                             <div>
                                 <span class="small special-font">Agricultural</span>
                             </div>
@@ -140,7 +112,7 @@
                                     alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 3;--color-card: 142, 252, 157;">
+                        <div class="card cursor-pointer" style="--index: 3;--color-card: 142, 252, 157;">
                             <div>
                                 <span class="small special-font">Homes</span>
                             </div>
@@ -149,23 +121,21 @@
                                     alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 4;--color-card: 142, 252, 157;">
+                        <div class="card cursor-pointer" style="--index: 4;--color-card: 142, 252, 157;">
                             <div>
                                 <span class="small special-font">Mobility</span>
                             </div>
                             <div class="img">
-                                <img src="./assets/ecologism-cars-svgrepo-com.svg" class="w-100 h-100"
-                                    alt="slider-img">
+                                <img src="./assets/ecologism-cars-svgrepo-com.svg" class="w-100 h-100" alt="slider-img">
                             </div>
                         </div>
-                        <div class="card" style="--index: 5;--color-card: 142, 252, 157;">
+                        <div class="card cursor-pointer" style="--index: 5;--color-card: 142, 252, 157;">
                             <div>
                                 <span class="small special-font">Solar Panels</span>
                             </div>
                             <div class="img">
-                                <img src="./assets/solar-energy-svgrepo-com.svg" class="w-100 h-100"
-                                    alt="slider-img">
-                            </div>  
+                                <img src="./assets/solar-energy-svgrepo-com.svg" class="w-100 h-100" alt="slider-img">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -184,8 +154,7 @@
             <div class="col-md-4 container-2">
                 <div class="card cursor-pointer">
                     <div class="imgBx">
-                        <img src="./assets/blue-water-9-inch-activated-carbon-filter.jpg"
-                            alt="nike-air-shoe">
+                        <img src="./assets/blue-water-9-inch-activated-carbon-filter.jpg" alt="nike-air-shoe">
                     </div>
 
                     <div class="contentBx">
@@ -199,8 +168,7 @@
             <div class="col-md-4 container-2">
                 <div class="card cursor-pointer">
                     <div class="imgBx">
-                        <img src="./assets/images.png"
-                            alt="nike-air-shoe" class="w-50">
+                        <img src="./assets/images.png" alt="nike-air-shoe" class="w-50">
                     </div>
 
                     <div class="contentBx">
@@ -214,8 +182,7 @@
             <div class="col-md-4 container-2">
                 <div class="card cursor-pointer">
                     <div class="imgBx">
-                        <img src="./assets/bike.png"
-                            alt="nike-air-shoe" class="w-75">
+                        <img src="./assets/bike.png" alt="nike-air-shoe" class="w-75">
                     </div>
 
                     <div class="contentBx">
@@ -230,27 +197,27 @@
     </div>
 </section>
 <section class="stats-section p-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <app-counter [endValue]="1250" label="Happy Customers"></app-counter>
-      </div>
-      <div class="col-md-3">
-        <app-counter [endValue]="350" label="Apiaries Licensed"></app-counter>
-      </div>
-      <div class="col-md-3">
-        <app-counter [endValue]="350" label="Orders Placed"></app-counter>
-      </div>
-      <div class="col-md-3">
-        <app-counter [endValue]="15" label="Years Experience"></app-counter>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <app-counter [endValue]="1250" label="Happy Customers"></app-counter>
+            </div>
+            <div class="col-md-3">
+                <app-counter [endValue]="350" label="Apiaries Licensed"></app-counter>
+            </div>
+            <div class="col-md-3">
+                <app-counter [endValue]="350" label="Orders Placed"></app-counter>
+            </div>
+            <div class="col-md-3">
+                <app-counter [endValue]="15" label="Years Experience"></app-counter>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 <section class="p-5 mb-5">
     <div class="container">
         <div class="position-relative mb-5">
-            <h4 class="text-main fs-6 position-absolute top-0">FAQ</h4>
+            <h4 class="text-main fs-6 position-absolute top-0">Help</h4>
         </div>
         <div class="mt-5">
             <div class="accordion pt-5 w-75 mx-auto" id="accordionExample">
@@ -315,6 +282,25 @@
                             comments from our team. You’ll also receive email notifications for major updates.
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about-us p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" data-aos="fade-right">
+                <div class="left-about-content p-5 pe-0 position-relative">
+                    <h4 class="text-main fs-6 position-absolute">About Us</h4>
+                    <p class="special-font about-main-text">
+                        We help bring your vision of a harmonious world with nature to life.
+                    </p>
+                    <p class="bottom-text">We are committed to fostering a harmonious relationship between people and nature, working toward a cleaner, healthier planet. Together, we help bring your vision of a thriving, sustainable world to life.</p>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <div class="section-banner">
                 </div>
             </div>
         </div>

@@ -51,6 +51,8 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  
+
   addProductToCart(p_ID: string): void {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
       if (localStorage.getItem('userToken')) {
@@ -77,6 +79,7 @@ export class ProductDetailsComponent implements OnInit {
       }
     }
   }
+  
 
   addProductToFavorites(productID: string): void {
     this._FavoritesService.addProductToFavorites(productID).subscribe({

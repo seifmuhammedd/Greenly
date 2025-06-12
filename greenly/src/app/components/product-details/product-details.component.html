@@ -31,7 +31,8 @@
                 </div>
 
                 <div class="product-meta">
-                    <div class="rating">
+                   @if (productDetails.ratingAvg <= 5) {
+                     <div class="rating">
                         <div class="stars">
                             @for (star of [1,2,3,4,5].slice(0,productDetails.ratingAvg); track $index) {
                             <i class="fas fa-star filled"></i>
@@ -47,6 +48,7 @@
                         </div>
                         }
                     </div>
+                   }
 
                     <button class="add-to-cart-btn" (click)="addProductToCart(productDetails._id)">
                         <i class="fas fa-shopping-cart"></i>
