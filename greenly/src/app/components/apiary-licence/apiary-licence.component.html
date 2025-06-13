@@ -6,112 +6,87 @@
       <div class="row mb-4 justify-content-center">
         <div class="col-md-6 mb-3">
           <label class="form-label special-font fs-4">Full Name</label>
-          <input 
-            type="text" 
-            class="form-control" 
-            [ngClass]="{
+          <input type="text" class="form-control" [ngClass]="{
               'is-valid': !apiaryForm.get('fullName')?.errors && (apiaryForm.get('fullName')?.touched || apiaryForm.get('fullName')?.dirty),
               'is-invalid': apiaryForm.get('fullName')?.errors && (apiaryForm.get('fullName')?.touched || apiaryForm.get('fullName')?.dirty)
-            }"
-            formControlName="fullName"
-            placeholder="Seif Muhammed" 
-          />
+            }" formControlName="fullName" placeholder="Seif Muhammed" />
           @if (apiaryForm.get('fullName')?.errors && apiaryForm.get('fullName')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('fullName')?.hasError('required')) {
-                <p class="m-0">Full Name is required</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('fullName')?.hasError('required')) {
+            <p class="m-0">Full Name is required</p>
+            }
+          </div>
           }
         </div>
-        
+
         <div class="col-md-6 mb-3">
           <label class="form-label special-font fs-4">Phone Number</label>
-          <input 
-            type="tel" 
-            class="form-control" 
-            [ngClass]="{
+          <input type="tel" class="form-control" [ngClass]="{
               'is-valid': !apiaryForm.get('phoneNumber')?.errors && (apiaryForm.get('phoneNumber')?.touched || apiaryForm.get('phoneNumber')?.dirty),
               'is-invalid': apiaryForm.get('phoneNumber')?.errors && (apiaryForm.get('phoneNumber')?.touched || apiaryForm.get('phoneNumber')?.dirty)
-            }"
-            formControlName="phoneNumber" 
-            placeholder="+20..." 
-          />
-          @if (apiaryForm.get('phoneNumber')?.errors && apiaryForm.get('phoneNumber')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('phoneNumber')?.hasError('required')) {
-                <p class="m-0">Phone Number is required</p>
-              }
-            </div>
+            }" formControlName="phoneNumber" placeholder="+20..." />
+          @if (apiaryForm.get("phoneNumber")?.errors && apiaryForm.get("phoneNumber")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+
+            @if (apiaryForm.get("phoneNumber")?.getError("required")) {<p class="m-0">Phone Number is required</p>}
+            @else if (apiaryForm.get("phoneNumber")?.getError("pattern")) {<p class="m-0">Egyptian numbers only are
+              allowed
+            </p>}
+          </div>
+
           }
+
         </div>
-        
+
         <div class="col-md-6 mb-3">
           <label class="form-label special-font fs-4">Email</label>
-          <input 
-            type="email" 
-            class="form-control" 
-            [ngClass]="{
+          <input type="email" class="form-control" [ngClass]="{
               'is-valid': !apiaryForm.get('email')?.errors && (apiaryForm.get('email')?.touched || apiaryForm.get('email')?.dirty),
               'is-invalid': apiaryForm.get('email')?.errors && (apiaryForm.get('email')?.touched || apiaryForm.get('email')?.dirty)
-            }"
-            formControlName="email" 
-            placeholder="seif@xyz.com" 
-          />
+            }" formControlName="email" placeholder="seif@xyz.com" />
           @if (apiaryForm.get('email')?.errors && apiaryForm.get('email')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('email')?.hasError('required')) {
-                <p class="m-0">Email is required</p>
-              }
-              @if (apiaryForm.get('email')?.hasError('email')) {
-                <p class="m-0">Please enter a valid email</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('email')?.hasError('required')) {
+            <p class="m-0">Email is required</p>
+            }
+            @if (apiaryForm.get('email')?.hasError('email')) {
+            <p class="m-0">Please enter a valid email</p>
+            }
+          </div>
           }
         </div>
-        
+
         <div class="col-md-6 mb-3">
           <label class="form-label special-font fs-4">Address</label>
-          <input 
-            type="text" 
-            class="form-control" 
-            [ngClass]="{
+          <input type="text" class="form-control" [ngClass]="{
               'is-valid': !apiaryForm.get('address')?.errors && (apiaryForm.get('address')?.touched || apiaryForm.get('address')?.dirty),
               'is-invalid': apiaryForm.get('address')?.errors && (apiaryForm.get('address')?.touched || apiaryForm.get('address')?.dirty)
-            }"
-            formControlName="address" 
-            placeholder="221B Baker Street" 
-          />
+            }" formControlName="address" placeholder="221B Baker Street" />
           @if (apiaryForm.get('address')?.errors && apiaryForm.get('address')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('address')?.hasError('required')) {
-                <p class="m-0">Address is required</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('address')?.hasError('required')) {
+            <p class="m-0">Address is required</p>
+            }
+          </div>
           }
         </div>
-        
+
         <div class="col-md-6 mb-3">
-          <label class="form-label special-font fs-4">Experience in beekeeping <span class="text-secondary">in years</span></label>
-          <input 
-            type="number" 
-            class="form-control" 
-            [ngClass]="{
+          <label class="form-label special-font fs-4">Experience in beekeeping <span class="text-secondary">in
+              years</span></label>
+          <input type="number" class="form-control" [ngClass]="{
               'is-valid': !apiaryForm.get('experience')?.errors && (apiaryForm.get('experience')?.touched || apiaryForm.get('experience')?.dirty),
               'is-invalid': apiaryForm.get('experience')?.errors && (apiaryForm.get('experience')?.touched || apiaryForm.get('experience')?.dirty)
-            }"
-            formControlName="experience" 
-            placeholder="1" 
-          />
+            }" formControlName="experience" placeholder="1" />
           @if (apiaryForm.get('experience')?.errors && apiaryForm.get('experience')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('experience')?.hasError('required')) {
-                <p class="m-0">Experience is required</p>
-              }
-              @if (apiaryForm.get('experience')?.hasError('min')) {
-                <p class="m-0">Experience must be at least 0 years</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('experience')?.hasError('required')) {
+            <p class="m-0">Experience is required</p>
+            }
+            @if (apiaryForm.get('experience')?.hasError('min')) {
+            <p class="m-0">Experience must be at least 0 years</p>
+            }
+          </div>
           }
         </div>
       </div>
@@ -119,60 +94,45 @@
       <h4 class="special-font text-main position-relative fs-5">Apiary Licence Information</h4>
       <div class="row justify-content-center mb-3">
         <div class="col-md-4 mb-3">
-          <label class="form-label special-font fs-4">Required Area <span class="text-secondary">in meter square</span></label>
-          <input 
-            type="number" 
-            class="form-control" 
-            [ngClass]="{
+          <label class="form-label special-font fs-4">Required Area <span class="text-secondary">in meter
+              square</span></label>
+          <input type="number" class="form-control" [ngClass]="{
               'is-valid': !apiaryForm.get('requiredArea')?.errors && (apiaryForm.get('requiredArea')?.touched || apiaryForm.get('requiredArea')?.dirty),
               'is-invalid': apiaryForm.get('requiredArea')?.errors && (apiaryForm.get('requiredArea')?.touched || apiaryForm.get('requiredArea')?.dirty)
-            }"
-            formControlName="requiredArea" 
-            placeholder="3000" 
-          />
+            }" formControlName="requiredArea" placeholder="3000" />
           @if (apiaryForm.get('requiredArea')?.errors && apiaryForm.get('requiredArea')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('requiredArea')?.hasError('required')) {
-                <p class="m-0">Required Area is mandatory</p>
-              }
-              @if (apiaryForm.get('requiredArea')?.hasError('min')) {
-                <p class="m-0">Area must be at least 1 m²</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('requiredArea')?.hasError('required')) {
+            <p class="m-0">Required Area is mandatory</p>
+            }
+            @if (apiaryForm.get('requiredArea')?.hasError('min')) {
+            <p class="m-0">Area must be at least 1 m²</p>
+            }
+          </div>
           }
         </div>
-        
+
         <div class="col-md-4 mb-3">
           <label class="form-label special-font fs-4">Required Location</label>
-          <input 
-            type="text" 
-            class="form-control" 
-            [ngClass]="{
+          <input type="text" class="form-control" [ngClass]="{
               'is-valid': !apiaryForm.get('requiredLocation')?.errors && (apiaryForm.get('requiredLocation')?.touched || apiaryForm.get('requiredLocation')?.dirty),
               'is-invalid': apiaryForm.get('requiredLocation')?.errors && (apiaryForm.get('requiredLocation')?.touched || apiaryForm.get('requiredLocation')?.dirty)
-            }"
-            formControlName="requiredLocation" 
-            placeholder="Giza, Egypt" 
-          />
+            }" formControlName="requiredLocation" placeholder="Giza, Egypt" />
           @if (apiaryForm.get('requiredLocation')?.errors && apiaryForm.get('requiredLocation')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('requiredLocation')?.hasError('required')) {
-                <p class="m-0">Location is required</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('requiredLocation')?.hasError('required')) {
+            <p class="m-0">Location is required</p>
+            }
+          </div>
           }
         </div>
-        
+
         <div class="col-md-4 mb-3">
           <label class="form-label special-font fs-4">Surrounding plants type</label>
-          <select 
-            class="form-select" 
-            [ngClass]="{
+          <select class="form-select" [ngClass]="{
               'is-valid': !apiaryForm.get('plantsType')?.errors && (apiaryForm.get('plantsType')?.touched || apiaryForm.get('plantsType')?.dirty),
               'is-invalid': apiaryForm.get('plantsType')?.errors && (apiaryForm.get('plantsType')?.touched || apiaryForm.get('plantsType')?.dirty)
-            }"
-            formControlName="plantsType"
-          >
+            }" formControlName="plantsType">
             <option disabled value="">Select plant type</option>
             <option value="Flowering Trees">Flowering Trees</option>
             <option value="Herbs">Herbs</option>
@@ -180,59 +140,48 @@
             <option value="Wild Plants">Wild Plants</option>
           </select>
           @if (apiaryForm.get('plantsType')?.errors && apiaryForm.get('plantsType')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('plantsType')?.hasError('required')) {
-                <p class="m-0">Plant type is required</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('plantsType')?.hasError('required')) {
+            <p class="m-0">Plant type is required</p>
+            }
+          </div>
           }
         </div>
-        
+
         <div class="col-md-4 mb-3">
           <label class="form-label special-font fs-4">Number of planned bee colonies</label>
-          <input 
-            type="number" 
-            class="form-control" 
-            [ngClass]="{
+          <input type="number" class="form-control" [ngClass]="{
               'is-valid': !apiaryForm.get('numberOfColonies')?.errors && (apiaryForm.get('numberOfColonies')?.touched || apiaryForm.get('numberOfColonies')?.dirty),
               'is-invalid': apiaryForm.get('numberOfColonies')?.errors && (apiaryForm.get('numberOfColonies')?.touched || apiaryForm.get('numberOfColonies')?.dirty)
-            }"
-            formControlName="numberOfColonies" 
-            placeholder="20000" 
-          />
+            }" formControlName="numberOfColonies" placeholder="20000" />
           @if (apiaryForm.get('numberOfColonies')?.errors && apiaryForm.get('numberOfColonies')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('numberOfColonies')?.hasError('required')) {
-                <p class="m-0">Number of colonies is required</p>
-              }
-              @if (apiaryForm.get('numberOfColonies')?.hasError('min')) {
-                <p class="m-0">Must have at least 1 colony</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('numberOfColonies')?.hasError('required')) {
+            <p class="m-0">Number of colonies is required</p>
+            }
+            @if (apiaryForm.get('numberOfColonies')?.hasError('min')) {
+            <p class="m-0">Must have at least 1 colony</p>
+            }
+          </div>
           }
         </div>
-        
+
         <div class="col-md-12 mb-3">
-          <label class="form-label special-font fs-4">Proposed work plan <span class="text-secondary">3000 characters maximum</span></label>
-          <textarea 
-            class="form-control" 
-            rows="5" 
-            [ngClass]="{
+          <label class="form-label special-font fs-4">Proposed work plan <span class="text-secondary">3000 characters
+              maximum</span></label>
+          <textarea class="form-control" rows="5" [ngClass]="{
               'is-valid': !apiaryForm.get('workPlan')?.errors && (apiaryForm.get('workPlan')?.touched || apiaryForm.get('workPlan')?.dirty),
               'is-invalid': apiaryForm.get('workPlan')?.errors && (apiaryForm.get('workPlan')?.touched || apiaryForm.get('workPlan')?.dirty)
-            }"
-            formControlName="workPlan" 
-            placeholder="Write your plan here..."
-          ></textarea>
+            }" formControlName="workPlan" placeholder="Write your plan here..."></textarea>
           @if (apiaryForm.get('workPlan')?.errors && apiaryForm.get('workPlan')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('workPlan')?.hasError('required')) {
-                <p class="m-0">Work plan is required</p>
-              }
-              @if (apiaryForm.get('workPlan')?.hasError('maxlength')) {
-                <p class="m-0">Maximum 3000 characters allowed</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('workPlan')?.hasError('required')) {
+            <p class="m-0">Work plan is required</p>
+            }
+            @if (apiaryForm.get('workPlan')?.hasError('maxlength')) {
+            <p class="m-0">Maximum 3000 characters allowed</p>
+            }
+          </div>
           }
           <div class="text-end mt-1">
             <small class="text-muted">
@@ -246,46 +195,37 @@
       <div class="row">
         <div class="col-md-6 mb-3">
           <label class="form-label special-font fs-4">National ID / Passport</label>
-          <input 
-            type="file" 
-            class="form-control bg-light" 
-            [ngClass]="{
+          <input type="file" class="form-control bg-light" [ngClass]="{
               'is-valid': !apiaryForm.get('nationalId')?.errors && (apiaryForm.get('nationalId')?.touched || apiaryForm.get('nationalId')?.dirty),
               'is-invalid': apiaryForm.get('nationalId')?.errors && (apiaryForm.get('nationalId')?.touched || apiaryForm.get('nationalId')?.dirty)
-            }"
-            (change)="onFileChange($event, 'nationalId')" 
-          />
+            }" (change)="onFileChange($event, 'nationalId')" />
           @if (apiaryForm.get('nationalId')?.errors && apiaryForm.get('nationalId')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('nationalId')?.hasError('required')) {
-                <p class="m-0">National ID is required</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('nationalId')?.hasError('required')) {
+            <p class="m-0">National ID is required</p>
+            }
+          </div>
           }
         </div>
-        
+
         <div class="col-md-6 mb-3">
           <label class="form-label special-font fs-4">Beekeeping Experience Documents</label>
-          <input 
-            type="file" 
-            class="form-control bg-light" 
-            [ngClass]="{
+          <input type="file" class="form-control bg-light" [ngClass]="{
               'is-valid': !apiaryForm.get('documents')?.errors && (apiaryForm.get('documents')?.touched || apiaryForm.get('documents')?.dirty),
               'is-invalid': apiaryForm.get('documents')?.errors && (apiaryForm.get('documents')?.touched || apiaryForm.get('documents')?.dirty)
-            }"
-            (change)="onFileChange($event, 'documents')" 
-          />
+            }" (change)="onFileChange($event, 'documents')" />
           @if (apiaryForm.get('documents')?.errors && apiaryForm.get('documents')?.touched) {
-            <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
-              @if (apiaryForm.get('documents')?.hasError('required')) {
-                <p class="m-0">Experience documents are required</p>
-              }
-            </div>
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (apiaryForm.get('documents')?.hasError('required')) {
+            <p class="m-0">Experience documents are required</p>
+            }
+          </div>
           }
         </div>
       </div>
 
-      <button type="submit" class="btn btn-success w-25 d-block px-3 py-2 mx-auto my-5" [disabled]="apiaryForm.invalid">Apply</button>
+      <button type="submit" class="btn btn-success w-25 d-block px-3 py-2 mx-auto my-5"
+        [disabled]="apiaryForm.invalid">Apply</button>
     </form>
   </div>
 </section>
