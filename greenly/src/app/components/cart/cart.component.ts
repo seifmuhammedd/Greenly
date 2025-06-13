@@ -30,6 +30,7 @@ export class CartComponent implements OnInit {
       if (token) {
         this.cartSub = this._CartService.getUserCart().subscribe({
           next: (res) => {
+            console.log(res)
             this._CartService.cartCounter.next(res.counter);
             this.cartData = res;
           },

@@ -10,7 +10,7 @@
                                 <span class="text-white position-absolute favorite-circle" (click)="deleteFromFavorites(product.productId._id)">
                                     <i class="fa-solid fa-heart text-main fs-3"></i>
                                 </span>
-                                <div class="product-body" routerLink="/product-details">
+                                <div class="product-body" [routerLink]="['/app/system/product-details', product.productId._id]">
                                     <img [src]="product.productId.imageCover"
                                     class="card-img-top rounded-bottom-2" alt="product-img">
                                 <div class="card-body">

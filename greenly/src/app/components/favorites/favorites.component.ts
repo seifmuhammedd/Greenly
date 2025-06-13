@@ -5,11 +5,12 @@ import { IFavorites } from '../../core/interfeces/i-favorites';
 import { ToastrService } from 'ngx-toastr';
 import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.css'
 })

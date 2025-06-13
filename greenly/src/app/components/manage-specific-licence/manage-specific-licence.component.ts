@@ -34,6 +34,7 @@ export class ManageSpecificLicenceComponent implements OnInit {
         if (this.licenceID) {
           this._LicenceService.getSpecificLicence(this.licenceID).subscribe({
             next: (res) => {
+              console.log(res)
               this.licenceDetails = res;
               this.updateFormWithData();
             },
