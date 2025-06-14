@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter, withViewTransitions } from '@angular/router';
+import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,10 +9,12 @@ import { reqHeaderInterceptor } from './core/interceptors/req-header.interceptor
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withViewTransitions()),
+    provideRouter(routes, withViewTransitions(), 
+    withInMemoryScrolling({scrollPositionRestoration:"enabled"})
+  ),
     provideClientHydration(),
     importProvidersFrom(BrowserAnimationsModule),
     provideToastr(),
-    provideHttpClient(withFetch(), withInterceptors([reqHeaderInterceptor]))
+    provideHttpClient(withFetch(), withInterceptors([reqHeaderInterceptor]))  
   ],
 };
