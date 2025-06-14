@@ -1,0 +1,26 @@
+<div class="address-selection-container my-4">
+    <h2 class="address-selection-title">Select Delivery Address</h2>
+
+    <div class="address-list">
+        @for (address of addressesData; track address._id) {
+            <div class="address-content">
+            <div class="address-header">
+                <span class="address-type">{{address.TYPE}}</span>
+                @if (address.isDefault) {
+                <span class="address-name">(Default)</span>
+                }@else {
+                <span class="text-success text-decoration-underline small cursor-pointer" (click)="updateAddressToDefault(address._id)">Set to default</span>
+                }
+            </div>
+            <p class="address-text">{{address.street}}, Apt {{address.apartment}}<br>{{address.city}} {{address.postalcode}}<br>{{address.state}}</p>
+            <div class="address-phone">Phone: {{address.phone}}</div>
+            <div class="actions">
+                <button class="btn btn-success px-2 py-1" (click)="checkOut(address)">Select this address</button>
+            </div>
+        </div>
+        }
+
+        <button class="add-address-button" routerLink="/app/system/check-out">
+            <span class="plus-icon">+</span> Add New Address
+        </button>
+    </div>

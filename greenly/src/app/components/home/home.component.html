@@ -199,18 +199,20 @@
 <section class="stats-section p-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <app-counter [endValue]="1250" label="Happy Customers"></app-counter>
+           @if(insights){
+             <div class="col-md-3">
+                <app-counter [endValue]="insights.users" label="Happy Customers"></app-counter>
             </div>
             <div class="col-md-3">
-                <app-counter [endValue]="350" label="Apiaries Licensed"></app-counter>
+                <app-counter [endValue]="insights.approvedLicenses" label="Apiaries Licensed"></app-counter>
             </div>
             <div class="col-md-3">
-                <app-counter [endValue]="350" label="Orders Placed"></app-counter>
+                <app-counter [endValue]="insights.orders" label="Orders Placed"></app-counter>
             </div>
             <div class="col-md-3">
-                <app-counter [endValue]="15" label="Years Experience"></app-counter>
+                <app-counter [endValue]="insights.products" label="Different Product"></app-counter>
             </div>
+           }
         </div>
     </div>
 </section>

@@ -38,6 +38,9 @@ import { ManageSubCategoriesComponent } from './components/manage-sub-categories
 import { AddSubCategoryComponent } from './components/add-sub-category/add-sub-category.component';
 import { ManageBlogComponent } from './components/manage-blog/manage-blog.component';
 import { GeneralInfoComponent } from './components/general-info/general-info.component';
+import { UserAddressesComponent } from './components/user-addresses/user-addresses.component';
+import { ManageOrderesComponent } from './components/manage-orderes/manage-orderes.component';
+import { OrderSuccessfulComponent } from './components/order-successful/order-successful.component';
 
 
 export const routes: Routes = [
@@ -63,11 +66,12 @@ export const routes: Routes = [
                 {path: "blog", component: BlogComponent, title: "Blog"},
                 {path: "loan", component: LoanComponent, title: "Loan Application"},
                 {path: "apiary-licence", component: ApiaryLicenceComponent, title: "Apiary Licence Application"},
+                {path: "user-addresses", component: UserAddressesComponent, title: "Choose Address"},
                 {path: "check-out", component: PaymentComponent, title: "Check Out"},
+                {path: "order-successful", component: OrderSuccessfulComponent, title: "Order Successful"},
             ]},
             {path: "user", component: UserComponent, children: [
                 {path: "user-profile", component: UserProfileComponent, title: "Profile"},
-                {path: "payment", component: PaymentComponent, title: "Payment"},
             ], canActivate : [authGuard]},
         ]},
         {path: "admin", component: AdminComponent, children: [
@@ -83,6 +87,7 @@ export const routes: Routes = [
             {path: "manage-specific-licence/:l_ID", component: ManageSpecificLicenceComponent, title: "Manage Licence"},
             {path: "manage-licences", component: ManageLicencesComponent, title: "Manage Apiary"},
             {path: "manage-loans", component: ManageLoansComponent, title: "Manage Loans"},
+            {path: "manage-orders", component: ManageOrderesComponent, title: "Manage Orders"},
             {path: "users", component: ManageUsersComponent, title: "Manage Users"},
         ], canActivate : [adminGuard]},
         {path: "**", component: NotFoundComponent, title: "Not Found"},

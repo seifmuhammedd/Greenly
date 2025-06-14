@@ -1,1 +1,61 @@
-<p>manage-loans works!</p>
+<section class="my-5">
+    <div class="container">
+        <div class="loans-container">
+  <h2 class="loans-title">Loan Applications</h2>
+  
+  <div class="table-responsive">
+    <table class="loans-table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>Married</th>
+          <th>Dependents</th>
+          <th>Education</th>
+          <th>Self Employed</th>
+          <th>Applicant Income</th>
+          <th>Co-Applicant Income</th>
+          <th>Loan Amount</th>
+          <th>Loan Term</th>
+          <th>Credit History</th>
+          <th>Property Area</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (loan of loansData; track loan._id) {
+        <tr>
+          <td>{{loan.userId.userName}}</td>
+          <td>{{loan.userId.email}}</td>
+          <td>{{loan.inputData.Gender}}</td>
+          <td>{{loan.inputData.Married}}</td>
+          <td>{{loan.inputData.Dependents}}</td>
+          <td>{{loan.inputData.Education}}</td>
+          <td>{{loan.inputData.Self_Employed}}</td>
+          <td>${{loan.inputData.ApplicantIncome}}</td>
+          <td>${{loan.inputData.CoApplicantIncome}}</td>
+          <td>${{loan.inputData.LoanAmount}}</td>
+          <td>{{loan.inputData.Loan_Amount_Term}} days</td>
+          <td>{{loan.inputData.Credit_History === '1' ? 'Good' : 'Bad'}}</td>
+          <td>{{loan.inputData.Property_Area}}</td>
+          <td>
+            <span class="status-badge" [ngClass]="{
+              'approved': loan.loanStatus === 'Approved',
+              'rejected': loan.loanStatus === 'Rejected',
+            }">
+              {{loan.loanStatus}}
+            </span>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="14" class="no-data">No loan applications found</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+    </div>
+</section>

@@ -13,4 +13,8 @@ export class LoanService {
   submitLoanApplication(formData: object):Observable<any> {
     return this._HttpClient.post(`${environment.baseURL}/loan/predict`, formData, { headers: { 'Authorization': `Bearer ${localStorage.getItem("userToken")}` } });
   }
+
+  getAllLoans():Observable<any>{
+    return this._HttpClient.get(`${environment.baseURL}/loan/allLoans`, { headers: { 'Authorization': `Admin ${localStorage.getItem("userToken")}` } })
+  }
 }

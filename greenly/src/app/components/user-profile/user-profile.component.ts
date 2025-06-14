@@ -1,4 +1,4 @@
-import { DatePipe, NgClass } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgClass, SlicePipe, TitleCasePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { ProfileService } from '../../core/services/profile.service';
@@ -13,11 +13,13 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { Router, RouterLink } from '@angular/router';
 import { IBlog } from '../../core/interfeces/i-blog';
+import { OrdersService } from '../../core/services/orders.service';
+import { IOrder } from '../../core/interfeces/i-order';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [NgClass, ReactiveFormsModule, DatePipe, RouterLink],
+  imports: [NgClass, ReactiveFormsModule, DatePipe, RouterLink, CurrencyPipe],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css',
 })
@@ -25,6 +27,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private _BlogService: BlogService,
     private _ProfileService: ProfileService,
+    private _OrdersService: OrdersService,
     private _FormBuilder: FormBuilder,
     private _ToastrService: ToastrService,
     private _Router: Router
@@ -35,6 +38,7 @@ export class UserProfileComponent implements OnInit {
 
   personalInfo!: IProfile;
   blogData !: IBlog[]
+  ordersData !: IOrder[]
 
   ngOnInit(): void {
     this.personalInfoSub = this._ProfileService
@@ -55,6 +59,7 @@ export class UserProfileComponent implements OnInit {
           console.log(err.message);
         },
       });
+      this.getAllOrders()
   }
 
   personalInfoForm: FormGroup = this._FormBuilder.group({
@@ -154,6 +159,18 @@ export class UserProfileComponent implements OnInit {
       },
       error: (err) => {
         console.log(err.message)
+      }
+    })
+  }
+
+  getAllOrders():void{
+    this._OrdersService.getAllOrders().subscribe({
+      next: (res)=>{
+        console.log(res)
+        this.ordersData = res.orders
+      },
+      error: (err)=>{
+        console.log(err)
       }
     })
   }

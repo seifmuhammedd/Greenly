@@ -87,3 +87,19 @@ h4::before {
   .w-10{
     width: 10%;
   }
+  .user-orders {
+  overflow-x: auto;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.badge {
+  font-size: 0.8em;
+  padding: 0.35em 0.65em;
+}
+
+.small {
+  font-size: 0.85rem;
+}

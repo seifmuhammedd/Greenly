@@ -1,0 +1,149 @@
+.address-selection-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.address-selection-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+}
+
+.address-selection-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #177E39;
+  margin: 12px auto 0;
+}
+
+.address-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.address-content {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 18px;
+  background-color: #fff;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.address-content::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: #177E39;
+  border-radius: 8px 0 0 8px;
+}
+
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.address-name {
+  font-weight: 600;
+  color: #1a202c;
+  font-size: 17px;
+}
+
+.address-type {
+  background-color: #e6f5eb;
+  color: #177E39;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.address-text {
+  color: #4a5568;
+  margin: 12px 0;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.address-phone {
+  color: #4a5568;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.address-phone::before {
+  content: '📞';
+}
+
+.add-address-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #fff;
+  border: 1px dashed #cbd5e0;
+  border-radius: 8px;
+  color: #177E39;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.add-address-button:hover {
+  border-color: #177E39;
+  background-color: #f0fdf4;
+}
+
+.plus-icon {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.continue-button:hover {
+  background-color: #136530;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .address-selection-container {
+    padding: 18px;
+  }
+  
+  .address-selection-title {
+    font-size: 20px;
+  }
+  
+  .continue-button {
+    width: 100%;
+  }
+}
