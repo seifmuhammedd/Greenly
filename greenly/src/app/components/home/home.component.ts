@@ -16,6 +16,8 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent implements AfterViewInit, OnInit {
 
+  
+
   private readonly _PLATFORM_ID = inject(PLATFORM_ID);
   private readonly _InsightsService = inject(InsightsService);
 
