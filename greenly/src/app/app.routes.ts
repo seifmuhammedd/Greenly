@@ -41,6 +41,7 @@ import { GeneralInfoComponent } from './components/general-info/general-info.com
 import { UserAddressesComponent } from './components/user-addresses/user-addresses.component';
 import { ManageOrderesComponent } from './components/manage-orderes/manage-orderes.component';
 import { OrderSuccessfulComponent } from './components/order-successful/order-successful.component';
+import { AddingComponent } from './components/adding/adding.component';
 
 
 export const routes: Routes = [
@@ -88,6 +89,7 @@ export const routes: Routes = [
             {path: "manage-licences", component: ManageLicencesComponent, title: "Manage Apiary"},
             {path: "manage-loans", component: ManageLoansComponent, title: "Manage Loans"},
             {path: "manage-orders", component: ManageOrderesComponent, title: "Manage Orders"},
+            {path: "adding", component: AddingComponent, title: "Add"},
             {path: "users", component: ManageUsersComponent, title: "Manage Users"},
         ], canActivate : [adminGuard]},
         {path: "**", component: NotFoundComponent, title: "Not Found"},
