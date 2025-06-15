@@ -27,48 +27,48 @@
             <div class="favorite-btn" (click)="toggleProductFavorites(product._id)">
               <i [class]="isInFavorites(product._id)? 'fas fa-heart text-danger': 'far fa-heart'"></i>
             </div>
-            
+
             <!-- Product Image -->
             <div class="product-image-container" [routerLink]="['/app/system/product-details', product._id]">
               <img [src]="product.imageCover" class="product-image" alt="product-img">
               <div class="image-overlay"></div>
               @if(product.stock == 0) {
-                <div class="out-of-stock-badge">Sold Out</div>
-              } @else if(product.stock < 5) {
-                <div class="low-stock-badge">Only {{product.stock}} Left</div>
-              }
+              <div class="out-of-stock-badge">Sold Out</div>
+              } @else if(product.stock < 5) { <div class="low-stock-badge">Only {{product.stock}} Left
             </div>
-            
-            <!-- Product Info -->
-            <div class="product-info">
-              <div class="product-header" [routerLink]="['/app/system/product-details', product._id]">
-                <h3 class="product-title special-font">{{ product.name }}</h3>
-                <p class="product-description">{{ product.shortdescription }}</p>
-              </div>
-              
-              <div class="product-footer">
-                <div class="price-stock">
-                  <div class="price special-font">{{ product.price | currency : "GBP" }}</div>
-                  @if(product.stock > 0) {
-                    <div class="stock-status">
-                      <i class="fas fa-box-open"></i>
-                      <span>{{ product.stock }} in stock</span>
-                    </div>
-                  }
+            }
+          </div>
+
+          <!-- Product Info -->
+          <div class="product-info">
+            <div class="product-header" [routerLink]="['/app/system/product-details', product._id]">
+              <h3 class="product-title special-font">{{ product.name }}</h3>
+              <p class="product-description">{{ product.shortdescription }}</p>
+              <p class="product-description fw-bold mt-2 special-font">Vendor: {{ product.vendor }}</p>
+            </div>
+            <div class="product-footer">
+              <div class="price-stock">
+                <div class="price special-font">{{ product.price | currency : "GBP" }}</div>
+                @if(product.stock > 0) {
+                <div class="stock-status">
+                  <i class="fas fa-box-open"></i>
+                  <span>{{ product.stock }} in stock</span>
                 </div>
-                
-                <button class="add-to-cart-btn" (click)="addProductToCart(product._id)" [disabled]="product.stock == 0">
-                  <i class="fas fa-cart-plus"></i>
-                  Add to Cart
-                </button>
+                }
               </div>
+
+              <button class="add-to-cart-btn" (click)="addProductToCart(product._id)" [disabled]="product.stock == 0">
+                <i class="fas fa-cart-plus"></i>
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
-        }
       </div>
+      }
     </div>
-    }
-    }
+  </div>
+  }
+  }
   </div>
 </section>

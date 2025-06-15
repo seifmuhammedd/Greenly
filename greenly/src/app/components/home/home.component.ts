@@ -5,11 +5,12 @@ import { isPlatformBrowser } from '@angular/common';
 import { CounterComponent } from "../counter/counter.component";
 import { InsightsService } from '../../core/services/insights.service';
 import { IInsights } from '../../core/interfeces/i-insights';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselModule, CounterComponent],
+  imports: [CarouselModule, CounterComponent, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -43,10 +44,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
     mouseDrag: true,
     touchDrag: true,
     autoplay: true,
-    autoplayTimeout: 3000,
+    autoplayTimeout: 4000,
     pullDrag: false,
     dots: false,
-    navSpeed: 3000,
+    navSpeed: 4000,
     navText: ['', ''],
     items: 1,
     nav: false

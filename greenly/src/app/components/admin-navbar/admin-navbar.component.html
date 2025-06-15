@@ -39,8 +39,6 @@
         </li>
       </ul>
       @if(_AuthService.isLoggedIn()) {
-      <button class="btn-special rounded-3 px-3 py-1 rounded-5 mx-3" type="button" routerLink="/app/user/user-profile"><img
-          src="./assets/user-svgrepo-green-com.svg" width="30px" height="30px" />Profile</button>
       <button class="btn btn-success rounded-3 px-3" type="button" (click)="logOut()">Log Out<img src="./assets/logout-svgrepo-com.svg" style="filter: invert(1);" width="25px" height="25px"></button>
       }@else{
       <div class="nav-buttons me-4">

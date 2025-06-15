@@ -69,6 +69,7 @@ export class CartComponent implements OnInit {
           });
         },
         error: (err) => {
+          this._ToastrService.error(`${err.error.message}`)
           console.log(err.error.message);
         },
       });

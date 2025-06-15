@@ -29,7 +29,8 @@ export class PaymentComponent {
     building: ['', Validators.required],
     floor: ['', Validators.required],
     apartment: ['', Validators.required],
-    postal_code: ['', Validators.required],
+    postalcode: ['', Validators.required],
+    namee: ['', Validators.required],
     phone: [
       '',
       [

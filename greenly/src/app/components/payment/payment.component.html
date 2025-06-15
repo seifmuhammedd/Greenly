@@ -94,7 +94,7 @@
       <!-- Postal Code -->
       <div class="mb-3">
         <label for="postal-code" class="form-label fs-5 special-font">Postal Code</label>
-        <input type="text" class="form-control border-success" id="postal-code" formControlName="postal_code">
+        <input type="text" class="form-control border-success" id="postal-code" formControlName="postalcode">
         @if (addressForm.get("postal_code")?.errors && addressForm.get("postal_code")?.touched) {
           <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
             <p class="m-0">Postal code is required</p>
@@ -111,6 +111,21 @@
             @if (addressForm.get("phone")?.getError("required")) {
               <p class="m-0">Phone number is required</p>
             } @else if (addressForm.get("phone")?.getError("pattern")) {
+              <p class="m-0">Please enter a valid phone number</p>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Address Name -->
+      <div class="mb-3">
+        <label for="phone" class="form-label fs-5 special-font">Address Name</label>
+        <input type="tel" class="form-control border-success" id="phone" formControlName="namee">
+        @if (addressForm.get("namee")?.errors && addressForm.get("namee")?.touched) {
+          <div class="alert alert-warning p-2 fs-6 fw-bold rounded-2 mt-2">
+            @if (addressForm.get("namee")?.getError("required")) {
+              <p class="m-0">Phone number is required</p>
+            } @else if (addressForm.get("namee")?.getError("pattern")) {
               <p class="m-0">Please enter a valid phone number</p>
             }
           </div>

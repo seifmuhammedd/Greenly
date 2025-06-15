@@ -72,9 +72,11 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-success py-2 px-2 d-block w-10 ms-auto">Update</button>
+                <button class="btn btn-success py-2 px-2 d-block w-10 ms-auto"
+                    [disabled]="updatePasswordForm.invalid">Update</button>
             </form>
         </div>
+        @if (isUser) {
         <div class="user-posts mt-5 mb-3">
             <h4 class="text-main position-relative fs-5">My Posts</h4>
             <div class="row g-3 mt-3">
@@ -172,5 +174,6 @@
                 </tbody>
             </table>
         </div>
+        }
     </div>
 </section>

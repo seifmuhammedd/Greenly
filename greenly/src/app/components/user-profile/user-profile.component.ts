@@ -1,10 +1,11 @@
-import { CurrencyPipe, DatePipe, NgClass, SlicePipe, TitleCasePipe } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CurrencyPipe, DatePipe, isPlatformBrowser, NgClass, SlicePipe, TitleCasePipe } from '@angular/common';
+import { ChangeDetectorRef, Component, ElementRef, inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { ProfileService } from '../../core/services/profile.service';
 import { Subscription } from 'rxjs';
 import { IProfile } from '../../core/interfeces/i-profile';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -30,8 +31,12 @@ export class UserProfileComponent implements OnInit {
     private _OrdersService: OrdersService,
     private _FormBuilder: FormBuilder,
     private _ToastrService: ToastrService,
-    private _Router: Router
+    private _Router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
+
+  isUser : boolean = false
+  private readonly _PLATFORM_ID= inject(PLATFORM_ID)
 
   personalInfoSub!: Subscription;
   blogSub!: Subscription;
@@ -60,7 +65,15 @@ export class UserProfileComponent implements OnInit {
         },
       });
       this.getAllOrders()
+      this.checkRole()
   }
+  
+  checkRole(): void {
+  if (isPlatformBrowser(this._PLATFORM_ID)) {
+    this.isUser = localStorage.getItem("role") === "user";
+    this.cdr.detectChanges();  // Force change detection
+  }
+}
 
   personalInfoForm: FormGroup = this._FormBuilder.group({
     userName: [null, [Validators.required]],
@@ -101,7 +114,15 @@ export class UserProfileComponent implements OnInit {
         ),
       ],
     ],
-  });
+  }, {validators: this.comparePassword});
+
+  comparePassword (g : AbstractControl):(null|object){
+      if (g.get("password")?.value === g.get("confirmPassword")?.value){
+        return null
+      }else{
+        return {'missMatch':true}
+      }
+    }
 
   isPasswordVisible = {
     old: false,
